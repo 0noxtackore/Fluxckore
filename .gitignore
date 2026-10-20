@@ -1,0 +1,25 @@
+# Build outputs
+build/
+dist/
+application/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs & local config
+*.log
+activity_log.txt
+config.json
+
+# Generated at build time (packaging/make_version_info.py)
+packaging/version_info.txt
