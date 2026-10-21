@@ -33,6 +33,7 @@ a = Analysis(
         "webview.platforms.edgechromium",
         "clr",
         "pythonnet",
+        "clr_loader",
         "System",
         "System.Windows.Forms",
         "System.Drawing",

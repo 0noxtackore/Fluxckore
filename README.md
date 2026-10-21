@@ -91,6 +91,24 @@ To install: download the ZIP, extract it and run `Fluxop.exe` from the `Fluxop-a
 
 Releases ship **unsigned**. Windows SmartScreen may flag the executable until it builds download reputation. This is expected for a new project and does not affect functionality.
 
+## Troubleshooting: `Failed to resolve Python.Runtime.Loader.Initialize`
+
+If `Fluxop.exe` crashes immediately on startup with:
+
+```
+RuntimeError: Failed to resolve Python.Runtime.Loader.Initialize from ...\pythonnet\runtime\Python.Runtime.dll
+```
+
+the cause is almost always the **Mark of the Web (MOTW)** flag on the downloaded files, or a missing .NET runtime. Fix:
+
+```powershell
+Unblock-File -Path C:\Users\PC\Downloads\Fluxop-8.0.2-portable -Recurse
+```
+
+(or right-click the `Fluxop-app` folder → Properties → check *Unblock* → Apply).
+
+`run.bat` performs this automatically before launching. After unblocking, run `Fluxop.exe` again and it should start.
+
 ## License
 
 [MIT License](LICENSE) — Copyright (c) 2026 Fluxop Team.
