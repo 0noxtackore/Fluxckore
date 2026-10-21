@@ -169,7 +169,7 @@ def clean_selected(selected, log=print, stats=None):
             elif cat_id == "registry":
                 clean_registry_basic(log)
         except Exception as e:
-            log(f"⚠ {cat_id}: {str(e)[:50]}", "warning")
+            log(f"{cat_id}: {str(e)[:50]}", "warning")
 
 
 def _clean_path_list(paths, log=print, stats=None):
@@ -180,7 +180,7 @@ def _clean_path_list(paths, log=print, stats=None):
             if os.path.exists(path):
                 delete_directory_contents_aggressive(path, name, log=log, stats=stats)
         except Exception as e:
-            log(f"⚠ {name}: {str(e)[:50]}", "warning")
+            log(f"{name}: {str(e)[:50]}", "warning")
 
 
 def _clean_store_cache(log=print, stats=None):
@@ -191,7 +191,7 @@ def _clean_store_cache(log=print, stats=None):
         pattern = os.path.expandvars(r"%LOCALAPPDATA%\Packages\*\LocalCache")
         for cache_dir in glob.glob(pattern):
             if _is_protected(cache_dir):
-                log("🛡 WhatsApp: sesión protegida, se omite", "info")
+                log("WhatsApp: sesión protegida, se omite (nunca se borra)", "info")
                 continue
             delete_directory_contents_aggressive(
                 cache_dir, "Store App Cache", log=log, stats=stats

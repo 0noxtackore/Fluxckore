@@ -57,9 +57,7 @@ class Api:
         options = []
         for code, data in LANGUAGE_OPTIONS.items():
             if code in available:
-                options.append(
-                    {"code": code, "flag": data["flag"], "native": data["native"]}
-                )
+                options.append({"code": code, "native": data["native"]})
         options.sort(
             key=lambda o: _LANG_PRIORITY.index(o["code"])
             if o["code"] in _LANG_PRIORITY
@@ -198,8 +196,8 @@ class Api:
             self._log("═══════════════════════════════════════", "info")
             self._log(f"         {_('optimization_summary')}        ", "success")
             self._log("═══════════════════════════════════════", "info")
-            self._log(f"\U0001f4be {_('space_freed')}: {self.total_space_freed:.2f} MB", "success")
-            self._log(f"\U0001f5d1\ufe0f {_('files_deleted')}: {self.files_deleted}", "success")
+            self._log(f"[MB] {_('space_freed')}: {self.total_space_freed:.2f} MB", "success")
+            self._log(f"[DEL] {_('files_deleted')}: {self.files_deleted}", "success")
 
             self.sounds.play("success")
             self._emit(
