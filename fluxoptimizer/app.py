@@ -71,6 +71,7 @@ class Api:
             "lang": lang,
             "lang_options": options,
             "translations": TranslationManager.get_translations(),
+            "categories": maintenance.file_categories(),
         }
 
     def set_language(self, code):
@@ -80,12 +81,27 @@ class Api:
             return {"ok": True, "lang": code, "translations": TranslationManager.get_translations()}
         return {"ok": False}
 
-    def start_optimization(self):
-        """Start a maintenance run in a worker thread."""
+    def start_optimization(self, categories=None):
+        """Start a maintenance run in a worker thread.
+
+        ``categories`` is the list of cleanup category ids chosen by the user
+        in the options panel; empty/None falls back to the safe defaults.
+        """
         if self.is_optimizing:
             return {"ok": False}
+
+        known = {c["id"] for c in maintenance.file_categories()}
+        if not isinstance(categories, (list, tuple)) or not categories:
+            selected = maintenance.default_categories()
+        else:
+            selected = [c for c in categories if isinstance(c, str) and c in known]
+        if not selected:
+            return {"ok": False}
+
         self.is_optimizing = True
-        threading.Thread(target=self._run_optimization, daemon=True).start()
+        threading.Thread(
+            target=self._run_optimization, args=(selected,), daemon=True
+        ).start()
         return {"ok": True}
 
     # ------------------------------------------------------------------
@@ -151,7 +167,7 @@ class Api:
     # ------------------------------------------------------------------
     # Maintenance run (same phases as the original suite)
     # ------------------------------------------------------------------
-    def _run_optimization(self):
+    def _run_optimization(self, selected):
         try:
             log = self._log
             stats = maintenance.MaintenanceStats()
@@ -168,28 +184,13 @@ class Api:
             maintenance.optimize_cpu(log)
             self._log("")
 
-            # Phase 3: GPU.
-            maintenance.optimize_gpu(log, stats)
+            # Phase 3: selected file-cleanup categories (temp, browsers,
+            # caches, recycle bin, registry... chosen by the user).
+            maintenance.clean_selected(selected, log, stats)
             self._log("")
 
-            # Phase 4: temporary files (deep).
-            maintenance.clean_temp_files(log, stats)
-            self._log("")
-
-            # Phase 5: browsers.
-            maintenance.clean_browser_cache(log, stats)
-            self._log("")
-
-            # Phase 6: DNS / network.
+            # Phase 4: DNS / network.
             maintenance.flush_dns_cache(log)
-            self._log("")
-
-            # Phase 7: system caches.
-            maintenance.clean_system_cache(log, stats)
-            self._log("")
-
-            # Phase 8: registry (basic).
-            maintenance.clean_registry_basic(log)
 
             self.total_space_freed = stats.space_freed_mb
             self.files_deleted = stats.files_deleted
@@ -256,8 +257,8 @@ def main():
         html=_load_html(),
         js_api=api,
         width=1000,
-        height=750,
-        min_size=(900, 700),
+        height=820,
+        min_size=(900, 740),
         background_color="#050508",
     )
     api.window = window

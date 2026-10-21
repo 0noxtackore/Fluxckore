@@ -201,6 +201,32 @@
   }
   @keyframes sweep { from { left: -40%; } to { left: 100%; } }
 
+  /* ---------- cleanup options ---------- */
+  .options { padding: 9px 16px 11px; }
+  .opt-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: #08131f; border: 1px solid #16324a; color: var(--dim);
+    font-family: var(--mono); font-size: 10px; letter-spacing: 1px; text-transform: uppercase;
+    padding: 6px 11px; cursor: pointer;
+    clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+    transition: border-color .15s, background .15s, color .15s;
+  }
+  .chip .box { width: 9px; height: 9px; flex: none; border: 1px solid #2a4a66; background: #060d16; }
+  .chip:hover { border-color: #1f4a6b; color: #9fc3de; }
+  .chip.on { color: var(--text); border-color: #0e5f8a; background: rgba(0, 212, 255, .07); }
+  .chip.on .box { background: var(--primary); border-color: var(--primary); box-shadow: 0 0 8px var(--primary); }
+  .chip.risky { border-color: rgba(255, 170, 0, .3); }
+  .chip.risky.on { color: #ffd98a; border-color: var(--warning); background: rgba(255, 170, 0, .07); }
+  .chip.risky.on .box { background: var(--warning); border-color: var(--warning); box-shadow: 0 0 8px var(--warning); }
+  .chip .warn { color: var(--warning); }
+  .chip:disabled { opacity: .4; cursor: not-allowed; }
+  .opt-note {
+    margin-top: 8px; font-family: var(--mono); font-size: 9.5px;
+    letter-spacing: .5px; color: var(--success); opacity: .8;
+  }
+
   /* ---------- footer ---------- */
   footer {
     display: flex; align-items: center; gap: 8px;
@@ -305,6 +331,15 @@
     <div id="logs"></div>
   </section>
 
+  <section class="panel options">
+    <div class="opt-head">
+      <div class="ring-title" id="optTitle">CLEANUP OPTIONS</div>
+      <button class="clear-btn" id="optReset">Reset</button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="opt-note" id="optNote"></div>
+  </section>
+
   <section class="action">
     <button id="btn"><span id="btnText">🚀 Start</span></button>
   </section>
@@ -330,6 +365,96 @@
 const $ = (s) => document.querySelector(s);
 let I = { translations: {} };
 let running = false;
+
+/* ---------- cleanup category selection ---------- */
+let catsMeta = [];          // [{id, default, risky}] from the backend
+let catsSel = new Set();    // selected category ids
+
+// Labels (i18n overridable via cat_<id> translation keys).
+const CAT_LABELS = {
+  es: {
+    temp_user: "Temp de usuario",
+    temp_windows: "Temp de Windows",
+    updates: "Windows Update",
+    logs: "Logs del sistema",
+    explorer: "Caché de Explorer",
+    gpu_cache: "Caché GPU / shaders",
+    browsers_cache: "Caché de navegadores",
+    browsers_storage: "Datos de sesión",
+    store_cache: "Cachés de apps Store",
+    recycle: "Papelera de reciclaje",
+    registry: "Registro (MRU)",
+  },
+  en: {
+    temp_user: "User temp",
+    temp_windows: "Windows temp",
+    updates: "Windows Update",
+    logs: "System logs",
+    explorer: "Explorer cache",
+    gpu_cache: "GPU / shader cache",
+    browsers_cache: "Browser cache",
+    browsers_storage: "Session data",
+    store_cache: "Store app caches",
+    recycle: "Recycle bin",
+    registry: "Registry (MRU)",
+  },
+};
+
+function isEs() {
+  return (I.lang || "").toLowerCase().startsWith("es");
+}
+
+function catLabel(id) {
+  const v = I.translations["cat_" + id];
+  if (v && v !== "cat_" + id) return v;
+  const dict = CAT_LABELS[isEs() ? "es" : "en"] || CAT_LABELS.en;
+  return dict[id] || id;
+}
+
+function catTooltip(cat) {
+  if (!cat.risky) return "";
+  return isEs()
+    ? "Puede cerrar sesiones o borrar datos locales de esa app"
+    : "May close sessions or delete local app data";
+}
+
+function loadCats() {
+  try {
+    const saved = JSON.parse(localStorage.getItem("flux_cats"));
+    if (Array.isArray(saved)) {
+      const valid = new Set(catsMeta.map((c) => c.id));
+      const filtered = saved.filter((id) => valid.has(id));
+      if (filtered.length) return new Set(filtered);
+    }
+  } catch (e) { /* first run or corrupted data */ }
+  return new Set(catsMeta.filter((c) => c.default).map((c) => c.id));
+}
+
+function saveCats() {
+  try { localStorage.setItem("flux_cats", JSON.stringify([...catsSel])); } catch (e) { /* ignore */ }
+}
+
+function renderChips() {
+  const box = $("#chips");
+  box.innerHTML = "";
+  catsMeta.forEach((c) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip" + (c.risky ? " risky" : "");
+    b.title = catTooltip(c);
+    const mark = c.risky ? ' <span class="warn">⚠</span>' : "";
+    b.innerHTML = '<span class="box"></span><span class="lbl"></span>' + mark;
+    b.querySelector(".lbl").textContent = catLabel(c.id);
+    b.classList.toggle("on", catsSel.has(c.id));
+    b.addEventListener("click", () => {
+      if (catsSel.has(c.id)) catsSel.delete(c.id);
+      else catsSel.add(c.id);
+      b.classList.toggle("on", catsSel.has(c.id));
+      saveCats();
+    });
+    box.appendChild(b);
+  });
+}
 
 const t = (k) => I.translations[k] || k;
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -613,6 +738,12 @@ function applyLang() {
   $("#clearBtn").textContent = t("clear");
   $("#doneTitle").textContent = t("optimization_done");
   $("#okBtn").textContent = t("accept");
+  $("#optTitle").textContent = isEs() ? "OPCIONES DE LIMPIEZA" : "CLEANUP OPTIONS";
+  $("#optReset").textContent = isEs() ? "Restaurar" : "Reset";
+  $("#optNote").textContent = isEs()
+    ? "🛡 WhatsApp siempre protegido: su sesión nunca se borra"
+    : "🛡 WhatsApp always protected: its session is never deleted";
+  if (catsMeta.length) renderChips();
   if (!running) {
     $("#btnText").textContent = "🚀 " + t("start_optimization");
     setStatus(false, t("system_ready"));
@@ -641,7 +772,13 @@ function fillLangSelect() {
 /* ---------- actions ---------- */
 async function startOptimization() {
   if (running) return;
-  const r = await pywebview.api.start_optimization();
+  if (!catsSel.size) {
+    setStatus(true, isEs()
+      ? "Selecciona al menos una categoría de limpieza"
+      : "Select at least one cleanup category");
+    return;
+  }
+  const r = await pywebview.api.start_optimization([...catsSel]);
   if (r && r.ok) {
     running = true;
     $("#logs").innerHTML = "";
@@ -655,11 +792,18 @@ async function startOptimization() {
 $("#btn").addEventListener("click", startOptimization);
 $("#clearBtn").addEventListener("click", () => { $("#logs").innerHTML = ""; });
 $("#okBtn").addEventListener("click", () => $("#overlay").classList.remove("show"));
+$("#optReset").addEventListener("click", () => {
+  catsSel = new Set(catsMeta.filter((c) => c.default).map((c) => c.id));
+  saveCats();
+  renderChips();
+});
 
 /* ---------- init ---------- */
 window.addEventListener("pywebviewready", async () => {
   I = await pywebview.api.get_init_data();
   $("#version").textContent = "v" + I.version;
+  catsMeta = Array.isArray(I.categories) ? I.categories : [];
+  catsSel = loadCats();
   fillLangSelect();
   applyLang();
 });

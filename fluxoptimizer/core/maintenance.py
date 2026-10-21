@@ -12,7 +12,6 @@ import os
 import shutil
 import subprocess
 import ctypes
-import tempfile
 
 import psutil
 
@@ -29,6 +28,176 @@ class Stats:
 
 # Compatibilidad con el nombre original
 MaintenanceStats = Stats
+
+
+# ---------------------------------------------------------------------------
+# Selección de categorías de limpieza
+# ---------------------------------------------------------------------------
+# El usuario decide qué categorías borrar. WhatsApp está SIEMPRE protegido:
+# su sesión de escritorio vive en la caché de las apps de la Store, y borrarla
+# obliga a iniciar sesión de nuevo.
+PROTECTED_PATH_FRAGMENTS = ("whatsapp",)
+
+
+def _is_protected(path) -> bool:
+    """True si la ruta pertenece a una app protegida (nunca se borra)."""
+    low = str(path).lower()
+    return any(fragment in low for fragment in PROTECTED_PATH_FRAGMENTS)
+
+
+# Rutas por categoría (paths expandibles). Las categorías sin tabla de rutas
+# se resuelven con su propia función dentro de clean_selected().
+_PATH_CATEGORIES = {
+    "temp_user": [
+        (r"%TEMP%", "Temporales de Usuario"),
+        (r"%LOCALAPPDATA%\Temp", "AppData Temp"),
+    ],
+    "temp_windows": [
+        (r"C:\Windows\Temp", "Temporales de Sistema"),
+        (r"C:\Windows\Prefetch", "Prefetch"),
+    ],
+    "updates": [
+        (r"C:\Windows\SoftwareDistribution\Download", "Windows Update Download"),
+        (r"C:\Windows\Installer\$PatchCache$", "Patch Cache"),
+        (r"%PROGRAMDATA%\Package Cache", "Package Cache"),
+    ],
+    "logs": [
+        (r"C:\Windows\Logs", "Windows Logs"),
+        (r"C:\Windows\System32\LogFiles", "System Log Files"),
+        (r"C:\Windows\Debug", "Debug Logs"),
+        (r"%LOCALAPPDATA%\Microsoft\Windows\WER", "Error Reports"),
+        (r"%PROGRAMDATA%\Microsoft\Windows\WER", "System Error Reports"),
+        (r"%LOCALAPPDATA%\CrashDumps", "Crash Dumps"),
+        (r"C:\Windows\Performance\WinSAT\DataStore", "WinSAT Data"),
+        (r"C:\Windows\System32\config\systemprofile\AppData\Local\Temp", "System Temp"),
+        (r"C:\Windows\ServiceProfiles\LocalService\AppData\Local\Temp", "Service Temp"),
+        (r"C:\Windows\ServiceProfiles\NetworkService\AppData\Local\Temp", "Network Service Temp"),
+    ],
+    "explorer": [
+        (r"%LOCALAPPDATA%\Microsoft\Windows\Explorer", "Explorer Cache"),
+    ],
+}
+
+# Cachés de navegadores: solo archivos re-descargables (seguro).
+_BROWSER_CACHE = [
+    (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache", "Chrome Cache"),
+    (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Code Cache", "Chrome Code Cache"),
+    (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\GPUCache", "Chrome GPU Cache"),
+    (r"%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Cache", "Edge Cache"),
+    (r"%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Code Cache", "Edge Code Cache"),
+    (r"%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\GPUCache", "Edge GPU Cache"),
+    (r"%LOCALAPPDATA%\Opera Software\Opera Stable\Cache", "Opera Cache"),
+    (r"%LOCALAPPDATA%\Opera Software\Opera Stable\Code Cache", "Opera Code Cache"),
+    (r"%LOCALAPPDATA%\Opera Software\Opera GX Stable\Cache", "Opera GX Cache"),
+    (r"%LOCALAPPDATA%\BraveSoftware\Brave-Browser\User Data\Default\Cache", "Brave Cache"),
+    (r"%LOCALAPPDATA%\BraveSoftware\Brave-Browser\User Data\Default\Code Cache", "Brave Code Cache"),
+    (r"%LOCALAPPDATA%\Vivaldi\User Data\Default\Cache", "Vivaldi Cache"),
+    (r"%LOCALAPPDATA%\Microsoft\Windows\INetCache", "IE Cache"),
+    (r"%LOCALAPPDATA%\Maxthon", "Maxthon"),
+    (r"%LOCALAPPDATA%\Slimjet", "Slimjet"),
+]
+
+# Datos de sesión de navegadores: borrarlos cierra todas tus sesiones web.
+_BROWSER_STORAGE = [
+    (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Service Worker", "Chrome Service Workers"),
+    (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\File System", "Chrome File System"),
+    (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\IndexedDB", "Chrome IndexedDB"),
+    (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Session Storage", "Chrome Session Storage"),
+    (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Local Storage", "Chrome Local Storage"),
+    (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\blob_storage", "Chrome Blob Storage"),
+    (r"%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Service Worker", "Edge Service Workers"),
+    (r"%LOCALAPPDATA%\Mozilla\Firefox\Profiles", "Firefox Profiles (Local)"),
+    (r"%APPDATA%\Mozilla\Firefox\Profiles", "Firefox Profiles (Roaming)"),
+    (r"%LOCALAPPDATA%\Microsoft\Windows\WebCache", "Web Cache (sesiones IE/Edge)"),
+]
+
+# (id, activada por defecto, riesgosa). El orden define el orden de limpieza.
+_CATEGORIES = [
+    ("temp_user", True, False),
+    ("temp_windows", True, False),
+    ("updates", True, False),
+    ("logs", True, False),
+    ("explorer", True, False),
+    ("gpu_cache", True, False),
+    ("browsers_cache", True, False),
+    ("browsers_storage", False, True),
+    ("store_cache", False, True),
+    ("recycle", True, False),
+    ("registry", True, False),
+]
+
+
+def file_categories():
+    """Lista de categorías para el panel de opciones de la UI."""
+    return [
+        {"id": cat_id, "default": default, "risky": risky}
+        for cat_id, default, risky in _CATEGORIES
+    ]
+
+
+def default_categories():
+    """Categorías activadas por defecto (seguras: no cierran sesiones)."""
+    return [cat_id for cat_id, default, _ in _CATEGORIES if default]
+
+
+def clean_selected(selected, log=print, stats=None):
+    """Limpia únicamente las categorías elegidas por el usuario."""
+    wanted = set(selected or [])
+    if not wanted:
+        return
+
+    for cat_id, _, _ in _CATEGORIES:
+        if cat_id not in wanted:
+            continue
+        try:
+            if cat_id in _PATH_CATEGORIES:
+                _clean_path_list(_PATH_CATEGORIES[cat_id], log=log, stats=stats)
+            elif cat_id == "browsers_cache":
+                log(_("cleaning_browsers"), "info")
+                _clean_path_list(_BROWSER_CACHE, log=log, stats=stats)
+            elif cat_id == "browsers_storage":
+                log(_("cleaning_browsers"), "info")
+                _clean_path_list(_BROWSER_STORAGE, log=log, stats=stats)
+            elif cat_id == "gpu_cache":
+                optimize_gpu(log, stats)
+            elif cat_id == "explorer":
+                clean_thumbnail_cache(log=log)
+            elif cat_id == "store_cache":
+                _clean_store_cache(log=log, stats=stats)
+            elif cat_id == "recycle":
+                empty_recycle_bin(log=log)
+            elif cat_id == "registry":
+                clean_registry_basic(log)
+        except Exception as e:
+            log(f"⚠ {cat_id}: {str(e)[:50]}", "warning")
+
+
+def _clean_path_list(paths, log=print, stats=None):
+    """Borra el contenido de cada ruta de la lista [(path, nombre)]."""
+    for raw, name in paths:
+        try:
+            path = os.path.expandvars(raw)
+            if os.path.exists(path):
+                delete_directory_contents_aggressive(path, name, log=log, stats=stats)
+        except Exception as e:
+            log(f"⚠ {name}: {str(e)[:50]}", "warning")
+
+
+def _clean_store_cache(log=print, stats=None):
+    """LocalCache de las apps de la Store (WhatsApp queda excluido siempre)."""
+    try:
+        import glob
+
+        pattern = os.path.expandvars(r"%LOCALAPPDATA%\Packages\*\LocalCache")
+        for cache_dir in glob.glob(pattern):
+            if _is_protected(cache_dir):
+                log("🛡 WhatsApp: sesión protegida, se omite", "info")
+                continue
+            delete_directory_contents_aggressive(
+                cache_dir, "Store App Cache", log=log, stats=stats
+            )
+    except Exception:
+        pass
 
 
 def optimize_ram(log=print):
@@ -144,44 +313,6 @@ def optimize_ram(log=print):
         log(_("error_ram").format(e), "warning")
 
 
-def clean_temp_files(log=print, stats=None):
-    """Limpia archivos temporales de forma agresiva."""
-    log(_("cleaning_temp"), "info")
-    
-    # Lista exhaustiva de ubicaciones temporales
-    temp_paths = [
-        (tempfile.gettempdir(), "Temporales de Usuario"),
-        (r"C:\Windows\Temp", "Temporales de Sistema"),
-        (r"C:\Windows\Prefetch", "Prefetch"),
-        (r"C:\Windows\SoftwareDistribution\Download", "Windows Update Download"),
-        (r"C:\Windows\Installer\$PatchCache$", "Patch Cache"),
-        (os.path.expandvars(r"%LOCALAPPDATA%\Temp"), "AppData Temp"),
-        (os.path.expandvars(r"%LOCALAPPDATA%\Microsoft\Windows\Explorer"), "Explorer Cache"),
-        (os.path.expandvars(r"%LOCALAPPDATA%\Microsoft\Windows\WER"), "Error Reports"),
-        (r"C:\Windows\Logs", "Windows Logs"),
-        (r"C:\Windows\System32\LogFiles", "System Log Files"),
-        (os.path.expandvars(r"%PROGRAMDATA%\Microsoft\Windows\WER"), "System Error Reports"),
-        (os.path.expandvars(r"%LOCALAPPDATA%\CrashDumps"), "Crash Dumps"),
-    ]
-    
-    total_freed = 0
-    for path, name in temp_paths:
-        try:
-            freed = delete_directory_contents_aggressive(path, name, log=log, stats=stats)
-            total_freed += freed
-        except Exception as e:
-            log(f"⚠ {name}: {str(e)[:50]}", "warning")
-    
-    if stats is not None:
-        stats.space_freed_mb += total_freed
-    
-    # Limpiar caché de miniaturas
-    clean_thumbnail_cache(log=log)
-    
-    # Vaciar Papelera de Reciclaje
-    empty_recycle_bin(log=log)
-
-
 def flush_dns_cache(log=print):
     """Limpia caché DNS."""
     log(_("cleaning_dns"), "info")
@@ -202,75 +333,6 @@ def flush_dns_cache(log=print):
             
     except Exception as e:
         log(_("error_dns").format(e), "warning")
-
-
-def clean_browser_cache(log=print, stats=None):
-    """Limpia caché de navegadores de forma exhaustiva."""
-    log(_("cleaning_browsers"), "info")
-    
-    browsers = [
-        # Chrome y variantes
-        (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache", "Chrome Cache"),
-        (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Code Cache", "Chrome Code Cache"),
-        (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\GPUCache", "Chrome GPU Cache"),
-        (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Service Worker", "Chrome Service Workers"),
-        (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\File System", "Chrome File System"),
-        (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\IndexedDB", "Chrome IndexedDB"),
-        (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Session Storage", "Chrome Session Storage"),
-        (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Local Storage", "Chrome Local Storage"),
-        (r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\blob_storage", "Chrome Blob Storage"),
-        
-        # Edge
-        (r"%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Cache", "Edge Cache"),
-        (r"%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Code Cache", "Edge Code Cache"),
-        (r"%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\GPUCache", "Edge GPU Cache"),
-        (r"%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Service Worker", "Edge Service Workers"),
-        
-        # Firefox
-        (r"%LOCALAPPDATA%\Mozilla\Firefox\Profiles", "Firefox Cache"),
-        (r"%APPDATA%\Mozilla\Firefox\Profiles", "Firefox Data"),
-        
-        # Opera
-        (r"%LOCALAPPDATA%\Opera Software\Opera Stable\Cache", "Opera Cache"),
-        (r"%LOCALAPPDATA%\Opera Software\Opera Stable\Code Cache", "Opera Code Cache"),
-        (r"%LOCALAPPDATA%\Opera Software\Opera GX Stable\Cache", "Opera GX Cache"),
-        
-        # Brave
-        (r"%LOCALAPPDATA%\BraveSoftware\Brave-Browser\User Data\Default\Cache", "Brave Cache"),
-        (r"%LOCALAPPDATA%\BraveSoftware\Brave-Browser\User Data\Default\Code Cache", "Brave Code Cache"),
-        
-        # Vivaldi
-        (r"%LOCALAPPDATA%\Vivaldi\User Data\Default\Cache", "Vivaldi Cache"),
-        
-        # Internet Explorer / Old Edge
-        (r"%LOCALAPPDATA%\Microsoft\Windows\INetCache", "IE Cache"),
-        (r"%LOCALAPPDATA%\Microsoft\Windows\WebCache", "Web Cache"),
-        
-        # Otros
-        (r"%LOCALAPPDATA%\Maxthon", "Maxthon"),
-        (r"%LOCALAPPDATA%\Slimjet", "Slimjet"),
-    ]
-    
-    total_freed = 0
-    found_browsers = 0
-    
-    for path, name in browsers:
-        try:
-            expanded_path = os.path.expandvars(path)
-            if os.path.exists(expanded_path):
-                found_browsers += 1
-                freed = delete_directory_contents_aggressive(expanded_path, name, log=log, stats=stats)
-                total_freed += freed
-        except Exception:
-            pass
-    
-    if stats is not None:
-        stats.space_freed_mb += total_freed
-    
-    if found_browsers > 0:
-        log(_("browsers_cleaned").format(found_browsers, total_freed), "success")
-    else:
-        log(_("no_browsers"), "info")
 
 
 def get_directory_size(path: str) -> int:
@@ -397,51 +459,6 @@ def optimize_gpu(log=print, stats=None):
         log(_("error_gpu").format(e), "warning")
 
 
-def clean_system_cache(log=print, stats=None):
-    """Limpia caché del sistema Windows de forma agresiva."""
-    log(_("cleaning_system_cache"), "info")
-    
-    system_paths = [
-        (r"C:\Windows\SoftwareDistribution\Download", "Windows Update"),
-        (r"C:\Windows\System32\config\systemprofile\AppData\Local\Temp", "System Temp"),
-        (r"C:\Windows\ServiceProfiles\LocalService\AppData\Local\Temp", "Service Temp"),
-        (r"C:\Windows\ServiceProfiles\NetworkService\AppData\Local\Temp", "Network Service Temp"),
-        (os.path.expandvars(r"%PROGRAMDATA%\Package Cache"), "Package Cache"),
-        (os.path.expandvars(r"%PROGRAMDATA%\Microsoft\Windows\WER"), "Windows Error Reporting"),
-        (r"C:\Windows\Debug", "Debug Logs"),
-        (r"C:\Windows\Logs", "Windows Logs"),
-        (r"C:\Windows\Performance\WinSAT\DataStore", "WinSAT Data"),
-    ]
-    
-    total_freed = 0
-    for path, name in system_paths:
-        try:
-            if os.path.exists(os.path.expandvars(path)):
-                freed = delete_directory_contents_aggressive(path, name, log=log, stats=stats)
-                total_freed += freed
-        except:
-            pass
-    
-    if stats is not None:
-        stats.space_freed_mb += total_freed
-    
-    # Limpiar caché de Windows Store
-    try:
-        ws_cache = os.path.expandvars(r"%LOCALAPPDATA%\Packages\*\LocalCache")
-        import glob
-        for cache_dir in glob.glob(ws_cache):
-            try:
-                freed = delete_directory_contents_aggressive(cache_dir, "Windows Store Cache", log=log, stats=stats)
-                total_freed += freed
-            except:
-                pass
-    except:
-        pass
-    
-    if total_freed > 0:
-        log(_("system_cleaned").format(total_freed), "success")
-
-
 def clean_registry_basic(log=print):
     """Limpieza básica del registro de Windows."""
     log(_("cleaning_registry"), "info")
@@ -504,7 +521,10 @@ def delete_directory_contents_aggressive(directory: str, context: str,
                                          log=print, stats=None) -> float:
     """Elimina contenido de directorio de forma agresiva. Retorna MB liberados."""
     directory = os.path.expandvars(directory)
-    
+
+    if _is_protected(directory):
+        return 0
+
     if not os.path.exists(directory):
         return 0
     
@@ -517,6 +537,9 @@ def delete_directory_contents_aggressive(directory: str, context: str,
         for item in os.listdir(directory):
             item_path = os.path.join(directory, item)
             
+            if _is_protected(item_path):
+                continue
+
             try:
                 # Calcular tamaño antes de eliminar
                 try:
