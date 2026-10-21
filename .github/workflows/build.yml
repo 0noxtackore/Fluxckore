@@ -75,10 +75,10 @@ jobs:
         shell: bash
         run: |
           if [ -d dist/FluxOptimizer-signed ]; then
-            mv dist/FluxOptimizer-signed dist/FluxOptimizer-final
+            mv dist/FluxOptimizer-signed dist/FluxOptimizer-app
           else
             echo "No signature produced (SignPath not configured) - shipping unsigned build."
-            cp -r dist/FluxOptimizer dist/FluxOptimizer-final
+            cp -r dist/FluxOptimizer dist/FluxOptimizer-app
           fi
 
       - name: Build installer (Inno Setup)
@@ -88,7 +88,7 @@ jobs:
       - name: Package zip
         shell: bash
         run: |
-          cd dist/FluxOptimizer-final
+          cd dist/FluxOptimizer-app
           zip -r "../FluxOptimizer-${{ steps.version.outputs.version }}-portable.zip" .
 
       - name: Upload installer

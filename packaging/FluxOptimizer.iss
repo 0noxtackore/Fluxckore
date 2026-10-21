@@ -1,6 +1,6 @@
 ; Inno Setup script for FluxOptimizer
-; Build (after PyInstaller has produced dist/FluxOptimizer/):
-;   ISCC.exe /DAppVersion=2.1.0 packaging\FluxOptimizer.iss
+; Build (after the final onedir has been placed in dist/FluxOptimizer-app/):
+;   ISCC.exe /DAppVersion=8.0.2 packaging\FluxOptimizer.iss
 
 #ifndef AppVersion
 #define AppVersion "0.0.0"
@@ -32,7 +32,7 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-Source: "..\dist\FluxOptimizer\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
+Source: "..\dist\FluxOptimizer-app\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 
 [Icons]
 Name: "{group}\FluxOptimizer"; Filename: "{app}\FluxOptimizer.exe"
