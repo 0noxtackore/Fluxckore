@@ -47,19 +47,34 @@ def is_admin() -> bool:
 
 def run_as_admin() -> None:
     """Relaunch the application elevated (UAC) if not already admin."""
-    if not is_admin():
-        try:
-            script = sys.argv[0]
-            params = " ".join(sys.argv[1:])
+    if is_admin():
+        return
+    try:
+        params = " ".join(sys.argv[1:])
+        if getattr(sys, "frozen", False):
+            # Frozen executable: relaunch the exe itself.
             ctypes.windll.shell32.ShellExecuteW(
                 None,
                 "runas",
                 sys.executable,
-                f'"{script}" {params}',
+                params if params else None,
                 None,
                 1,
             )
-            sys.exit(0)
-        except Exception as e:
-            print(f"Error requesting privilege elevation: {e}")
-            sys.exit(1)
+        else:
+            # Source run: relaunch with "-m fluxoptimizer" from the project
+            # root. Running __main__.py directly would break the package
+            # context (ModuleNotFoundError) and the elevated window would
+            # flash and close instantly.
+            ctypes.windll.shell32.ShellExecuteW(
+                None,
+                "runas",
+                sys.executable,
+                f"-m fluxoptimizer {params}".strip(),
+                project_root(),
+                1,
+            )
+        sys.exit(0)
+    except Exception as e:
+        print(f"Error requesting privilege elevation: {e}")
+        sys.exit(1)

@@ -2,10 +2,10 @@
 import sys
 import traceback
 
-from fluxoptimizer.app import main
-
 if __name__ == "__main__":
     try:
+        from fluxoptimizer.app import main
+
         main()
     except Exception:
         print("\n" + "=" * 50)
