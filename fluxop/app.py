@@ -1,4 +1,4 @@
-"""FluxOptimizer backend: HTML/CSS interface (pywebview) + maintenance runner.
+"""Fluxop backend: HTML/CSS interface (pywebview) + maintenance runner.
 
 The Python side keeps every maintenance/monitoring/i18n function; only the
 presentation layer changed from CustomTkinter to a self-contained HTML/CSS/JS
@@ -235,7 +235,7 @@ def _set_app_user_model_id() -> None:
         import ctypes
 
         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(
-            "FluxOptimizer.App"
+            "Fluxop.App"
         )
     except Exception:
         pass
@@ -243,7 +243,7 @@ def _set_app_user_model_id() -> None:
 
 def window_icon_path() -> str:
     """Icon shown in the window/taskbar (generated from the app logo)."""
-    return os.path.join(project_root(), "fluxoptimizer", "frontend", "icon.ico")
+    return os.path.join(project_root(), "fluxop", "frontend", "icon.ico")
 
 
 def _apply_window_icon(window) -> None:
@@ -318,7 +318,7 @@ def _redirect_stderr_to_log() -> None:
     if not getattr(sys, "stderr", None):
         return
     try:
-        log_path = os.path.join(project_root(), "fluxoptimizer.log")
+        log_path = os.path.join(project_root(), "fluxop.log")
         fd = os.open(log_path, os.O_WRONLY | os.O_CREAT | os.O_APPEND)
         os.dup2(fd, 2)
         os.close(fd)
@@ -335,7 +335,7 @@ def main():
     # Own taskbar identity so the window icon is used (not python.exe's).
     _set_app_user_model_id()
 
-    if os.environ.get("FLUXOPTIMIZER_SKIP_ADMIN") != "1":
+    if os.environ.get("FLUXOP_SKIP_ADMIN") != "1":
         run_as_admin()
 
     TranslationManager()
@@ -361,7 +361,7 @@ def main():
 
     api = Api()
     window = webview.create_window(
-        "FluxOptimizer",
+        "Fluxop",
         html=_load_html(),
         js_api=api,
         width=1000,

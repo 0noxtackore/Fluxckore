@@ -2,7 +2,7 @@
 import sys
 import traceback
 
-from fluxoptimizer.app import main
+from fluxop.app import main
 
 if __name__ == "__main__":
     try:

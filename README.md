@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/readme-banner.png" alt="FluxOptimizer" width="720">
+  <img src="assets/readme-banner.png" alt="Fluxop" width="716">
 </p>
 <p align="center">
   <strong>System Maintenance & Optimization Suite for Windows</strong><br>
@@ -16,9 +16,9 @@
 
 ## Overview
 
-FluxOptimizer is a Windows system maintenance suite built with Python and a self-contained HTML/CSS interface rendered by pywebview (Edge WebView2). It provides real-time system monitoring, selectable temporary-file cleanup, memory optimization and registry maintenance through a single dark-themed desktop application.
+Fluxop is a Windows system maintenance suite built with Python and a self-contained HTML/CSS interface rendered by pywebview (Edge WebView2). It provides real-time system monitoring, selectable temporary-file cleanup, memory optimization and registry maintenance through a single dark-themed desktop application.
 
-There is **one edition** of FluxOptimizer. Features evolve in place — no PRO/Beta/Enterprise splits, no parallel codebases.
+There is **one edition** of Fluxop. Features evolve in place — no PRO/Beta/Enterprise splits, no parallel codebases.
 
 ## Features
 
@@ -37,61 +37,55 @@ There is **one edition** of FluxOptimizer. Features evolve in place — no PRO/B
 ## Run from source
 
 ```powershell
-git clone https://github.com/0noxtackore/FluxOptimizer.git
-cd FluxOptimizer
+git clone https://github.com/0noxtackore/Fluxop.git
+cd Fluxop
 pip install -r requirements.txt
-python -m fluxoptimizer
+python -m fluxop
 ```
 
 ## Build the executable
 
 ```powershell
 pip install -r requirements.txt pyinstaller
-pyinstaller packaging/fluxoptimizer.spec --noconfirm
+pyinstaller packaging/fluxop.spec --noconfirm
 ```
 
-Output: `dist/FluxOptimizer/FluxOptimizer.exe` (onedir bundle).
+Output: `dist/Fluxop/Fluxop.exe` (onedir bundle).
 
 To build the Windows installer (requires [Inno Setup 6](https://jrsoftware.org/isinfo.php)):
 
 ```powershell
-ISCC.exe /DAppVersion=2.1.0 packaging\FluxOptimizer.iss
+ISCC.exe /DAppVersion=8.0.2 packaging\Fluxop.iss
 ```
 
 ## Project structure
 
 ```
-FluxOptimizer/
-├── fluxoptimizer/          # The application package
+Fluxop/
+├── fluxop/                 # The application package
 │   ├── app.py              # pywebview backend & orchestration
 │   ├── i18n.py             # Translation manager (104 languages)
 │   ├── core/               # System monitoring & maintenance logic
 │   └── frontend/           # Self-contained HTML/CSS/JS interface
-├── assets/                 # Sounds
+├── assets/                 # README banner, sounds
 ├── locales/                # translations.json
 ├── packaging/              # PyInstaller spec, version generator, Inno Setup script
-└── .github/workflows/      # Tag-driven CI (build + sign + release)
+└── .github/workflows/      # Tag-driven CI (build + release)
 ```
 
 ## Releases & versioning
 
-FluxOptimizer uses **SemVer** (`MAJOR.MINOR.PATCH`). The version lives in `fluxoptimizer/__init__.py`.
+Fluxop uses **SemVer** (`MAJOR.MINOR.PATCH`). The version lives in `fluxop/__init__.py`.
 
-Releases are **tag-driven**: pushing a tag like `v2.1.0` triggers the CI workflow, which builds the executable, signs it, builds the installer and publishes a GitHub Release. There are no scheduled rebuilds — a new binary only exists when there is a real change.
+Releases are **tag-driven**: pushing a tag like `v8.0.2` triggers the CI workflow, which builds the executable, builds the installer and publishes a GitHub Release. There are no scheduled rebuilds — a new binary only exists when there is a real change.
 
-## Code signing (removes the SmartScreen warning)
+## Code signing
 
-Unsigned executables are flagged by Windows SmartScreen/Smart App Control. FluxOptimizer is signed via [SignPath](https://signpath.io), which is **free for open-source projects**:
-
-1. Install the [SignPath GitHub app](https://signpath.org/github) on this repository
-2. In SignPath, create a project `FluxOptimizer` with a signing policy `release-signing`
-3. Add the repository secrets `SIGNPATH_API_TOKEN` and `SIGNPATH_ORGANIZATION_ID` (GitHub → Settings → Secrets → Actions)
-
-The CI workflow signs every release build automatically when these secrets are present.
+Releases ship **unsigned**. Windows SmartScreen may flag the executable until it builds download reputation. This is expected for a new project and does not affect functionality.
 
 ## License
 
-[MIT License](LICENSE) — Copyright (c) 2026 FluxOptimizer Team.
+[MIT License](LICENSE) — Copyright (c) 2026 Fluxop Team.
 
 ---
 

@@ -1,6 +1,6 @@
 """Generate a PyInstaller-compatible Windows version file from the package version.
 
-Reads ``__version__`` from ``fluxoptimizer/__init__.py`` and writes
+Reads ``__version__`` from ``fluxop/__init__.py`` and writes
 ``packaging/version_info.txt`` (VSVersionInfo format). Run from anywhere:
 
     python packaging/make_version_info.py
@@ -10,14 +10,14 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PACKAGE_INIT = ROOT / "fluxoptimizer" / "__init__.py"
+PACKAGE_INIT = ROOT / "fluxop" / "__init__.py"
 OUTPUT = Path(__file__).resolve().parent / "version_info.txt"
 
-FILE_DESCRIPTION = "FluxOptimizer - System Maintenance Suite"
-INTERNAL_NAME = "FluxOptimizer"
-ORIGINAL_FILENAME = "FluxOptimizer.exe"
-PRODUCT_NAME = "FluxOptimizer"
-COMPANY_NAME = "FluxOptimizer"
+FILE_DESCRIPTION = "Fluxop - System Maintenance Suite"
+INTERNAL_NAME = "Fluxop"
+ORIGINAL_FILENAME = "Fluxop.exe"
+PRODUCT_NAME = "Fluxop"
+COMPANY_NAME = "Fluxop"
 
 
 def read_version() -> tuple[int, int, int, int]:
@@ -54,7 +54,7 @@ VSVersionInfo(
          StringStruct('FileDescription', '{FILE_DESCRIPTION}'),
          StringStruct('FileVersion', '{dotted}'),
          StringStruct('InternalName', '{INTERNAL_NAME}'),
-         StringStruct('LegalCopyright', 'Copyright (c) 2026 FluxOptimizer Team. MIT License.'),
+         StringStruct('LegalCopyright', 'Copyright (c) 2026 Fluxop Team. MIT License.'),
          StringStruct('OriginalFilename', '{ORIGINAL_FILENAME}'),
          StringStruct('ProductName', '{PRODUCT_NAME}'),
          StringStruct('ProductVersion', '{dotted}')])

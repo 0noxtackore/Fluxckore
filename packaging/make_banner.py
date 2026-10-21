@@ -1,11 +1,11 @@
-"""Generate the FluxOptimizer README banner.
+"""Generate the Fluxop README banner.
 
 Produces a white-background banner with the app logo (neon-cyan bolt on a
-dark, corner-cut square) on the left and the wordmark "FLUXOPTIMIZER" beside
+dark, corner-cut square) on the left and the wordmark "FLUXOP" beside
 it. Reuses the exact colours of the app icon so the README matches the app.
 
 Run:  python make_banner.py
-Output: packaging/readme-banner.png
+Output: assets/readme-banner.png
 """
 from __future__ import annotations
 
@@ -116,7 +116,7 @@ def _dark_square(size: int) -> Image.Image:
 
 def main() -> None:
     tile_size = 200
-    text = "FLUXOPTIMIZER"
+    text = "FLUXOP"
 
     # measure with a large font, then downscale everything at the end via SCALE
     f_size = 96 * SCALE

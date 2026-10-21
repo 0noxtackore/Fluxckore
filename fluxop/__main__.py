@@ -1,10 +1,10 @@
-"""Allow running with ``python -m fluxoptimizer``."""
+"""Allow running with ``python -m fluxop``."""
 import sys
 import traceback
 
 if __name__ == "__main__":
     try:
-        from fluxoptimizer.app import main
+        from fluxop.app import main
 
         main()
     except Exception:

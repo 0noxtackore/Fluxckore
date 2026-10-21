@@ -16,7 +16,7 @@ def project_root() -> str:
     """Root folder holding bundled resources (PyInstaller-aware)."""
     if hasattr(sys, "_MEIPASS"):
         return sys._MEIPASS
-    # fluxoptimizer/core/system.py -> fluxoptimizer/ -> repository root
+    # fluxop/core/system.py -> fluxop/ -> repository root
     return os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
@@ -35,7 +35,7 @@ def config_path() -> str:
 def frontend_path() -> str:
     """Path of the self-contained HTML/CSS/JS interface (same relative path
     in source runs and in the frozen bundle)."""
-    return os.path.join(project_root(), "fluxoptimizer", "frontend", "index.html")
+    return os.path.join(project_root(), "fluxop", "frontend", "index.html")
 
 
 def is_admin() -> bool:
@@ -63,7 +63,7 @@ def run_as_admin() -> None:
                 1,
             )
         else:
-            # Source run: relaunch with "-m fluxoptimizer" from the project
+            # Source run: relaunch with "-m fluxop" from the project
             # root. Running __main__.py directly would break the package
             # context (ModuleNotFoundError) and the elevated window would
             # flash and close instantly.
@@ -71,7 +71,7 @@ def run_as_admin() -> None:
                 None,
                 "runas",
                 sys.executable,
-                f"-m fluxoptimizer {params}".strip(),
+                f"-m fluxop {params}".strip(),
                 project_root(),
                 1,
             )

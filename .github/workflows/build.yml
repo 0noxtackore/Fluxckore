@@ -34,7 +34,7 @@ jobs:
           pip install -r requirements.txt pyinstaller
 
       - name: Smoke test (imports)
-        run: python -c "import fluxoptimizer, fluxoptimizer.app, webview, psutil, pygame; print('imports OK', fluxoptimizer.__version__)"
+        run: python -c "import fluxop, fluxop.app, webview, psutil, pygame; print('imports OK', fluxop.__version__)"
 
       - name: Read version
         id: version
@@ -42,38 +42,38 @@ jobs:
         run: |
           # Read the real 3-part __version__ (8.0.2), not the 4-part FileVersion
           # (8.0.2.0), so release asset names stay clean.
-          VERSION=$(python -c "import fluxoptimizer; print(fluxoptimizer.__version__)")
+          VERSION=$(python -c "import fluxop; print(fluxop.__version__)")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "Building FluxOptimizer $VERSION"
+          echo "Building Fluxop $VERSION"
           # Keep the generated PyInstaller version resource in sync.
           python packaging/make_version_info.py
 
       - name: Build executable
-        run: pyinstaller packaging/fluxoptimizer.spec --noconfirm
+        run: pyinstaller packaging/fluxop.spec --noconfirm
 
-      # The onedir build is the final layout: FluxOptimizer.exe + _internal/.
-      # Kept under the FluxOptimizer-app name so the installer and the
+      # The onedir build is the final layout: Fluxop.exe + _internal/.
+      # Kept under the Fluxop-app name so the installer and the
       # portable zip both read from a single, predictable folder.
       - name: Select final build
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Force -Path dist/FluxOptimizer-app | Out-Null
-          Copy-Item -Recurse -Force dist/FluxOptimizer/* dist/FluxOptimizer-app/
+          New-Item -ItemType Directory -Force -Path dist/Fluxop-app | Out-Null
+          Copy-Item -Recurse -Force dist/Fluxop/* dist/Fluxop-app/
 
       - name: Build installer (Inno Setup)
         shell: cmd
-        run: ISCC.exe /DAppVersion=${{ steps.version.outputs.version }} packaging\FluxOptimizer.iss
+        run: ISCC.exe /DAppVersion=${{ steps.version.outputs.version }} packaging\Fluxop.iss
 
       - name: Package zip
         shell: pwsh
         run: |
-          Compress-Archive -Path "dist/FluxOptimizer-app/*" -DestinationPath "dist/FluxOptimizer-${{ steps.version.outputs.version }}-portable.zip" -Force
-          Get-Item "dist/FluxOptimizer-${{ steps.version.outputs.version }}-portable.zip" | Select-Object Name, Length
+          Compress-Archive -Path "dist/Fluxop-app/*" -DestinationPath "dist/Fluxop-${{ steps.version.outputs.version }}-portable.zip" -Force
+          Get-Item "dist/Fluxop-${{ steps.version.outputs.version }}-portable.zip" | Select-Object Name, Length
 
       - name: Upload installer
         uses: actions/upload-artifact@v4
         with:
-          name: FluxOptimizer-Installer-${{ steps.version.outputs.version }}
+          name: Fluxop-Installer-${{ steps.version.outputs.version }}
           path: dist/installer/*.exe
           if-no-files-found: error
 
@@ -88,8 +88,8 @@ jobs:
           # example from an earlier version-scheme) never linger.
           gh release delete "$TAG" --yes --cleanup-tag=false || true
           gh release create "$TAG" \
-            --title "FluxOptimizer ${{ steps.version.outputs.version }}" \
-            --notes "FluxOptimizer ${{ steps.version.outputs.version }}" \
+            --title "Fluxop ${{ steps.version.outputs.version }}" \
+            --notes "Fluxop ${{ steps.version.outputs.version }}" \
             --verify-tag \
             dist/installer/*.exe \
-            "dist/FluxOptimizer-${{ steps.version.outputs.version }}-portable.zip"
+            "dist/Fluxop-${{ steps.version.outputs.version }}-portable.zip"
