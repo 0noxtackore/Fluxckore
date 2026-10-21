@@ -6,11 +6,6 @@ import sys
 
 # Resource subfolders by file extension (mirrors the original layout).
 _SUBFOLDERS = {
-    "ico": ("assets", "images"),
-    "png": ("assets", "images"),
-    "jpg": ("assets", "images"),
-    "jpeg": ("assets", "images"),
-    "gif": ("assets", "images"),
     "mp3": ("assets", "sounds"),
     "wav": ("assets", "sounds"),
     "ogg": ("assets", "sounds"),

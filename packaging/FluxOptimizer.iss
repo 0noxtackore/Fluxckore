@@ -21,7 +21,7 @@ SolidCompression=yes
 WizardStyle=modern
 ArchitecturesInstallIn64BitMode=x64compatible
 ArchitecturesAllowed=x64compatible
-SetupIconFile=..\assets\images\favicon_pro.ico
+SetupIconFile=fluxoptimizer.ico
 UninstallDisplayIcon={app}\FluxOptimizer.exe
 
 [Languages]

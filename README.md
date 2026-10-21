@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="assets/images/cover.png" alt="FluxOptimizer Cover" width="800">
-</p>
-
 <h1 align="center">FluxOptimizer</h1>
 <p align="center">
   <strong>System Maintenance & Optimization Suite for Windows</strong><br>
@@ -18,7 +14,7 @@
 
 ## Overview
 
-FluxOptimizer is a Windows system maintenance suite built with Python and CustomTkinter. It provides real-time system monitoring, temporary-file cleanup, memory optimization and registry maintenance through a single dark-themed desktop application.
+FluxOptimizer is a Windows system maintenance suite built with Python and a self-contained HTML/CSS interface rendered by pywebview (Edge WebView2). It provides real-time system monitoring, selectable temporary-file cleanup, memory optimization and registry maintenance through a single dark-themed desktop application.
 
 There is **one edition** of FluxOptimizer. Features evolve in place — no PRO/Beta/Enterprise splits, no parallel codebases.
 
@@ -65,11 +61,11 @@ ISCC.exe /DAppVersion=2.1.0 packaging\FluxOptimizer.iss
 ```
 FluxOptimizer/
 ├── fluxoptimizer/          # The application package
-│   ├── app.py              # Main window & orchestration
+│   ├── app.py              # pywebview backend & orchestration
 │   ├── i18n.py             # Translation manager (104 languages)
 │   ├── core/               # System monitoring & maintenance logic
-│   └── ui/                 # Reusable CustomTkinter widgets
-├── assets/                 # Icons, logo, sounds
+│   └── frontend/           # Self-contained HTML/CSS/JS interface
+├── assets/                 # Sounds
 ├── locales/                # translations.json
 ├── packaging/              # PyInstaller spec, version generator, Inno Setup script
 └── .github/workflows/      # Tag-driven CI (build + sign + release)

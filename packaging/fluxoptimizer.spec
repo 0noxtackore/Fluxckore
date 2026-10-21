@@ -22,8 +22,6 @@ a = Analysis(
     datas=[
         (str(ROOT / "fluxoptimizer" / "frontend"), "fluxoptimizer/frontend"),
         (str(ROOT / "locales" / "translations.json"), "locales"),
-        (str(ROOT / "assets" / "images" / "favicon_pro.ico"), "assets/images"),
-        (str(ROOT / "assets" / "images" / "logo.png"), "assets/images"),
         (str(ROOT / "assets" / "sounds" / "notification.mp3"), "assets/sounds"),
         (str(ROOT / "assets" / "sounds" / "danger.mp3"), "assets/sounds"),
     ],
@@ -67,7 +65,7 @@ exe = EXE(
     entitlements_file=None,
     version=str(version_file),
     uac_admin=True,
-    icon=[str(ROOT / "assets" / "images" / "favicon_pro.ico")],
+    icon=[str(SPEC_DIR / "fluxoptimizer.ico")],
 )
 coll = COLLECT(
     exe,
