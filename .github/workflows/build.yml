@@ -86,10 +86,10 @@ jobs:
         run: ISCC.exe /DAppVersion=${{ steps.version.outputs.version }} packaging\FluxOptimizer.iss
 
       - name: Package zip
-        shell: bash
+        shell: pwsh
         run: |
-          cd dist/FluxOptimizer-app
-          zip -r "../FluxOptimizer-${{ steps.version.outputs.version }}-portable.zip" .
+          Compress-Archive -Path "dist/FluxOptimizer-app/*" -DestinationPath "dist/FluxOptimizer-${{ steps.version.outputs.version }}-portable.zip" -Force
+          Get-Item "dist/FluxOptimizer-${{ steps.version.outputs.version }}-portable.zip" | Select-Object Name, Length
 
       - name: Upload installer
         uses: actions/upload-artifact@v4
