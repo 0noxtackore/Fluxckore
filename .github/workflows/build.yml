@@ -49,19 +49,21 @@ jobs:
       - name: Build executable
         run: pyinstaller packaging/fluxoptimizer.spec --noconfirm
 
-      - name: Upload artifact for signing
+      # upload-artifact stores the file as a ZIP archive, which is exactly what
+      # SignPath's <zip-file> artifact configuration expects.
+      - name: Upload unsigned executable
         id: upload
         uses: actions/upload-artifact@v4
         with:
-          name: FluxOptimizer-${{ steps.version.outputs.version }}
-          path: dist/FluxOptimizer/
+          name: FluxOptimizer-unsigned-${{ steps.version.outputs.version }}
+          path: dist/FluxOptimizer/FluxOptimizer.exe
           if-no-files-found: error
 
       # Requires the SignPath GitHub app on this repo + SIGNPATH_API_TOKEN secret.
       # Free for open-source projects: https://signpath.io (OSS plan).
       - name: Sign executable (SignPath)
         if: env.SIGNPATH_API_TOKEN != ''
-        uses: signpath/github-action-submit-signing-request@v1
+        uses: signpath/github-action-submit-signing-request@v3
         with:
           api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
           organization-id: ${{ secrets.SIGNPATH_ORGANIZATION_ID }}
@@ -72,14 +74,18 @@ jobs:
           output-artifact-directory: dist/FluxOptimizer-signed
 
       - name: Select final build
-        shell: bash
+        shell: pwsh
         run: |
-          if [ -d dist/FluxOptimizer-signed ]; then
-            mv dist/FluxOptimizer-signed dist/FluxOptimizer-app
-          else
-            echo "No signature produced (SignPath not configured) - shipping unsigned build."
-            cp -r dist/FluxOptimizer dist/FluxOptimizer-app
-          fi
+          if (Test-Path dist/FluxOptimizer-signed) {
+            # SignPath extracts the signed exe into the output directory; pair
+            # it with the untouched runtime folder of the onedir build.
+            New-Item -ItemType Directory -Force -Path dist/FluxOptimizer-app | Out-Null
+            Copy-Item -Recurse -Force dist/FluxOptimizer/_internal dist/FluxOptimizer-app/
+            Copy-Item -Force dist/FluxOptimizer-signed/FluxOptimizer.exe dist/FluxOptimizer-app/
+          } else {
+            Write-Host "No signature produced (SignPath not configured) - shipping unsigned build."
+            Copy-Item -Recurse -Force dist/FluxOptimizer dist/FluxOptimizer-app
+          }
 
       - name: Build installer (Inno Setup)
         shell: cmd
