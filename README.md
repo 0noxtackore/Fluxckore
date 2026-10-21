@@ -52,7 +52,7 @@ pyinstaller packaging/fluxop.spec --noconfirm
 
 Output: `dist/Fluxop/Fluxop.exe` (onedir bundle).
 
-To build the Windows installer (requires [Inno Setup 6](https://jrsoftware.org/isinfo.php)):
+To build the Windows installer locally (requires [Inno Setup 6](https://jrsoftware.org/isinfo.php)) — **not published to GitHub Releases**, which ship the portable ZIP only:
 
 ```powershell
 ISCC.exe /DAppVersion=8.0.2 packaging\Fluxop.iss
@@ -77,7 +77,15 @@ Fluxop/
 
 Fluxop uses **SemVer** (`MAJOR.MINOR.PATCH`). The version lives in `fluxop/__init__.py`.
 
-Releases are **tag-driven**: pushing a tag like `v8.0.2` triggers the CI workflow, which builds the executable, builds the installer and publishes a GitHub Release. There are no scheduled rebuilds — a new binary only exists when there is a real change.
+Releases are **tag-driven**: pushing a tag like `v8.0.2` triggers the CI workflow, which builds the executable and publishes a GitHub Release with the portable ZIP. There are no scheduled rebuilds — a new binary only exists when there is a real change.
+
+## Releases & distribution
+
+GitHub Releases contain **only a portable ZIP** (`Fluxop-<version>-portable.zip`) — no `.exe` installer is attached.
+
+This is intentional: the executable is **unsigned**, so Microsoft Defender / SmartScreen shows execution warnings until a code-signing license is purchased. Shipping only the ZIP keeps the release surface free of `.exe` assets that trigger those warnings/errors.
+
+To install: download the ZIP, extract it and run `Fluxop.exe` from the `Fluxop-app/` folder (onedir layout: `Fluxop.exe` + `_internal/`). Requires admin privileges for some maintenance tasks (auto-elevation is built in).
 
 ## Code signing
 

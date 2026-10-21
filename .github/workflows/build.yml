@@ -52,17 +52,13 @@ jobs:
         run: pyinstaller packaging/fluxop.spec --noconfirm
 
       # The onedir build is the final layout: Fluxop.exe + _internal/.
-      # Kept under the Fluxop-app name so the installer and the
-      # portable zip both read from a single, predictable folder.
+      # Kept under the Fluxop-app name so the portable zip reads from a
+      # single, predictable folder.
       - name: Select final build
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path dist/Fluxop-app | Out-Null
           Copy-Item -Recurse -Force dist/Fluxop/* dist/Fluxop-app/
-
-      - name: Build installer (Inno Setup)
-        shell: cmd
-        run: ISCC.exe /DAppVersion=${{ steps.version.outputs.version }} packaging\Fluxop.iss
 
       - name: Package zip
         shell: pwsh
@@ -70,11 +66,15 @@ jobs:
           Compress-Archive -Path "dist/Fluxop-app/*" -DestinationPath "dist/Fluxop-${{ steps.version.outputs.version }}-portable.zip" -Force
           Get-Item "dist/Fluxop-${{ steps.version.outputs.version }}-portable.zip" | Select-Object Name, Length
 
-      - name: Upload installer
+      # Releases ship ZIP only (no installer .exe). Unsigned binaries trigger
+      # SmartScreen / execution warnings, which is expected until a code-signing
+      # license is purchased. Users download the portable zip and extract it.
+
+      - name: Upload portable zip
         uses: actions/upload-artifact@v4
         with:
-          name: Fluxop-Installer-${{ steps.version.outputs.version }}
-          path: dist/installer/*.exe
+          name: Fluxop-Portable-${{ steps.version.outputs.version }}
+          path: dist/Fluxop-*-portable.zip
           if-no-files-found: error
 
       - name: Create GitHub Release
@@ -91,5 +91,4 @@ jobs:
             --title "Fluxop ${{ steps.version.outputs.version }}" \
             --notes "Fluxop ${{ steps.version.outputs.version }}" \
             --verify-tag \
-            dist/installer/*.exe \
             "dist/Fluxop-${{ steps.version.outputs.version }}-portable.zip"
