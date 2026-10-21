@@ -16,10 +16,8 @@ concurrency:
 
 jobs:
   build:
-    name: Build, sign & package
+    name: Build & package
     runs-on: windows-latest
-    env:
-      SIGNPATH_API_TOKEN: ${{ secrets.SIGNPATH_API_TOKEN }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -53,43 +51,14 @@ jobs:
       - name: Build executable
         run: pyinstaller packaging/fluxoptimizer.spec --noconfirm
 
-      # upload-artifact stores the file as a ZIP archive, which is exactly what
-      # SignPath's <zip-file> artifact configuration expects.
-      - name: Upload unsigned executable
-        id: upload
-        uses: actions/upload-artifact@v4
-        with:
-          name: FluxOptimizer-unsigned-${{ steps.version.outputs.version }}
-          path: dist/FluxOptimizer/FluxOptimizer.exe
-          if-no-files-found: error
-
-      # Requires the SignPath GitHub app on this repo + SIGNPATH_API_TOKEN secret.
-      # Free for open-source projects: https://signpath.io (OSS plan).
-      - name: Sign executable (SignPath)
-        if: env.SIGNPATH_API_TOKEN != ''
-        uses: signpath/github-action-submit-signing-request@v3
-        with:
-          api-token: ${{ secrets.SIGNPATH_API_TOKEN }}
-          organization-id: ${{ secrets.SIGNPATH_ORGANIZATION_ID }}
-          project-slug: FluxOptimizer
-          signing-policy-slug: release-signing
-          github-artifact-id: ${{ steps.upload.outputs.artifact-id }}
-          wait-for-completion: true
-          output-artifact-directory: dist/FluxOptimizer-signed
-
+      # The onedir build is the final layout: FluxOptimizer.exe + _internal/.
+      # Kept under the FluxOptimizer-app name so the installer and the
+      # portable zip both read from a single, predictable folder.
       - name: Select final build
         shell: pwsh
         run: |
-          if (Test-Path dist/FluxOptimizer-signed) {
-            # SignPath extracts the signed exe into the output directory; pair
-            # it with the untouched runtime folder of the onedir build.
-            New-Item -ItemType Directory -Force -Path dist/FluxOptimizer-app | Out-Null
-            Copy-Item -Recurse -Force dist/FluxOptimizer/_internal dist/FluxOptimizer-app/
-            Copy-Item -Force dist/FluxOptimizer-signed/FluxOptimizer.exe dist/FluxOptimizer-app/
-          } else {
-            Write-Host "No signature produced (SignPath not configured) - shipping unsigned build."
-            Copy-Item -Recurse -Force dist/FluxOptimizer dist/FluxOptimizer-app
-          }
+          New-Item -ItemType Directory -Force -Path dist/FluxOptimizer-app | Out-Null
+          Copy-Item -Recurse -Force dist/FluxOptimizer/* dist/FluxOptimizer-app/
 
       - name: Build installer (Inno Setup)
         shell: cmd
