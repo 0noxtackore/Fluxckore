@@ -37,6 +37,12 @@ def config_path() -> str:
     return os.path.join(project_root(), "config.json")
 
 
+def frontend_path() -> str:
+    """Path of the self-contained HTML/CSS/JS interface (same relative path
+    in source runs and in the frozen bundle)."""
+    return os.path.join(project_root(), "fluxoptimizer", "frontend", "index.html")
+
+
 def is_admin() -> bool:
     """Check whether the process runs with administrator privileges."""
     try:

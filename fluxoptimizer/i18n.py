@@ -200,6 +200,12 @@ class TranslationManager:
         return translations.get(text, text)
 
     @classmethod
+    def get_translations(cls, lang=None):
+        """Return the raw translations dict of the given (or current) language."""
+        lang = lang or cls._current_lang
+        return cls._translations.get(lang, {}).get("translations", {})
+
+    @classmethod
     def set_language(cls, lang):
         """Set the current language."""
         if lang in cls._available_langs:

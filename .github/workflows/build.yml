@@ -35,6 +35,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt pyinstaller
 
+      - name: Smoke test (imports)
+        run: python -c "import fluxoptimizer, fluxoptimizer.app, webview, psutil, pygame; print('imports OK', fluxoptimizer.__version__)"
+
       - name: Read version
         id: version
         shell: bash
