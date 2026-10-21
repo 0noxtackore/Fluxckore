@@ -1,4 +1,6 @@
-<h1 align="center">FluxOptimizer</h1>
+<p align="center">
+  <img src="assets/readme-banner.png" alt="FluxOptimizer" width="440">
+</p>
 <p align="center">
   <strong>System Maintenance & Optimization Suite for Windows</strong><br>
   One app. One codebase. Windows 10/11 (x64).
