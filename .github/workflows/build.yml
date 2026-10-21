@@ -84,10 +84,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           TAG="${GITHUB_REF_NAME}"
+          # Replace any previous release for this tag so stale assets (for
+          # example from an earlier version-scheme) never linger.
+          gh release delete "$TAG" --yes --cleanup-tag=false || true
           gh release create "$TAG" \
             --title "FluxOptimizer ${{ steps.version.outputs.version }}" \
             --notes "FluxOptimizer ${{ steps.version.outputs.version }}" \
             --verify-tag \
             dist/installer/*.exe \
-            "dist/FluxOptimizer-${{ steps.version.outputs.version }}-portable.zip" \
-          || gh release upload "$TAG" dist/installer/*.exe "dist/FluxOptimizer-${{ steps.version.outputs.version }}-portable.zip" --clobber
+            "dist/FluxOptimizer-${{ steps.version.outputs.version }}-portable.zip"
