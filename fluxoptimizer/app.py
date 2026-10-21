@@ -223,6 +223,53 @@ def _load_html() -> str:
         return f.read()
 
 
+def window_icon_path() -> str:
+    """Icon shown in the window/taskbar (generated from the app logo)."""
+    return os.path.join(project_root(), "fluxoptimizer", "frontend", "icon.ico")
+
+
+def _apply_window_icon(window) -> None:
+    """Set the native window icon on Windows.
+
+    pywebview has no cross-platform icon option, so the window handle is
+    fetched through .NET and the icon applied with the Win32 WM_SETICON
+    message (works for the Edge WebView2/Forms backend).
+    """
+    path = window_icon_path()
+    if not os.path.exists(path):
+        return
+
+    try:
+        import clr  # bundled with pywebview on Windows
+
+        clr.AddReference("System.Drawing")
+        clr.AddReference("System.Windows.Forms")
+
+        handle = int(window.native.Handle.ToInt64())
+    except Exception:
+        return
+
+    try:
+        import ctypes
+
+        IMAGE_ICON = 1
+        LR_LOADFROMFILE = 0x0010
+        LR_DEFAULTSIZE = 0x0040
+        WM_SETICON = 0x0080
+        ICON_SMALL = 0
+        ICON_BIG = 1
+
+        user32 = ctypes.windll.user32
+        hicon = user32.LoadImageW(
+            None, path, IMAGE_ICON, 0, 0, LR_LOADFROMFILE | LR_DEFAULTSIZE
+        )
+        if hicon:
+            user32.SendMessageW(handle, WM_SETICON, ICON_SMALL, hicon)
+            user32.SendMessageW(handle, WM_SETICON, ICON_BIG, hicon)
+    except Exception:
+        pass
+
+
 def _redirect_stderr_to_log() -> None:
     """Send stderr to a log file for the rest of the session.
 
@@ -285,6 +332,7 @@ def main():
     api.window = window
 
     def _on_start():
+        _apply_window_icon(window)
         threading.Thread(target=api._pusher, daemon=True).start()
 
     webview.start(_on_start)
