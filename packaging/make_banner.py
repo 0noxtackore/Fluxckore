@@ -24,7 +24,7 @@ DARK_BORDER = (13, 58, 85)    # #0d3a55
 WHITE = (255, 255, 255)
 INK = (8, 20, 30)             # wordmark colour (near-black for contrast on white)
 
-SCALE = 4                     # supersample for crisp edges
+SCALE = 6                     # supersample for crisp edges
 
 
 def _font(size: int, bold: bool = True) -> ImageFont.FreeTypeFont:
@@ -115,14 +115,14 @@ def _dark_square(size: int) -> Image.Image:
 
 
 def main() -> None:
-    tile_size = 96
+    tile_size = 200
     text = "FLUXOPTIMIZER"
 
     # measure with a large font, then downscale everything at the end via SCALE
-    f_size = 64 * SCALE
+    f_size = 96 * SCALE
     font = _font(f_size)
     # letter spacing (tracking) like the app's header
-    tracking = int(f_size * 0.22)
+    tracking = int(f_size * 0.16)
 
     tmp = ImageDraw.Draw(Image.new("RGBA", (10, 10)))
     widths = [tmp.textlength(ch, font=font) for ch in text]
@@ -130,9 +130,9 @@ def main() -> None:
     bbox = font.getbbox("H")
     cap = bbox[3] - bbox[1]
 
-    gap = int(46 * SCALE)
-    pad_x = int(56 * SCALE)
-    pad_y = int(44 * SCALE)
+    gap = int(26 * SCALE)
+    pad_x = int(48 * SCALE)
+    pad_y = int(40 * SCALE)
     tile_px = tile_size * SCALE
 
     content_h = max(tile_px, cap)

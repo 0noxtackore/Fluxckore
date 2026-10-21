@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/readme-banner.png" alt="FluxOptimizer" width="440">
+  <img src="assets/readme-banner.png" alt="FluxOptimizer" width="720">
 </p>
 <p align="center">
   <strong>System Maintenance & Optimization Suite for Windows</strong><br>
