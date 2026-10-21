@@ -42,9 +42,13 @@ jobs:
         id: version
         shell: bash
         run: |
-          VERSION=$(python packaging/make_version_info.py | awk '{print $2}')
+          # Read the real 3-part __version__ (8.0.2), not the 4-part FileVersion
+          # (8.0.2.0), so release asset names stay clean.
+          VERSION=$(python -c "import fluxoptimizer; print(fluxoptimizer.__version__)")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Building FluxOptimizer $VERSION"
+          # Keep the generated PyInstaller version resource in sync.
+          python packaging/make_version_info.py
 
       - name: Build executable
         run: pyinstaller packaging/fluxoptimizer.spec --noconfirm
