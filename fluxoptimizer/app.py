@@ -223,49 +223,86 @@ def _load_html() -> str:
         return f.read()
 
 
+def _set_app_user_model_id() -> None:
+    """Give the process its own AppUserModelID.
+
+    Without an explicit AUMID, Windows groups windows under the host
+    executable (``python.exe`` when running from source) and shows that
+    executable's icon in the taskbar instead of the window icon. Setting a
+    unique id makes the taskbar honor ``WM_SETICON``.
+    """
+    try:
+        import ctypes
+
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(
+            "FluxOptimizer.App"
+        )
+    except Exception:
+        pass
+
+
 def window_icon_path() -> str:
     """Icon shown in the window/taskbar (generated from the app logo)."""
     return os.path.join(project_root(), "fluxoptimizer", "frontend", "icon.ico")
 
 
 def _apply_window_icon(window) -> None:
-    """Set the native window icon on Windows.
+    """Set the native window icon (title bar + taskbar) on Windows.
 
-    pywebview has no cross-platform icon option, so the window handle is
-    fetched through .NET and the icon applied with the Win32 WM_SETICON
-    message (works for the Edge WebView2/Forms backend).
+    pywebview has no icon option. The window is a WinForms ``Form``, so its
+    ``Icon`` property is assigned directly — the framework then owns the
+    handle and Windows keeps it for the title bar and taskbar. ``WM_SETICON``
+    is also sent as a belt-and-braces fallback for the title bar.
     """
     path = window_icon_path()
     if not os.path.exists(path):
         return
 
+    native = getattr(window, "native", None)
+    if native is None:
+        return
+
+    # Preferred: let the WinForms Form own the icon (survives framework
+    # re-initialisation that overwrites a bare WM_SETICON handle).
     try:
         import clr  # bundled with pywebview on Windows
 
         clr.AddReference("System.Drawing")
-        clr.AddReference("System.Windows.Forms")
+        from System.Drawing import Icon as DotNetIcon
 
-        handle = int(window.native.Handle.ToInt64())
+        native.Icon = DotNetIcon(path)
     except Exception:
-        return
+        pass
 
     try:
         import ctypes
 
         IMAGE_ICON = 1
         LR_LOADFROMFILE = 0x0010
-        LR_DEFAULTSIZE = 0x0040
         WM_SETICON = 0x0080
         ICON_SMALL = 0
         ICON_BIG = 1
+        SM_CXSMICON, SM_CYSMICON, SM_CXICON, SM_CYICON = 49, 50, 11, 12
 
         user32 = ctypes.windll.user32
-        hicon = user32.LoadImageW(
-            None, path, IMAGE_ICON, 0, 0, LR_LOADFROMFILE | LR_DEFAULTSIZE
+        handle = int(native.Handle.ToInt64())
+
+        small = user32.LoadImageW(
+            None, path, IMAGE_ICON,
+            user32.GetSystemMetrics(SM_CXSMICON),
+            user32.GetSystemMetrics(SM_CYSMICON),
+            LR_LOADFROMFILE,
         )
-        if hicon:
-            user32.SendMessageW(handle, WM_SETICON, ICON_SMALL, hicon)
-            user32.SendMessageW(handle, WM_SETICON, ICON_BIG, hicon)
+        big = user32.LoadImageW(
+            None, path, IMAGE_ICON,
+            user32.GetSystemMetrics(SM_CXICON),
+            user32.GetSystemMetrics(SM_CYICON),
+            LR_LOADFROMFILE,
+        )
+        if small:
+            user32.SendMessageW(handle, WM_SETICON, ICON_SMALL, small)
+        if big:
+            user32.SendMessageW(handle, WM_SETICON, ICON_BIG, big)
     except Exception:
         pass
 
@@ -294,6 +331,9 @@ def main():
     # Do this first: the WebView2 CLR thread that floods stderr on shutdown
     # can be alive from the very first webview call.
     _redirect_stderr_to_log()
+
+    # Own taskbar identity so the window icon is used (not python.exe's).
+    _set_app_user_model_id()
 
     if os.environ.get("FLUXOPTIMIZER_SKIP_ADMIN") != "1":
         run_as_admin()
@@ -330,6 +370,14 @@ def main():
         background_color="#050508",
     )
     api.window = window
+
+    # Re-apply the icon once the framework has fully initialised the form and
+    # again after the page loads; assigning it too early got overwritten.
+    def _refresh_icon(*_args):
+        _apply_window_icon(window)
+
+    window.events.shown += _refresh_icon
+    window.events.loaded += _refresh_icon
 
     def _on_start():
         _apply_window_icon(window)
