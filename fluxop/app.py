@@ -380,7 +380,9 @@ def main():
     window.events.loaded += _refresh_icon
 
     def _on_start():
-        _apply_window_icon(window)
+        # NOTE: this callback runs on the UI thread inside the pywebview
+        # message loop. Keep it lightweight — starting the stats pusher is
+        # all it needs; heavy work (icon interop) belongs to the window events.
         threading.Thread(target=api._pusher, daemon=True).start()
 
     webview.start(_on_start)
