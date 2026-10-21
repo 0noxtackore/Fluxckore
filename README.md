@@ -85,7 +85,7 @@ GitHub Releases contain **only a portable ZIP** (`Fluxop-<version>-portable.zip`
 
 This is intentional: the executable is **unsigned**, so Microsoft Defender / SmartScreen shows execution warnings until a code-signing license is purchased. Shipping only the ZIP keeps the release surface free of `.exe` assets that trigger those warnings/errors.
 
-To install: download the ZIP, extract it and run `Fluxop.exe` from the `Fluxop-app/` folder (onedir layout: `Fluxop.exe` + `_internal/`). Requires admin privileges for some maintenance tasks (auto-elevation is built in).
+To install: download the ZIP, extract it and run `Run-Fluxop.bat` (or `Fluxop.exe` directly — it removes the Windows download mark automatically). Layout: `Fluxop.exe` + `_internal/`. Requires admin privileges for some maintenance tasks (auto-elevation is built in).
 
 ## Code signing
 
@@ -99,15 +99,14 @@ If `Fluxop.exe` crashes immediately on startup with:
 RuntimeError: Failed to resolve Python.Runtime.Loader.Initialize from ...\pythonnet\runtime\Python.Runtime.dll
 ```
 
-the cause is almost always the **Mark of the Web (MOTW)** flag on the downloaded files, or a missing .NET runtime. Fix:
+the cause is the **Mark of the Web (MOTW)**: Windows marks files downloaded from the internet with a zone that blocks the .NET runtime used by the interface.
 
-```powershell
-Unblock-File -Path C:\Users\PC\Downloads\Fluxop-8.0.2-portable -Recurse
-```
+**No command line is required** — Fluxop removes that mark automatically:
 
-(or right-click the `Fluxop-app` folder → Properties → check *Unblock* → Apply).
+- `Fluxop.exe` clears the zone mark of its own files at startup, before loading pywebview/pythonnet.
+- The ZIP also ships `Run-Fluxop.bat`: double-click it and it unblocks everything (including `Fluxop.exe` itself, which avoids the SmartScreen prompt) and starts the app.
 
-`run.bat` performs this automatically before launching. After unblocking, run `Fluxop.exe` again and it should start.
+Both paths work out of the box for end users.
 
 ## License
 

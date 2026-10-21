@@ -59,6 +59,10 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force -Path dist/Fluxop-app | Out-Null
           Copy-Item -Recurse -Force dist/Fluxop/* dist/Fluxop-app/
+          # Ship a launcher inside the ZIP: it removes the "Mark of the Web"
+          # from the downloaded files and starts the app, so end users never
+          # have to type a command in PowerShell or cmd.
+          Copy-Item -Force packaging/launcher.bat dist/Fluxop-app/Run-Fluxop.bat
 
       - name: Package zip
         shell: pwsh
