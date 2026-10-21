@@ -23,7 +23,7 @@ except ImportError as exc:
 from . import __version__
 from .core import maintenance, monitoring
 from .core.sounds import SoundPlayer
-from .core.system import config_path, frontend_path, resource_path, run_as_admin
+from .core.system import config_path, frontend_path, project_root, resource_path, run_as_admin
 from .i18n import LANGUAGE_OPTIONS, TranslationManager, _
 
 # Languages shown first in the selector.
@@ -223,8 +223,31 @@ def _load_html() -> str:
         return f.read()
 
 
+def _redirect_stderr_to_log() -> None:
+    """Send stderr to a log file for the rest of the session.
+
+    The WebView2 shutdown messages come from a CLR thread that writes straight
+    to the stderr file descriptor (Python-level filters never see them).
+    Rebinding fd 2 to a log file keeps the console clean and preserves the
+    messages for troubleshooting.
+    """
+    if not getattr(sys, "stderr", None):
+        return
+    try:
+        log_path = os.path.join(project_root(), "fluxoptimizer.log")
+        fd = os.open(log_path, os.O_WRONLY | os.O_CREAT | os.O_APPEND)
+        os.dup2(fd, 2)
+        os.close(fd)
+    except Exception:
+        pass
+
+
 def main():
     """Entry point: elevation, language setup, window launch."""
+    # Do this first: the WebView2 CLR thread that floods stderr on shutdown
+    # can be alive from the very first webview call.
+    _redirect_stderr_to_log()
+
     if os.environ.get("FLUXOPTIMIZER_SKIP_ADMIN") != "1":
         run_as_admin()
 
