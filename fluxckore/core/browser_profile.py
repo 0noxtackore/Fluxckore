@@ -4,7 +4,7 @@ Each run gets its own browser profile folder. Sharing a single folder between
 runs proved fragile on real machines: when a previous Fluxckore was killed
 (Task Manager, a crash, or the user clicking the icon again while it was still
 starting) its Edge processes survive for a moment, the next launch attaches to
-that dying browser, and the window stays hidden behind the splash forever
+that dying browser, and the window stays on its dark background forever
 because the page never loads.
 
 A private folder per run removes that coupling; folders from previous runs are

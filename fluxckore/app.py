@@ -30,7 +30,6 @@ from .core import (
     startup_log,
 )
 from .core.sounds import SoundPlayer
-from .core.splash import Splash
 from .core.system import (
     frontend_path,
     is_admin,
@@ -74,7 +73,7 @@ class Api:
     window, the sound player or any other object drags that recursion into the
     WinForms/.NET object graph, from a worker thread, where property getters can
     block on the UI thread: the bridge is then injected half-built (or not at
-    all) and the page waits forever behind the splash. Keep every non-method
+    all) and the page never finishes loading. Keep every non-method
     attribute private (leading underscore) or mark it ``_serializable = False``.
     """
 
@@ -94,7 +93,6 @@ class Api:
         # Startup handshake: the page calls ``frontend_ready`` after its first
         # paint, so the backend knows WebView2 really started rendering.
         self._ready = threading.Event()
-        self._on_ready = None
         self._js_pending = False
         self._push_errors = 0
 
@@ -104,18 +102,11 @@ class Api:
     def frontend_ready(self):
         """Called by the UI after its first paint (startup diagnostics).
 
-        Returning a value forces pywebview to run this on a worker thread, so
-        revealing the window from here cannot block the webview thread.
+        Returning a value keeps the call on a pywebview worker thread, so the
+        page never waits for this handler.
         """
         startup_log.log("frontend: ready reported by the page")
         self._ready.set()
-
-        callback = self._on_ready
-        if callback is not None:
-            try:
-                callback()
-            except Exception:
-                startup_log.log_exception("frontend_ready: callback failed")
         return {"ok": True}
 
     def get_init_data(self):
@@ -635,12 +626,6 @@ def main():
         return
     startup_log.log("WebView2 runtime found")
 
-    # Immediate feedback while WebView2 starts: the main window stays hidden
-    # until the page is ready, so without this the user would see nothing for
-    # several seconds and might think the app did not start.
-    splash = Splash().start()
-    startup_log.log("splash shown")
-
     TranslationManager()
     startup_log.log("translations loaded")
 
@@ -668,42 +653,17 @@ def main():
         height=820,
         min_size=(900, 740),
         background_color="#050508",
-        # Revealed once the page paints. A cold start of an unsigned bundle
-        # can take a while (antivirus scanning hundreds of DLLs) and a white,
-        # unresponsive window is exactly what users reported.
-        hidden=True,
+        # Shown right away: there is no splash screen and no "loading" banner,
+        # so the window itself is the immediate feedback. The dark background
+        # avoids the white flash of a cold start (antivirus scanning hundreds
+        # of DLLs) while WebView2 paints the UI.
     )
     api._window = window
-    startup_log.log("window created (hidden until the UI is ready)")
+    startup_log.log("window created (visible, dark background until the UI paints)")
 
     threading.Thread(target=_discard_legacy_profile, daemon=True).start()
 
-    revealed = threading.Event()
-
-    def _reveal(reason):
-        if revealed.is_set():
-            return
-        revealed.set()
-        startup_log.log(f"revealing window ({reason})")
-        try:
-            window.show()
-        except Exception:
-            startup_log.log_exception("window.show() failed")
-        finally:
-            splash.close()
-
-    api._on_ready = lambda: _reveal("frontend ready")
     window.events.loaded += lambda *_: startup_log.log("window: loaded event")
-
-    # Safety net: reveal the window even if the page never signals readiness
-    # (the splash is replaced, so the user always ends up with the app). When
-    # the splash could not be created there is no visual feedback at all, so
-    # show the window earlier.
-    reveal_after = 15.0 if splash.visible else 6.0
-    startup_log.log(f"reveal timeout={reveal_after:.0f}s (splash visible={splash.visible})")
-    timer = threading.Timer(reveal_after, _reveal, args=("timeout",))
-    timer.daemon = True
-    timer.start()
 
     def _watchdog():
         if api._ready.wait(35):
@@ -745,7 +705,6 @@ def main():
         startup_log.log(f"webview.start() options: {sorted(start_kwargs)}")
         webview.start(_on_start, **start_kwargs)
     finally:
-        splash.close()
         startup_log.log("pywebview.start() returned (app closed)")
 
 

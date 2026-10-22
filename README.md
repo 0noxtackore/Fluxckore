@@ -89,9 +89,9 @@ To install: download the ZIP, extract it and run `Run-Fluxckore.bat` (or `Fluxck
 
 The app itself runs **without administrator rights**, so it opens immediately and without a UAC prompt. When you press the start button, Windows asks for permission once and a hidden elevated worker does the system-level cleanup; the window stays open and shows its progress.
 
-The bundle is intentionally small: no pygame/SDL, no numpy, no GUI toolkit (the interface is HTML rendered by WebView2), and sounds use the Windows MCI API directly. Only one instance can run at a time (a second launch brings the open window to the front), and the WebView2 profile lives in `%LOCALAPPDATA%\Fluxckore\WebView2` instead of the extracted folder — a profile inside a OneDrive/Dropbox folder gets synced while in use and makes the window fail to paint intermittently.
+The bundle is intentionally small: no pygame/SDL, no numpy, no GUI toolkit (the interface is HTML rendered by WebView2), and sounds use the Windows MCI API directly. Only one instance can run at a time (a second launch brings the open window to the front), and each run gets a private WebView2 profile under `%LOCALAPPDATA%\Fluxckore\browser` instead of the extracted folder — a profile inside a OneDrive/Dropbox folder gets synced while in use and makes the window fail to paint intermittently.
 
-A small native "cargando la interfaz" window appears immediately, and the main window is shown **only when the interface has painted**, so a slow cold start (antivirus scanning an unsigned bundle) no longer looks like a frozen white window. If the interface cannot start, Fluxckore explains why in a message box instead of staying blank.
+The main window opens immediately with a dark background (no splash screen and no "loading" text), so a slow cold start (antivirus scanning an unsigned bundle) never shows a frozen white window. If the interface cannot start, Fluxckore explains why in a message box instead of staying blank.
 
 ## Code signing
 
