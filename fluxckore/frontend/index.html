@@ -454,19 +454,21 @@ function catTooltip(cat) {
 }
 
 function loadCats() {
-  try {
-    const saved = JSON.parse(localStorage.getItem("flux_cats"));
-    if (Array.isArray(saved)) {
-      const valid = new Set(catsMeta.map((c) => c.id));
-      const filtered = saved.filter((id) => valid.has(id));
-      if (filtered.length) return new Set(filtered);
-    }
-  } catch (e) { /* first run or corrupted data */ }
+  const valid = new Set(catsMeta.map((c) => c.id));
+  // The backend keeps the choice in config.json: every run uses a fresh
+  // WebView2 profile, so localStorage is empty at startup.
+  const saved = Array.isArray(I && I.selected) ? I.selected : [];
+  const filtered = saved.filter((id) => valid.has(id));
+  if (filtered.length) return new Set(filtered);
   return new Set(catsMeta.filter((c) => c.default).map((c) => c.id));
 }
 
 function saveCats() {
-  try { localStorage.setItem("flux_cats", JSON.stringify([...catsSel])); } catch (e) { /* ignore */ }
+  try {
+    if (window.pywebview && pywebview.api && pywebview.api.set_categories) {
+      pywebview.api.set_categories([...catsSel]).catch(() => {});
+    }
+  } catch (e) { /* ignore */ }
 }
 
 function renderChips() {

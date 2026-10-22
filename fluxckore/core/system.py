@@ -1,5 +1,6 @@
-"""Windows helpers: administrator privileges and bundled-resource paths."""
+"""Windows helpers: administrator privileges, settings and resource paths."""
 import ctypes
+import json
 import os
 import sys
 
@@ -28,28 +29,43 @@ def resource_path(filename: str) -> str:
 
 
 def config_path() -> str:
-    """Path of the optional config.json (language preference)."""
+    """Path of the user settings file (language, selected categories).
+
+    Stored under ``%LOCALAPPDATA%`` so it also works when the portable folder
+    is read-only (Program Files, a share, a locked-down machine).
+    """
+    return os.path.join(_local_appdata(), "Fluxckore", "config.json")
+
+
+def legacy_config_path() -> str:
+    """Previous location (next to the app); only read, for migration."""
     return os.path.join(project_root(), "config.json")
 
 
-def webview_data_path() -> str | None:
-    """Fixed WebView2 profile folder under ``%LOCALAPPDATA%``.
+def load_config() -> dict:
+    """Read the settings file, falling back to the old location."""
+    for path in (config_path(), legacy_config_path()):
+        try:
+            with open(path, "r", encoding="utf-8") as handle:
+                data = json.load(handle)
+            if isinstance(data, dict):
+                return data
+        except (OSError, ValueError):
+            continue
+    return {}
 
-    Without an explicit folder WebView2 creates ``Fluxckore.exe.WebView2`` next to
-    the executable — that is, inside the extracted portable folder. If the user
-    extracted the ZIP into a OneDrive/Dropbox folder or a read-only location,
-    the browser profile is synced or locked while in use and the window
-    intermittently fails to paint. A local, per-user folder avoids both.
 
-    Returns ``None`` when no writable folder can be created, so the caller can
-    let WebView2 choose its default instead of failing to start.
-    """
-    path = os.path.join(_local_appdata(), "Fluxckore", "browser")
+def update_config(values: dict) -> None:
+    """Merge ``values`` into the settings file. Never raises."""
+    data = load_config()
+    data.update(values)
+    path = config_path()
     try:
-        os.makedirs(path, exist_ok=True)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "w", encoding="utf-8") as handle:
+            json.dump(data, handle, ensure_ascii=False, indent=2)
     except OSError:
-        return None
-    return path
+        pass
 
 
 def legacy_webview_data_path() -> str:

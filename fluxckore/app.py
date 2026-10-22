@@ -21,17 +21,24 @@ except ImportError as exc:
     )
 
 from . import __version__
-from .core import headless, maintenance, monitoring, single_instance, startup_log
+from .core import (
+    browser_profile,
+    headless,
+    maintenance,
+    monitoring,
+    single_instance,
+    startup_log,
+)
 from .core.sounds import SoundPlayer
 from .core.splash import Splash
 from .core.system import (
-    config_path,
     frontend_path,
     is_admin,
     legacy_webview_data_path,
+    load_config,
     project_root,
     resource_path,
-    webview_data_path,
+    update_config,
 )
 from .i18n import LANGUAGE_OPTIONS, TranslationManager, _
 
@@ -47,6 +54,15 @@ def _needs_elevation() -> bool:
     frozen build can relaunch itself, so source runs stay in-process.
     """
     return os.name == "nt" and bool(getattr(sys, "frozen", False)) and not is_admin()
+
+
+def _saved_categories():
+    """Cleanup categories the user picked last time (empty when none/invalid)."""
+    saved = load_config().get("categories")
+    if not isinstance(saved, list):
+        return []
+    known = {c["id"] for c in maintenance.file_categories()}
+    return [c for c in saved if isinstance(c, str) and c in known]
 
 
 class Api:
@@ -113,14 +129,29 @@ class Api:
             "lang_options": options,
             "translations": TranslationManager.get_translations(),
             "categories": maintenance.file_categories(),
+            "selected": _saved_categories(),
         }
 
     def set_language(self, code):
         """Switch UI language and return the new translations."""
         if TranslationManager.set_language(code):
             print(f"[i18n] Language changed to: {code}")
+            update_config({"language": code})
             return {"ok": True, "lang": code, "translations": TranslationManager.get_translations()}
         return {"ok": False}
+
+    def set_categories(self, categories=None):
+        """Persist the cleanup categories chosen by the user.
+
+        The settings live in ``config.json`` (not in localStorage) because every
+        run uses a fresh WebView2 profile, so the browser storage starts empty.
+        """
+        known = {c["id"] for c in maintenance.file_categories()}
+        if not isinstance(categories, (list, tuple)):
+            return {"ok": False}
+        selected = [c for c in categories if isinstance(c, str) and c in known]
+        update_config({"categories": selected})
+        return {"ok": True}
 
     def start_optimization(self, categories=None):
         """Start a maintenance run in a worker thread.
@@ -176,8 +207,8 @@ class Api:
 
         # Never touch the webview before its page exists: waiting here avoids
         # a burst of failed evaluate_js calls while WebView2 is starting.
-        if not self._ready.wait(30):
-            startup_log.log("pusher: page not ready after 30 s, pushing anyway")
+        if not self._ready.wait(15):
+            startup_log.log("pusher: page not ready after 15 s, pushing anyway")
 
         # One scan before the first payload so the dashboard does not start at
         # zero; after that it is refreshed every 30 s.
@@ -570,6 +601,17 @@ def main():
 
     startup_log.log(f"administrator={is_admin()}")
 
+    # WebView2 profile: private to this run. Leftovers from an earlier run are
+    # the usual reason a launch ends up with a window that never loads (see
+    # core/browser_profile.py), so they are removed before the browser starts.
+    killed = browser_profile.kill_stale_processes()
+    startup_log.log(f"stale WebView2 processes killed={killed}")
+    profile_path = browser_profile.new_profile()
+    startup_log.log(f"WebView2 profile: {profile_path}")
+    if profile_path:
+        removed = browser_profile.remove_old_profiles(profile_path)
+        startup_log.log(f"old WebView2 profiles removed={removed}")
+
     if not _webview2_available():
         startup_log.log("WebView2 runtime NOT found: aborting with a clear message")
         _show_message(
@@ -592,19 +634,12 @@ def main():
     TranslationManager()
     startup_log.log("translations loaded")
 
-    # Language preference saved by the installer (optional).
+    # Language preference saved by a previous run.
     lang = None
-    path = config_path()
-    if os.path.exists(path):
-        try:
-            with open(path, "r", encoding="utf-8") as f:
-                config = json.load(f)
-                saved_lang = config.get("language")
-                if saved_lang and saved_lang in TranslationManager.get_available_languages():
-                    lang = saved_lang
-                    print(f"[i18n] Using saved language: {lang}")
-        except Exception:
-            pass
+    saved_lang = load_config().get("language")
+    if saved_lang and saved_lang in TranslationManager.get_available_languages():
+        lang = saved_lang
+        print(f"[i18n] Using saved language: {lang}")
 
     if lang is None:
         lang = TranslationManager.detect_system_language()
@@ -654,14 +689,14 @@ def main():
     # (the splash is replaced, so the user always ends up with the app). When
     # the splash could not be created there is no visual feedback at all, so
     # show the window earlier.
-    reveal_after = 30.0 if splash.visible else 8.0
+    reveal_after = 15.0 if splash.visible else 6.0
     startup_log.log(f"reveal timeout={reveal_after:.0f}s (splash visible={splash.visible})")
     timer = threading.Timer(reveal_after, _reveal, args=("timeout",))
     timer.daemon = True
     timer.start()
 
     def _watchdog():
-        if api._ready.wait(40):
+        if api._ready.wait(35):
             return
         startup_log.log("WATCHDOG: the page never reported ready")
         _show_message(
@@ -695,9 +730,8 @@ def main():
         if "private_mode" in parameters:
             start_kwargs["private_mode"] = False
         if "storage_path" in parameters:
-            data_path = webview_data_path()
-            if data_path:
-                start_kwargs["storage_path"] = data_path
+            if profile_path:
+                start_kwargs["storage_path"] = profile_path
         startup_log.log(f"webview.start() options: {sorted(start_kwargs)}")
         webview.start(_on_start, **start_kwargs)
     finally:
