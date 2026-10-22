@@ -1,5 +1,5 @@
 #!/bin/sh
-# Fluxop launcher - Linux/macOS
-# Runs Fluxop from source with Python.
+# Fluxckore launcher - Linux/macOS
+# Runs Fluxckore from source with Python.
 
-python3 -m fluxop
+python3 -m fluxckore

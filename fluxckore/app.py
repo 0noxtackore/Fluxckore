@@ -1,4 +1,4 @@
-"""Fluxop backend: HTML/CSS interface (pywebview) + maintenance runner.
+"""Fluxckore backend: HTML/CSS interface (pywebview) + maintenance runner.
 
 The Python side keeps every maintenance/monitoring/i18n function; only the
 presentation layer changed from CustomTkinter to a self-contained HTML/CSS/JS
@@ -311,7 +311,7 @@ def _set_app_user_model_id() -> None:
         import ctypes
 
         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(
-            "Fluxop.App"
+            "Fluxckore.App"
         )
     except Exception:
         pass
@@ -319,7 +319,7 @@ def _set_app_user_model_id() -> None:
 
 def window_icon_path() -> str:
     """Icon shown in the window/taskbar (generated from the app logo)."""
-    return os.path.join(project_root(), "fluxop", "frontend", "icon.ico")
+    return os.path.join(project_root(), "fluxckore", "frontend", "icon.ico")
 
 
 def _webview2_available() -> bool:
@@ -330,7 +330,7 @@ def _webview2_available() -> bool:
     initialises and the window stays blank, so we check first and explain
     the problem instead of failing silently.
     """
-    if os.environ.get("FLUXOP_SKIP_WEBVIEW_CHECK") == "1":
+    if os.environ.get("FLUXCKORE_SKIP_WEBVIEW_CHECK") == "1":
         return True
     try:
         import winreg
@@ -369,7 +369,7 @@ def _webview2_available() -> bool:
     return False
 
 
-def _show_message(text: str, title: str = "Fluxop") -> None:
+def _show_message(text: str, title: str = "Fluxckore") -> None:
     """Show a native message box (the frozen build has no console).
 
     Uses its own window, so it also appears when the webview thread is stuck.
@@ -400,7 +400,7 @@ def _redirect_stderr_to_log() -> None:
         return
     try:
         folder = os.path.dirname(startup_log.log_path())
-        log_path = os.path.join(folder, "fluxop.log")
+        log_path = os.path.join(folder, "fluxckore.log")
         fd = os.open(log_path, os.O_WRONLY | os.O_CREAT | os.O_APPEND)
         os.dup2(fd, 2)
         os.close(fd)
@@ -410,7 +410,7 @@ def _redirect_stderr_to_log() -> None:
 
 def main():
     """Entry point: elevation, language setup, window launch."""
-    startup_log.log(f"=== Fluxop {__version__} ===")
+    startup_log.log(f"=== Fluxckore {__version__} ===")
     startup_log.log(
         f"env: frozen={bool(getattr(sys, 'frozen', False))} "
         f"exe={sys.executable} cwd={os.getcwd()}"
@@ -439,7 +439,7 @@ def main():
     # One instance only: two copies sharing the WebView2 profile is the usual
     # cause of a window that never paints or a second app that opens and dies.
     if not single_instance.acquire():
-        startup_log.log("another Fluxop instance is already running: focusing it")
+        startup_log.log("another Fluxckore instance is already running: focusing it")
         single_instance.focus_existing()
         return
 
@@ -448,12 +448,12 @@ def main():
     if not _webview2_available():
         startup_log.log("WebView2 runtime NOT found: aborting with a clear message")
         _show_message(
-            "Fluxop necesita el componente 'Microsoft Edge WebView2' y este "
+            "Fluxckore necesita el componente 'Microsoft Edge WebView2' y este "
             "equipo no lo tiene instalado.\n\n"
             "Instálalo gratis desde:\n"
             "https://developer.microsoft.com/microsoft-edge/webview2/\n\n"
-            "Después vuelve a abrir Fluxop.",
-            "Fluxop - falta un componente",
+            "Después vuelve a abrir Fluxckore.",
+            "Fluxckore - falta un componente",
         )
         return
     startup_log.log("WebView2 runtime found")
@@ -491,7 +491,7 @@ def main():
     startup_log.log("api created")
 
     window = webview.create_window(
-        "Fluxop",
+        "Fluxckore",
         html=_load_html(),
         js_api=api,
         width=1000,
@@ -538,13 +538,13 @@ def main():
             return
         startup_log.log("WATCHDOG: the page never reported ready")
         _show_message(
-            "La interfaz de Fluxop está tardando demasiado.\n\n"
+            "La interfaz de Fluxckore está tardando demasiado.\n\n"
             "Causas habituales:\n"
             "  - El runtime 'Microsoft Edge WebView2' está dañado.\n"
             "  - Un antivirus está bloqueando la aplicación.\n\n"
             f"Se guardó un diagnóstico en:\n{_export_diagnostics()}\n\n"
             "Envíame ese archivo para poder diagnosticarlo.",
-            "Fluxop - problema al iniciar",
+            "Fluxckore - problema al iniciar",
         )
 
     threading.Thread(target=_watchdog, daemon=True).start()
@@ -584,7 +584,7 @@ if __name__ == "__main__":
     except Exception:
         startup_log.log_exception("CRITICAL: unhandled exception")
         _show_message(
-            "Fluxop no pudo iniciarse.\n\n"
+            "Fluxckore no pudo iniciarse.\n\n"
             f"Detalle técnico guardado en:\n{startup_log.log_path()}",
-            "Fluxop - error crítico",
+            "Fluxckore - error crítico",
         )

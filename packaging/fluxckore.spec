@@ -1,7 +1,7 @@
 # -*- mode: python ; coding: utf-8 -*-
-# PyInstaller spec for Fluxop (single edition, onedir).
+# PyInstaller spec for Fluxckore (single edition, onedir).
 # Run from the repository root:
-#     pyinstaller packaging/fluxop.spec --noconfirm
+#     pyinstaller packaging/fluxckore.spec --noconfirm
 # Relative paths are resolved against this spec file's directory.
 
 import subprocess
@@ -11,16 +11,16 @@ from pathlib import Path
 SPEC_DIR = Path(SPECPATH).resolve()
 ROOT = SPEC_DIR.parent
 
-# Make sure the Windows version resource exists and matches fluxop.__version__.
+# Make sure the Windows version resource exists and matches fluxckore.__version__.
 version_file = SPEC_DIR / "version_info.txt"
 subprocess.run([sys.executable, str(SPEC_DIR / "make_version_info.py")], check=True)
 
 a = Analysis(
-    [str(ROOT / "fluxop" / "__main__.py")],
+    [str(ROOT / "fluxckore" / "__main__.py")],
     pathex=[str(ROOT)],
     binaries=[],
     datas=[
-        (str(ROOT / "fluxop" / "frontend"), "fluxop/frontend"),
+        (str(ROOT / "fluxckore" / "frontend"), "fluxckore/frontend"),
         (str(ROOT / "locales" / "translations.json"), "locales"),
         (str(ROOT / "assets" / "sounds" / "notification.mp3"), "assets/sounds"),
         (str(ROOT / "assets" / "sounds" / "danger.mp3"), "assets/sounds"),
@@ -58,7 +58,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name="Fluxop",
+    name="Fluxckore",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -71,7 +71,7 @@ exe = EXE(
     entitlements_file=None,
     version=str(version_file),
     uac_admin=True,
-    icon=[str(SPEC_DIR / "fluxop.ico")],
+    icon=[str(SPEC_DIR / "fluxckore.ico")],
 )
 coll = COLLECT(
     exe,
@@ -80,5 +80,5 @@ coll = COLLECT(
     strip=False,
     upx=False,
     upx_exclude=[],
-    name="Fluxop",
+    name="Fluxckore",
 )

@@ -5,7 +5,7 @@ output is lost and a crash before the window appears leaves no trace at all.
 Every phase of the startup writes to this plain-text log instead.
 
 The file is stored next to the executable when that folder is writable and
-in ``%LOCALAPPDATA%\\Fluxop`` otherwise, so a user can always find it and
+in ``%LOCALAPPDATA%\\Fluxckore`` otherwise, so a user can always find it and
 send it back even when the window never shows up.
 
 Nothing here may raise: logging must never be the reason the app fails.
@@ -33,7 +33,7 @@ def _candidates():
         yield os.path.dirname(os.path.abspath(sys.executable))
     local = os.environ.get("LOCALAPPDATA")
     if local:
-        yield os.path.join(local, "Fluxop")
+        yield os.path.join(local, "Fluxckore")
     yield os.environ.get("TEMP") or os.getcwd()
 
 
@@ -46,7 +46,7 @@ def log_path() -> str:
     for folder in _candidates():
         try:
             os.makedirs(folder, exist_ok=True)
-            candidate = os.path.join(folder, "fluxop-startup.log")
+            candidate = os.path.join(folder, "fluxckore-startup.log")
             with open(candidate, "a", encoding="utf-8"):
                 pass
             _PATH = candidate
@@ -54,7 +54,7 @@ def log_path() -> str:
         except OSError:
             continue
 
-    _PATH = os.path.join(os.environ.get("TEMP", "."), "fluxop-startup.log")
+    _PATH = os.path.join(os.environ.get("TEMP", "."), "fluxckore-startup.log")
     return _PATH
 
 
@@ -104,7 +104,7 @@ def export_desktop_copy() -> str:
         desktop = os.path.join(home, "Desktop")
         if not os.path.isdir(desktop):
             return log_path()
-        target = os.path.join(desktop, "Fluxop-DIAGNOSTICO.txt")
+        target = os.path.join(desktop, "Fluxckore-DIAGNOSTICO.txt")
         shutil.copyfile(log_path(), target)
         return target
     except Exception:

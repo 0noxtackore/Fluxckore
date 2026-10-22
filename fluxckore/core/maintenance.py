@@ -1,5 +1,5 @@
 """
-Operaciones de mantenimiento y limpieza de Fluxop.
+Operaciones de mantenimiento y limpieza de Fluxckore.
 
 Cada operación es una función independiente que recibe:
 - log: callable para registrar mensajes con firma log(message, message_type)

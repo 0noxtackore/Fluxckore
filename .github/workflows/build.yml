@@ -34,7 +34,7 @@ jobs:
           pip install -r requirements.txt pyinstaller
 
       - name: Smoke test (imports)
-        run: python -c "import fluxop, fluxop.app, webview, psutil; print('imports OK', fluxop.__version__)"
+        run: python -c "import fluxckore, fluxckore.app, webview, psutil; print('imports OK', fluxckore.__version__)"
 
       - name: Read version
         id: version
@@ -42,33 +42,33 @@ jobs:
         run: |
           # Read the real 3-part __version__ (8.0.2), not the 4-part FileVersion
           # (8.0.2.0), so release asset names stay clean.
-          VERSION=$(python -c "import fluxop; print(fluxop.__version__)")
+          VERSION=$(python -c "import fluxckore; print(fluxckore.__version__)")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
-          echo "Building Fluxop $VERSION"
+          echo "Building Fluxckore $VERSION"
           # Keep the generated PyInstaller version resource in sync.
           python packaging/make_version_info.py
 
       - name: Build executable
-        run: pyinstaller packaging/fluxop.spec --noconfirm
+        run: pyinstaller packaging/fluxckore.spec --noconfirm
 
-      # The onedir build is the final layout: Fluxop.exe + _internal/.
-      # Kept under the Fluxop-app name so the portable zip reads from a
+      # The onedir build is the final layout: Fluxckore.exe + _internal/.
+      # Kept under the Fluxckore-app name so the portable zip reads from a
       # single, predictable folder.
       - name: Select final build
         shell: pwsh
         run: |
-          New-Item -ItemType Directory -Force -Path dist/Fluxop-app | Out-Null
-          Copy-Item -Recurse -Force dist/Fluxop/* dist/Fluxop-app/
+          New-Item -ItemType Directory -Force -Path dist/Fluxckore-app | Out-Null
+          Copy-Item -Recurse -Force dist/Fluxckore/* dist/Fluxckore-app/
           # Ship a launcher inside the ZIP: it removes the "Mark of the Web"
           # from the downloaded files and starts the app, so end users never
           # have to type a command in PowerShell or cmd.
-          Copy-Item -Force packaging/launcher.bat dist/Fluxop-app/Run-Fluxop.bat
+          Copy-Item -Force packaging/launcher.bat dist/Fluxckore-app/Run-Fluxckore.bat
 
       - name: Package zip
         shell: pwsh
         run: |
-          Compress-Archive -Path "dist/Fluxop-app/*" -DestinationPath "dist/Fluxop-${{ steps.version.outputs.version }}-portable.zip" -Force
-          Get-Item "dist/Fluxop-${{ steps.version.outputs.version }}-portable.zip" | Select-Object Name, Length
+          Compress-Archive -Path "dist/Fluxckore-app/*" -DestinationPath "dist/Fluxckore-${{ steps.version.outputs.version }}-portable.zip" -Force
+          Get-Item "dist/Fluxckore-${{ steps.version.outputs.version }}-portable.zip" | Select-Object Name, Length
 
       # Releases ship ZIP only (no installer .exe). Unsigned binaries trigger
       # SmartScreen / execution warnings, which is expected until a code-signing
@@ -77,8 +77,8 @@ jobs:
       - name: Upload portable zip
         uses: actions/upload-artifact@v4
         with:
-          name: Fluxop-Portable-${{ steps.version.outputs.version }}
-          path: dist/Fluxop-*-portable.zip
+          name: Fluxckore-Portable-${{ steps.version.outputs.version }}
+          path: dist/Fluxckore-*-portable.zip
           if-no-files-found: error
 
       - name: Create GitHub Release
@@ -92,7 +92,7 @@ jobs:
           # example from an earlier version-scheme) never linger.
           gh release delete "$TAG" --yes --cleanup-tag=false || true
           gh release create "$TAG" \
-            --title "Fluxop ${{ steps.version.outputs.version }}" \
-            --notes "Fluxop ${{ steps.version.outputs.version }}" \
+            --title "Fluxckore ${{ steps.version.outputs.version }}" \
+            --notes "Fluxckore ${{ steps.version.outputs.version }}" \
             --verify-tag \
-            "dist/Fluxop-${{ steps.version.outputs.version }}-portable.zip"
+            "dist/Fluxckore-${{ steps.version.outputs.version }}-portable.zip"

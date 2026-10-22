@@ -90,7 +90,7 @@ _gdi32.DeleteObject.argtypes = (wintypes.HGDIOBJ,)
 class Splash:
     """Small always-on-top window with a "loading" message."""
 
-    def __init__(self, text: str = "Fluxop  -  cargando la interfaz...", width: int = 460, height: int = 120):
+    def __init__(self, text: str = "Fluxckore  -  cargando la interfaz...", width: int = 460, height: int = 120):
         self._text = text
         self._width = width
         self._height = height
@@ -100,7 +100,7 @@ class Splash:
         self._font = None
 
     def start(self) -> "Splash":
-        threading.Thread(target=self._run, daemon=True, name="fluxop-splash").start()
+        threading.Thread(target=self._run, daemon=True, name="fluxckore-splash").start()
         self._created.wait(1.5)
         return self
 

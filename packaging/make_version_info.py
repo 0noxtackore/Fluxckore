@@ -1,6 +1,6 @@
 """Generate a PyInstaller-compatible Windows version file from the package version.
 
-Reads ``__version__`` from ``fluxop/__init__.py`` and writes
+Reads ``__version__`` from ``fluxckore/__init__.py`` and writes
 ``packaging/version_info.txt`` (VSVersionInfo format). Run from anywhere:
 
     python packaging/make_version_info.py
@@ -10,14 +10,18 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PACKAGE_INIT = ROOT / "fluxop" / "__init__.py"
+PACKAGE_INIT = ROOT / "fluxckore" / "__init__.py"
 OUTPUT = Path(__file__).resolve().parent / "version_info.txt"
 
-FILE_DESCRIPTION = "Fluxop - System Maintenance Suite"
-INTERNAL_NAME = "Fluxop"
-ORIGINAL_FILENAME = "Fluxop.exe"
-PRODUCT_NAME = "Fluxop"
-COMPANY_NAME = "Fluxop"
+FILE_DESCRIPTION = "Fluxckore - System Maintenance Suite"
+INTERNAL_NAME = "Fluxckore"
+ORIGINAL_FILENAME = "Fluxckore.exe"
+PRODUCT_NAME = "Fluxckore"
+# Shown as "Compañía"/"Company" in the file properties and anywhere Windows
+# displays the app metadata (the UAC "Editor" line is the signed publisher and
+# can only be set with a real code-signing certificate).
+COMPANY_NAME = "0noxtackore"
+COPYRIGHT = "Copyright (c) 2026 0noxtackore. MIT License."
 
 
 def read_version() -> tuple[int, int, int, int]:
@@ -54,7 +58,7 @@ VSVersionInfo(
          StringStruct('FileDescription', '{FILE_DESCRIPTION}'),
          StringStruct('FileVersion', '{dotted}'),
          StringStruct('InternalName', '{INTERNAL_NAME}'),
-         StringStruct('LegalCopyright', 'Copyright (c) 2026 Fluxop Team. MIT License.'),
+         StringStruct('LegalCopyright', '{COPYRIGHT}'),
          StringStruct('OriginalFilename', '{ORIGINAL_FILENAME}'),
          StringStruct('ProductName', '{PRODUCT_NAME}'),
          StringStruct('ProductVersion', '{dotted}')])

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/readme-banner.png" alt="Fluxop" width="716">
+  <img src="assets/readme-banner.png" alt="Fluxckore" width="716">
 </p>
 <p align="center">
   <strong>System Maintenance & Optimization Suite for Windows</strong><br>
@@ -16,9 +16,9 @@
 
 ## Overview
 
-Fluxop is a Windows system maintenance suite built with Python and a self-contained HTML/CSS interface rendered by pywebview (Edge WebView2). It provides real-time system monitoring, selectable temporary-file cleanup, memory optimization and registry maintenance through a single dark-themed desktop application.
+Fluxckore (formerly Fluxop) is a Windows system maintenance suite built with Python and a self-contained HTML/CSS interface rendered by pywebview (Edge WebView2). It provides real-time system monitoring, selectable temporary-file cleanup, memory optimization and registry maintenance through a single dark-themed desktop application.
 
-There is **one edition** of Fluxop. Features evolve in place — no PRO/Beta/Enterprise splits, no parallel codebases.
+There is **one edition** of Fluxckore. Features evolve in place — no PRO/Beta/Enterprise splits, no parallel codebases.
 
 ## Features
 
@@ -37,32 +37,32 @@ There is **one edition** of Fluxop. Features evolve in place — no PRO/Beta/Ent
 ## Run from source
 
 ```powershell
-git clone https://github.com/0noxtackore/Fluxop.git
-cd Fluxop
+git clone https://github.com/0noxtackore/Fluxop.git fluxckore
+cd fluxckore
 pip install -r requirements.txt
-python -m fluxop
+python -m fluxckore
 ```
 
 ## Build the executable
 
 ```powershell
 pip install -r requirements.txt pyinstaller
-pyinstaller packaging/fluxop.spec --noconfirm
+pyinstaller packaging/fluxckore.spec --noconfirm
 ```
 
-Output: `dist/Fluxop/Fluxop.exe` (onedir bundle).
+Output: `dist/Fluxckore/Fluxckore.exe` (onedir bundle).
 
 To build the Windows installer locally (requires [Inno Setup 6](https://jrsoftware.org/isinfo.php)) — **not published to GitHub Releases**, which ship the portable ZIP only:
 
 ```powershell
-ISCC.exe /DAppVersion=8.0.2 packaging\Fluxop.iss
+ISCC.exe /DAppVersion=9.0.0 packaging\Fluxckore.iss
 ```
 
 ## Project structure
 
 ```
-Fluxop/
-├── fluxop/                 # The application package
+Fluxckore/
+├── fluxckore/                 # The application package
 │   ├── app.py              # pywebview backend & orchestration
 │   ├── i18n.py             # Translation manager (104 languages)
 │   ├── core/               # System monitoring & maintenance logic
@@ -75,21 +75,21 @@ Fluxop/
 
 ## Releases & versioning
 
-Fluxop uses **SemVer** (`MAJOR.MINOR.PATCH`). The version lives in `fluxop/__init__.py`.
+Fluxckore uses **SemVer** (`MAJOR.MINOR.PATCH`). The version lives in `fluxckore/__init__.py`.
 
-Releases are **tag-driven**: pushing a tag like `v8.0.2` triggers the CI workflow, which builds the executable and publishes a GitHub Release with the portable ZIP. There are no scheduled rebuilds — a new binary only exists when there is a real change.
+Releases are **tag-driven**: pushing a tag like `v9.0.0` triggers the CI workflow, which builds the executable and publishes a GitHub Release with the portable ZIP. There are no scheduled rebuilds — a new binary only exists when there is a real change.
 
 ## Releases & distribution
 
-GitHub Releases contain **only a portable ZIP** (`Fluxop-<version>-portable.zip`) — no `.exe` installer is attached.
+GitHub Releases contain **only a portable ZIP** (`Fluxckore-<version>-portable.zip`) — no `.exe` installer is attached.
 
 This is intentional: the executable is **unsigned**, so Microsoft Defender / SmartScreen shows execution warnings until a code-signing license is purchased. Shipping only the ZIP keeps the release surface free of `.exe` assets that trigger those warnings/errors.
 
-To install: download the ZIP, extract it and run `Run-Fluxop.bat` (or `Fluxop.exe` directly - it removes the Windows download mark automatically). Layout: `Fluxop.exe` + `_internal/`. Requires admin privileges for some maintenance tasks (auto-elevation is built in).
+To install: download the ZIP, extract it and run `Run-Fluxckore.bat` (or `Fluxckore.exe` directly - it removes the Windows download mark automatically). Layout: `Fluxckore.exe` + `_internal/`. Requires admin privileges for some maintenance tasks (auto-elevation is built in).
 
-The bundle is intentionally small: no pygame/SDL, no numpy, no GUI toolkit (the interface is HTML rendered by WebView2), and sounds use the Windows MCI API directly. Only one instance can run at a time (a second launch brings the open window to the front), and the WebView2 profile lives in `%LOCALAPPDATA%\Fluxop\WebView2` instead of the extracted folder — a profile inside a OneDrive/Dropbox folder gets synced while in use and makes the window fail to paint intermittently.
+The bundle is intentionally small: no pygame/SDL, no numpy, no GUI toolkit (the interface is HTML rendered by WebView2), and sounds use the Windows MCI API directly. Only one instance can run at a time (a second launch brings the open window to the front), and the WebView2 profile lives in `%LOCALAPPDATA%\Fluxckore\WebView2` instead of the extracted folder — a profile inside a OneDrive/Dropbox folder gets synced while in use and makes the window fail to paint intermittently.
 
-A small native "cargando la interfaz" window appears immediately, and the main window is shown **only when the interface has painted**, so a slow cold start (antivirus scanning an unsigned bundle) no longer looks like a frozen white window. If the interface cannot start, Fluxop explains why in a message box instead of staying blank.
+A small native "cargando la interfaz" window appears immediately, and the main window is shown **only when the interface has painted**, so a slow cold start (antivirus scanning an unsigned bundle) no longer looks like a frozen white window. If the interface cannot start, Fluxckore explains why in a message box instead of staying blank.
 
 ## Code signing
 
@@ -97,7 +97,7 @@ Releases ship **unsigned**. Windows SmartScreen may flag the executable until it
 
 ## Troubleshooting: `Failed to resolve Python.Runtime.Loader.Initialize`
 
-If `Fluxop.exe` crashes immediately on startup with:
+If `Fluxckore.exe` crashes immediately on startup with:
 
 ```
 RuntimeError: Failed to resolve Python.Runtime.Loader.Initialize from ...\pythonnet\runtime\Python.Runtime.dll
@@ -105,34 +105,34 @@ RuntimeError: Failed to resolve Python.Runtime.Loader.Initialize from ...\python
 
 the cause is the **Mark of the Web (MOTW)**: Windows marks files downloaded from the internet with a zone that blocks the .NET runtime used by the interface.
 
-**No command line is required** — Fluxop removes that mark automatically:
+**No command line is required** — Fluxckore removes that mark automatically:
 
-- `Fluxop.exe` clears the zone mark of its own files at startup, before loading pywebview/pythonnet.
-- The ZIP also ships `Run-Fluxop.bat`: double-click it and it unblocks `Fluxop.exe` (so SmartScreen stays quiet) and starts the app instantly. The rest of the files are unblocked natively by the app itself, in milliseconds — there is no slow PowerShell pass over the folder any more.
+- `Fluxckore.exe` clears the zone mark of its own files at startup, before loading pywebview/pythonnet.
+- The ZIP also ships `Run-Fluxckore.bat`: double-click it and it unblocks `Fluxckore.exe` (so SmartScreen stays quiet) and starts the app instantly. The rest of the files are unblocked natively by the app itself, in milliseconds — there is no slow PowerShell pass over the folder any more.
 
 Both paths work out of the box for end users.
 
 ## Troubleshooting: blank window / "no responde"
 
-Fluxop needs the **Microsoft Edge WebView2 Runtime** (preinstalled on Windows 11 and on virtually every Windows 10). If it is missing, the app now says so in a message box instead of showing a white window. Installer: <https://developer.microsoft.com/microsoft-edge/webview2/>.
+Fluxckore needs the **Microsoft Edge WebView2 Runtime** (preinstalled on Windows 11 and on virtually every Windows 10). If it is missing, the app now says so in a message box instead of showing a white window. Installer: <https://developer.microsoft.com/microsoft-edge/webview2/>.
 
 Every launch writes a timestamped log of each startup phase:
 
-- `fluxop-startup.log` next to `Fluxop.exe` (or in `%LOCALAPPDATA%\Fluxop\` when that folder is read-only).
-- `fluxop.log` (raw stderr from WebView2/pythonnet, same folder).
+- `fluxckore-startup.log` next to `Fluxckore.exe` (or in `%LOCALAPPDATA%\Fluxckore\` when that folder is read-only).
+- `fluxckore.log` (raw stderr from WebView2/pythonnet, same folder).
 
-If the window still does not open, send the diagnostic file: Fluxop copies the log to your **Desktop** as `Fluxop-DIAGNOSTICO.txt` when startup fails, and the error message tells you so. That file shows the exact phase where the launch stopped.
+If the window still does not open, send the diagnostic file: Fluxckore copies the log to your **Desktop** as `Fluxckore-DIAGNOSTICO.txt` when startup fails, and the error message tells you so. That file shows the exact phase where the launch stopped.
 
 Useful environment overrides (no commands needed for normal use):
 
 | Variable | Effect |
 | --- | --- |
-| `FLUXOP_WEBVIEW_ARGS` | Extra WebView2/Chromium flags (empty value re-enables GPU rendering). |
-| `FLUXOP_SKIP_WEBVIEW_CHECK=1` | Skip the WebView2 runtime check. |
+| `FLUXCKORE_WEBVIEW_ARGS` | Extra WebView2/Chromium flags (empty value re-enables GPU rendering). |
+| `FLUXCKORE_SKIP_WEBVIEW_CHECK=1` | Skip the WebView2 runtime check. |
 
 ## License
 
-[MIT License](LICENSE) — Copyright (c) 2026 Fluxop Team.
+[MIT License](LICENSE) — Copyright (c) 2026 Fluxckore Team.
 
 ---
 

@@ -1,4 +1,4 @@
-"""Allow running with ``python -m fluxop`` (also the PyInstaller entry point)."""
+"""Allow running with ``python -m fluxckore`` (also the PyInstaller entry point)."""
 import os
 import sys
 
@@ -8,7 +8,7 @@ def _native_error(text: str) -> None:
     try:
         import ctypes
 
-        ctypes.windll.user32.MessageBoxW(None, text, "Fluxop", 0x10)
+        ctypes.windll.user32.MessageBoxW(None, text, "Fluxckore", 0x10)
     except Exception:
         pass
 
@@ -19,12 +19,12 @@ def _configure_webview2() -> None:
     WebView2 renders the interface with GPU compositing by default; on some
     Windows installations that produces a white window that never paints.
     Software rendering is slower but always paints. Users can override the
-    flags with ``FLUXOP_WEBVIEW_ARGS`` (e.g. an empty value re-enables the
+    flags with ``FLUXCKORE_WEBVIEW_ARGS`` (e.g. an empty value re-enables the
     GPU).
     """
-    if "FLUXOP_WEBVIEW_ARGS" in os.environ:
+    if "FLUXCKORE_WEBVIEW_ARGS" in os.environ:
         os.environ["WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS"] = os.environ[
-            "FLUXOP_WEBVIEW_ARGS"
+            "FLUXCKORE_WEBVIEW_ARGS"
         ]
         return
     os.environ.setdefault("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--disable-gpu")
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     # even when the app crashes, which is the only way to diagnose a windowed
     # build that never shows a window.
     try:
-        from fluxop.core import startup_log
+        from fluxckore.core import startup_log
     except Exception:  # pragma: no cover - broken installation
         startup_log = None
 
@@ -50,7 +50,7 @@ if __name__ == "__main__":
     def _detail_path() -> str:
         if startup_log is not None:
             return startup_log.export_desktop_copy()
-        return "fluxop-startup.log"
+        return "fluxckore-startup.log"
 
     _log("launcher: starting")
     _configure_webview2()
@@ -64,7 +64,7 @@ if __name__ == "__main__":
     # managed DLLs that carry that mark, which broke the frozen build.
     # This runs automatically, so users never need to type a command.
     try:
-        from fluxop.core.unblock import unblock_app_files
+        from fluxckore.core.unblock import unblock_app_files
 
         removed = unblock_app_files()
         _log(f"launcher: unblock done ({removed} file(s))")
@@ -72,8 +72,8 @@ if __name__ == "__main__":
         _log_exc("launcher: unblock failed")
 
     try:
-        _log("launcher: importing fluxop.app")
-        from fluxop.app import main
+        _log("launcher: importing fluxckore.app")
+        from fluxckore.app import main
 
         _log("launcher: import ok, entering main()")
         main()
@@ -82,7 +82,7 @@ if __name__ == "__main__":
     except Exception:
         _log_exc("CRITICAL: unhandled exception during startup")
         _native_error(
-            "Fluxop no pudo iniciarse.\n\n"
+            "Fluxckore no pudo iniciarse.\n\n"
             f"El detalle se guardó en:\n{_detail_path()}\n\n"
             "Envíame ese archivo para poder diagnosticarlo."
         )

@@ -16,7 +16,7 @@ import threading
 
 from .system import resource_path
 
-_ALIAS = "fluxop_sound"
+_ALIAS = "fluxckore_sound"
 
 _winmm = ctypes.WinDLL("winmm", use_last_error=True)
 _winmm.mciSendStringW.restype = ctypes.c_uint

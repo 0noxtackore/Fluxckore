@@ -9,7 +9,7 @@ downloaded from a release crashed with::
 
 The mark is removed here, at startup, *before* pywebview/pythonnet are
 imported, so users never have to run a command themselves: double-clicking
-``Fluxop.exe`` is enough.
+``Fluxckore.exe`` is enough.
 
 Everything is best-effort and never raises: if the streams cannot be removed
 the app simply behaves as before.

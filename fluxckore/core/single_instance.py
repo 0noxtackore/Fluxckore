@@ -1,4 +1,4 @@
-"""Guarantee that only one Fluxop instance runs at a time.
+"""Guarantee that only one Fluxckore instance runs at a time.
 
 WebView2 keeps a user data folder locked and writes to it continuously. Two
 instances sharing it (easy to trigger: the first start looks slow, so the user
@@ -15,8 +15,8 @@ import ctypes
 from ctypes import wintypes
 
 _ERROR_ALREADY_EXISTS = 183
-_MUTEX_NAME = "Local\\Fluxop.SingleInstance"
-_TITLE = "Fluxop"
+_MUTEX_NAME = "Local\\Fluxckore.SingleInstance"
+_TITLE = "Fluxckore"
 
 _handle = None
 

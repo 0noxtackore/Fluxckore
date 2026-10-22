@@ -16,7 +16,7 @@ def project_root() -> str:
     """Root folder holding bundled resources (PyInstaller-aware)."""
     if hasattr(sys, "_MEIPASS"):
         return sys._MEIPASS
-    # fluxop/core/system.py -> fluxop/ -> repository root
+    # fluxckore/core/system.py -> fluxckore/ -> repository root
     return os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
@@ -35,7 +35,7 @@ def config_path() -> str:
 def webview_data_path() -> str | None:
     """Fixed WebView2 profile folder under ``%LOCALAPPDATA%``.
 
-    Without an explicit folder WebView2 creates ``Fluxop.exe.WebView2`` next to
+    Without an explicit folder WebView2 creates ``Fluxckore.exe.WebView2`` next to
     the executable — that is, inside the extracted portable folder. If the user
     extracted the ZIP into a OneDrive/Dropbox folder or a read-only location,
     the browser profile is synced or locked while in use and the window
@@ -47,7 +47,7 @@ def webview_data_path() -> str | None:
     base = os.environ.get("LOCALAPPDATA")
     if not base:
         base = os.path.join(os.path.expanduser("~"), "AppData", "Local")
-    path = os.path.join(base, "Fluxop", "WebView2")
+    path = os.path.join(base, "Fluxckore", "WebView2")
     try:
         os.makedirs(path, exist_ok=True)
     except OSError:
@@ -58,7 +58,7 @@ def webview_data_path() -> str | None:
 def frontend_path() -> str:
     """Path of the self-contained HTML/CSS/JS interface (same relative path
     in source runs and in the frozen bundle)."""
-    return os.path.join(project_root(), "fluxop", "frontend", "index.html")
+    return os.path.join(project_root(), "fluxckore", "frontend", "index.html")
 
 
 def is_admin() -> bool:
@@ -86,7 +86,7 @@ def run_as_admin() -> None:
                 1,
             )
         else:
-            # Source run: relaunch with "-m fluxop" from the project
+            # Source run: relaunch with "-m fluxckore" from the project
             # root. Running __main__.py directly would break the package
             # context (ModuleNotFoundError) and the elevated window would
             # flash and close instantly.
@@ -94,7 +94,7 @@ def run_as_admin() -> None:
                 None,
                 "runas",
                 sys.executable,
-                f"-m fluxop {params}".strip(),
+                f"-m fluxckore {params}".strip(),
                 project_root(),
                 1,
             )
