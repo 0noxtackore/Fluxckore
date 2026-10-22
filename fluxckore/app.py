@@ -66,14 +66,24 @@ def _saved_categories():
 
 
 class Api:
-    """API exposed to the JavaScript frontend as ``window.pywebview.api``."""
+    """API exposed to the JavaScript frontend as ``window.pywebview.api``.
+
+    Only methods may be public. pywebview builds the JS API by walking every
+    public attribute of this object and recursing into anything that is not a
+    method (``webview.util.get_functions``). A public attribute holding the
+    window, the sound player or any other object drags that recursion into the
+    WinForms/.NET object graph, from a worker thread, where property getters can
+    block on the UI thread: the bridge is then injected half-built (or not at
+    all) and the page waits forever behind the splash. Keep every non-method
+    attribute private (leading underscore) or mark it ``_serializable = False``.
+    """
 
     def __init__(self):
-        self.window = None
-        self.is_optimizing = False
-        self.total_space_freed = 0.0
-        self.files_deleted = 0
-        self.sounds = SoundPlayer(resource_path)
+        self._window = None
+        self._is_optimizing = False
+        self._total_space_freed = 0.0
+        self._files_deleted = 0
+        self._sounds = SoundPlayer(resource_path)
 
         self._trend = [0] * 20
         self._last_ram_warning = 0.0
@@ -159,7 +169,7 @@ class Api:
         ``categories`` is the list of cleanup category ids chosen by the user
         in the options panel; empty/None falls back to the safe defaults.
         """
-        if self.is_optimizing:
+        if self._is_optimizing:
             return {"ok": False}
 
         known = {c["id"] for c in maintenance.file_categories()}
@@ -170,7 +180,7 @@ class Api:
         if not selected:
             return {"ok": False}
 
-        self.is_optimizing = True
+        self._is_optimizing = True
         target = self._run_elevated if _needs_elevation() else self._run_optimization
         threading.Thread(target=target, args=(selected,), daemon=True).start()
         return {"ok": True}
@@ -198,7 +208,7 @@ class Api:
         current_time = time.time()
         if ram_percent > 90 and (current_time - self._last_ram_warning) > 30:
             self._last_ram_warning = current_time
-            self.sounds.play("danger")
+            self._sounds.play("danger")
             self._log(_("ram_warning").format(ram_percent), "warning")
 
     def _pusher(self):
@@ -268,8 +278,8 @@ class Api:
 
         def run():
             try:
-                if self.window is not None:
-                    self.window.evaluate_js(script)
+                if self._window is not None:
+                    self._window.evaluate_js(script)
             except Exception:
                 if self._push_errors < 3:
                     self._push_errors += 1
@@ -285,23 +295,23 @@ class Api:
     def _report_summary(self, freed, deleted):
         """Log + announce the totals of a finished run."""
         try:
-            self.total_space_freed = float(freed)
-            self.files_deleted = int(deleted)
+            self._total_space_freed = float(freed)
+            self._files_deleted = int(deleted)
         except (TypeError, ValueError):
             pass
 
         self._log("═══════════════════════════════════════", "info")
         self._log(f"         {_('optimization_summary')}        ", "success")
         self._log("═══════════════════════════════════════", "info")
-        self._log(f"[MB] {_('space_freed')}: {self.total_space_freed:.2f} MB", "success")
-        self._log(f"[DEL] {_('files_deleted')}: {self.files_deleted}", "success")
+        self._log(f"[MB] {_('space_freed')}: {self._total_space_freed:.2f} MB", "success")
+        self._log(f"[DEL] {_('files_deleted')}: {self._files_deleted}", "success")
 
-        self.sounds.play("success")
+        self._sounds.play("success")
         self._emit(
             {
                 "kind": "summary",
-                "freed": round(self.total_space_freed, 2),
-                "deleted": self.files_deleted,
+                "freed": round(self._total_space_freed, 2),
+                "deleted": self._files_deleted,
             }
         )
 
@@ -334,7 +344,7 @@ class Api:
         except Exception as e:
             self._log(f"Critical error: {e}", "error")
         finally:
-            self.is_optimizing = False
+            self._is_optimizing = False
             self._emit({"kind": "done"})
 
     # ------------------------------------------------------------------
@@ -360,7 +370,7 @@ class Api:
 
             if not headless.launch_elevated(selected, lang):
                 self._log(_("admin_cancelled"), "warning")
-                self.sounds.play("danger")
+                self._sounds.play("danger")
                 _show_message(_("admin_cancelled"), "Fluxckore")
                 return
 
@@ -373,7 +383,7 @@ class Api:
         except Exception as e:
             self._log(f"Critical error: {e}", "error")
         finally:
-            self.is_optimizing = False
+            self._is_optimizing = False
             self._emit({"kind": "done"})
 
     def _tail_elevated_run(self, path, idle_timeout=90.0, total_timeout=3600.0):
@@ -663,7 +673,7 @@ def main():
         # unresponsive window is exactly what users reported.
         hidden=True,
     )
-    api.window = window
+    api._window = window
     startup_log.log("window created (hidden until the UI is ready)")
 
     threading.Thread(target=_discard_legacy_profile, daemon=True).start()
