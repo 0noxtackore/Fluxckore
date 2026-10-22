@@ -37,7 +37,7 @@ There is **one edition** of Fluxckore. Features evolve in place — no PRO/Beta/
 ## Run from source
 
 ```powershell
-git clone https://github.com/0noxtackore/Fluxop.git fluxckore
+git clone https://github.com/0noxtackore/Fluxckore.git fluxckore
 cd fluxckore
 pip install -r requirements.txt
 python -m fluxckore
