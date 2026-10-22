@@ -49,7 +49,7 @@ if __name__ == "__main__":
 
     def _detail_path() -> str:
         if startup_log is not None:
-            return startup_log.log_path()
+            return startup_log.export_desktop_copy()
         return "fluxop-startup.log"
 
     _log("launcher: starting")

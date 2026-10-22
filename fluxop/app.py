@@ -23,6 +23,7 @@ except ImportError as exc:
 from . import __version__
 from .core import maintenance, monitoring, startup_log
 from .core.sounds import SoundPlayer
+from .core.splash import Splash
 from .core.system import (
     config_path,
     frontend_path,
@@ -376,6 +377,11 @@ def _show_message(text: str, title: str = "Fluxop") -> None:
         pass
 
 
+def _export_diagnostics() -> str:
+    """Copy the startup log to the Desktop with a name users can find."""
+    return startup_log.export_desktop_copy()
+
+
 
 def _redirect_stderr_to_log() -> None:
     """Send stderr to a log file for the rest of the session.
@@ -443,6 +449,12 @@ def main():
         return
     startup_log.log("WebView2 runtime found")
 
+    # Immediate feedback while WebView2 starts: the main window stays hidden
+    # until the page is ready, so without this the user would see nothing for
+    # several seconds and might think the app did not start.
+    splash = Splash().start()
+    startup_log.log("splash shown")
+
     TranslationManager()
     startup_log.log("translations loaded")
 
@@ -496,26 +508,28 @@ def main():
             window.show()
         except Exception:
             startup_log.log_exception("window.show() failed")
+        finally:
+            splash.close()
 
     api._on_ready = lambda: _reveal("frontend ready")
     window.events.loaded += lambda *_: startup_log.log("window: loaded event")
 
-    # Safety net: never leave the user without a window, even if the page
-    # never signals readiness.
-    timer = threading.Timer(8.0, _reveal, args=("timeout",))
+    # Safety net: reveal the window even if the page never signals readiness
+    # (the splash is replaced, so the user always ends up with the app).
+    timer = threading.Timer(30.0, _reveal, args=("timeout",))
     timer.daemon = True
     timer.start()
 
     def _watchdog():
-        if api._ready.wait(60):
+        if api._ready.wait(40):
             return
         startup_log.log("WATCHDOG: the page never reported ready")
         _show_message(
-            "La interfaz de Fluxop no pudo iniciarse.\n\n"
+            "La interfaz de Fluxop está tardando demasiado.\n\n"
             "Causas habituales:\n"
             "  - El runtime 'Microsoft Edge WebView2' está dañado.\n"
             "  - Un antivirus está bloqueando la aplicación.\n\n"
-            f"Detalle técnico guardado en:\n{startup_log.log_path()}\n\n"
+            f"Se guardó un diagnóstico en:\n{_export_diagnostics()}\n\n"
             "Envíame ese archivo para poder diagnosticarlo.",
             "Fluxop - problema al iniciar",
         )
@@ -537,6 +551,7 @@ def main():
         else:  # pywebview < 6 has no icon parameter
             webview.start(_on_start)
     finally:
+        splash.close()
         startup_log.log("pywebview.start() returned (app closed)")
 
 

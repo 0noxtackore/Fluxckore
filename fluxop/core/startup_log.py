@@ -89,3 +89,23 @@ def log_exception(prefix: str) -> None:
         log(prefix + "\n" + traceback.format_exc().rstrip())
     except Exception:
         pass
+
+
+def export_desktop_copy() -> str:
+    """Copy the log to the Desktop with a name a user can find and send back.
+
+    Returns the path of the copy, or the original log path when the copy
+    cannot be made. Never raises.
+    """
+    try:
+        import shutil
+
+        home = os.environ.get("USERPROFILE") or os.path.expanduser("~")
+        desktop = os.path.join(home, "Desktop")
+        if not os.path.isdir(desktop):
+            return log_path()
+        target = os.path.join(desktop, "Fluxop-DIAGNOSTICO.txt")
+        shutil.copyfile(log_path(), target)
+        return target
+    except Exception:
+        return log_path()

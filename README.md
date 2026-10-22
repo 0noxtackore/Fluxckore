@@ -87,7 +87,7 @@ This is intentional: the executable is **unsigned**, so Microsoft Defender / Sma
 
 To install: download the ZIP, extract it and run `Run-Fluxop.bat` (or `Fluxop.exe` directly — it removes the Windows download mark automatically). Layout: `Fluxop.exe` + `_internal/`. Requires admin privileges for some maintenance tasks (auto-elevation is built in).
 
-The window is shown **only when the interface has painted**, so a slow cold start (antivirus scanning an unsigned bundle) no longer looks like a frozen white window. If the interface cannot start, Fluxop explains why in a message box instead of staying blank.
+A small native "cargando la interfaz" window appears immediately, and the main window is shown **only when the interface has painted**, so a slow cold start (antivirus scanning an unsigned bundle) no longer looks like a frozen white window. If the interface cannot start, Fluxop explains why in a message box instead of staying blank.
 
 ## Code signing
 
@@ -106,7 +106,7 @@ the cause is the **Mark of the Web (MOTW)**: Windows marks files downloaded from
 **No command line is required** — Fluxop removes that mark automatically:
 
 - `Fluxop.exe` clears the zone mark of its own files at startup, before loading pywebview/pythonnet.
-- The ZIP also ships `Run-Fluxop.bat`: double-click it and it unblocks everything (including `Fluxop.exe` itself, which avoids the SmartScreen prompt) and starts the app.
+- The ZIP also ships `Run-Fluxop.bat`: double-click it and it unblocks `Fluxop.exe` (so SmartScreen stays quiet) and starts the app instantly. The rest of the files are unblocked natively by the app itself, in milliseconds — there is no slow PowerShell pass over the folder any more.
 
 Both paths work out of the box for end users.
 
@@ -119,7 +119,7 @@ Every launch writes a timestamped log of each startup phase:
 - `fluxop-startup.log` next to `Fluxop.exe` (or in `%LOCALAPPDATA%\Fluxop\` when that folder is read-only).
 - `fluxop.log` (raw stderr from WebView2/pythonnet, same folder).
 
-If the window still does not open, send `fluxop-startup.log`: it shows the exact phase where the launch stopped.
+If the window still does not open, send the diagnostic file: Fluxop copies the log to your **Desktop** as `Fluxop-DIAGNOSTICO.txt` when startup fails, and the error message tells you so. That file shows the exact phase where the launch stopped.
 
 Useful environment overrides (no commands needed for normal use):
 
