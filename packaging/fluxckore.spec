@@ -70,7 +70,10 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
     version=str(version_file),
-    uac_admin=True,
+    # The window must run unprivileged: elevated WebView2 is unreliable (it can
+    # start but never paint) and it forces a UAC prompt on every launch. The
+    # cleaning elevates only its own hidden worker, see core/headless.py.
+    uac_admin=False,
     icon=[str(SPEC_DIR / "fluxckore.ico")],
 )
 coll = COLLECT(

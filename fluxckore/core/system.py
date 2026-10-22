@@ -44,15 +44,29 @@ def webview_data_path() -> str | None:
     Returns ``None`` when no writable folder can be created, so the caller can
     let WebView2 choose its default instead of failing to start.
     """
-    base = os.environ.get("LOCALAPPDATA")
-    if not base:
-        base = os.path.join(os.path.expanduser("~"), "AppData", "Local")
-    path = os.path.join(base, "Fluxckore", "WebView2")
+    path = os.path.join(_local_appdata(), "Fluxckore", "browser")
     try:
         os.makedirs(path, exist_ok=True)
     except OSError:
         return None
     return path
+
+
+def legacy_webview_data_path() -> str:
+    """Profile folder used by v9.0.0 (kept only so it can be discarded).
+
+    v9.0.0 could run both elevated and unprivileged against that folder;
+    WebView2 does not support sharing one user data folder across integrity
+    levels, which left it in a state where the window never painted.
+    """
+    return os.path.join(_local_appdata(), "Fluxckore", "WebView2")
+
+
+def _local_appdata() -> str:
+    base = os.environ.get("LOCALAPPDATA")
+    if not base:
+        base = os.path.join(os.path.expanduser("~"), "AppData", "Local")
+    return base
 
 
 def frontend_path() -> str:
@@ -67,38 +81,3 @@ def is_admin() -> bool:
         return bool(ctypes.windll.shell32.IsUserAnAdmin())
     except Exception:
         return False
-
-
-def run_as_admin() -> None:
-    """Relaunch the application elevated (UAC) if not already admin."""
-    if is_admin():
-        return
-    try:
-        params = " ".join(sys.argv[1:])
-        if getattr(sys, "frozen", False):
-            # Frozen executable: relaunch the exe itself.
-            ctypes.windll.shell32.ShellExecuteW(
-                None,
-                "runas",
-                sys.executable,
-                params if params else None,
-                None,
-                1,
-            )
-        else:
-            # Source run: relaunch with "-m fluxckore" from the project
-            # root. Running __main__.py directly would break the package
-            # context (ModuleNotFoundError) and the elevated window would
-            # flash and close instantly.
-            ctypes.windll.shell32.ShellExecuteW(
-                None,
-                "runas",
-                sys.executable,
-                f"-m fluxckore {params}".strip(),
-                project_root(),
-                1,
-            )
-        sys.exit(0)
-    except Exception as e:
-        print(f"Error requesting privilege elevation: {e}")
-        sys.exit(1)

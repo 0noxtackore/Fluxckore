@@ -27,7 +27,7 @@ There is **one edition** of Fluxckore. Features evolve in place — no PRO/Beta/
 - **Memory optimization** — working-set trimming for idle processes
 - **Registry maintenance** — basic registry cleanup
 - **104 languages** — automatic detection from Windows UI language, system locale or keyboard layout
-- **Admin auto-elevation** — requests administrator privileges when needed
+- **Admin auto-elevation** — the window opens without asking for permission; Windows asks once, only when a cleanup starts, and only for the cleanup itself
 
 ## Requirements
 
@@ -85,7 +85,9 @@ GitHub Releases contain **only a portable ZIP** (`Fluxckore-<version>-portable.z
 
 This is intentional: the executable is **unsigned**, so Microsoft Defender / SmartScreen shows execution warnings until a code-signing license is purchased. Shipping only the ZIP keeps the release surface free of `.exe` assets that trigger those warnings/errors.
 
-To install: download the ZIP, extract it and run `Run-Fluxckore.bat` (or `Fluxckore.exe` directly - it removes the Windows download mark automatically). Layout: `Fluxckore.exe` + `_internal/`. Requires admin privileges for some maintenance tasks (auto-elevation is built in).
+To install: download the ZIP, extract it and run `Run-Fluxckore.bat` (or `Fluxckore.exe` directly - it removes the Windows download mark automatically). Layout: `Fluxckore.exe` + `_internal/`.
+
+The app itself runs **without administrator rights**, so it opens immediately and without a UAC prompt. When you press the start button, Windows asks for permission once and a hidden elevated worker does the system-level cleanup; the window stays open and shows its progress.
 
 The bundle is intentionally small: no pygame/SDL, no numpy, no GUI toolkit (the interface is HTML rendered by WebView2), and sounds use the Windows MCI API directly. Only one instance can run at a time (a second launch brings the open window to the front), and the WebView2 profile lives in `%LOCALAPPDATA%\Fluxckore\WebView2` instead of the extracted folder — a profile inside a OneDrive/Dropbox folder gets synced while in use and makes the window fail to paint intermittently.
 

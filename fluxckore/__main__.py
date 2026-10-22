@@ -31,6 +31,21 @@ def _configure_webview2() -> None:
 
 
 if __name__ == "__main__":
+    # Hidden maintenance mode, started elevated by the GUI (see
+    # fluxckore/core/headless.py). No window, no splash, no WebView2: it only
+    # runs the cleaning and writes its progress to a shared log file.
+    _clean_arg = next((a for a in sys.argv[1:] if a.startswith("--clean=")), "")
+    if _clean_arg:
+        _lang_arg = next((a for a in sys.argv[1:] if a.startswith("--lang=")), "")
+        from fluxckore.core.headless import run_clean
+
+        sys.exit(
+            run_clean(
+                _clean_arg.split("=", 1)[1],
+                _lang_arg.split("=", 1)[1] if _lang_arg else "",
+            )
+        )
+
     # Bootstrap logger: available before pywebview/pythonnet are imported and
     # even when the app crashes, which is the only way to diagnose a windowed
     # build that never shows a window.

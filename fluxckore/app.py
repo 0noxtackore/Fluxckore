@@ -21,13 +21,14 @@ except ImportError as exc:
     )
 
 from . import __version__
-from .core import maintenance, monitoring, single_instance, startup_log
+from .core import headless, maintenance, monitoring, single_instance, startup_log
 from .core.sounds import SoundPlayer
 from .core.splash import Splash
 from .core.system import (
     config_path,
     frontend_path,
     is_admin,
+    legacy_webview_data_path,
     project_root,
     resource_path,
     webview_data_path,
@@ -36,6 +37,16 @@ from .i18n import LANGUAGE_OPTIONS, TranslationManager, _
 
 # Languages shown first in the selector.
 _LANG_PRIORITY = ["en", "es", "fr", "de", "pt", "it", "ru", "ja", "zh", "ko", "ar"]
+
+
+def _needs_elevation() -> bool:
+    """True when the cleaning has to run in a separate elevated process.
+
+    The window always runs unprivileged: WebView2 is much more reliable that
+    way and the user does not get a UAC prompt just to open the app. Only the
+    frozen build can relaunch itself, so source runs stay in-process.
+    """
+    return os.name == "nt" and bool(getattr(sys, "frozen", False)) and not is_admin()
 
 
 class Api:
@@ -129,9 +140,8 @@ class Api:
             return {"ok": False}
 
         self.is_optimizing = True
-        threading.Thread(
-            target=self._run_optimization, args=(selected,), daemon=True
-        ).start()
+        target = self._run_elevated if _needs_elevation() else self._run_optimization
+        threading.Thread(target=target, args=(selected,), daemon=True).start()
         return {"ok": True}
 
     # ------------------------------------------------------------------
@@ -241,6 +251,29 @@ class Api:
     # ------------------------------------------------------------------
     # Maintenance run (same phases as the original suite)
     # ------------------------------------------------------------------
+    def _report_summary(self, freed, deleted):
+        """Log + announce the totals of a finished run."""
+        try:
+            self.total_space_freed = float(freed)
+            self.files_deleted = int(deleted)
+        except (TypeError, ValueError):
+            pass
+
+        self._log("═══════════════════════════════════════", "info")
+        self._log(f"         {_('optimization_summary')}        ", "success")
+        self._log("═══════════════════════════════════════", "info")
+        self._log(f"[MB] {_('space_freed')}: {self.total_space_freed:.2f} MB", "success")
+        self._log(f"[DEL] {_('files_deleted')}: {self.files_deleted}", "success")
+
+        self.sounds.play("success")
+        self._emit(
+            {
+                "kind": "summary",
+                "freed": round(self.total_space_freed, 2),
+                "deleted": self.files_deleted,
+            }
+        )
+
     def _run_optimization(self, selected):
         try:
             log = self._log
@@ -266,28 +299,103 @@ class Api:
             # Phase 4: DNS / network.
             maintenance.flush_dns_cache(log)
 
-            self.total_space_freed = stats.space_freed_mb
-            self.files_deleted = stats.files_deleted
-
-            self._log("═══════════════════════════════════════", "info")
-            self._log(f"         {_('optimization_summary')}        ", "success")
-            self._log("═══════════════════════════════════════", "info")
-            self._log(f"[MB] {_('space_freed')}: {self.total_space_freed:.2f} MB", "success")
-            self._log(f"[DEL] {_('files_deleted')}: {self.files_deleted}", "success")
-
-            self.sounds.play("success")
-            self._emit(
-                {
-                    "kind": "summary",
-                    "freed": round(self.total_space_freed, 2),
-                    "deleted": self.files_deleted,
-                }
-            )
+            self._report_summary(stats.space_freed_mb, stats.files_deleted)
         except Exception as e:
             self._log(f"Critical error: {e}", "error")
         finally:
             self.is_optimizing = False
             self._emit({"kind": "done"})
+
+    # ------------------------------------------------------------------
+    # Elevated run (window stays unprivileged)
+    # ------------------------------------------------------------------
+    def _run_elevated(self, selected):
+        """Clean through a hidden elevated copy of the app.
+
+        The window never runs elevated, so starting the app cannot hang on a
+        broken elevated WebView2 and the user sees no UAC prompt at launch.
+        Windows asks for permission here, once, when the cleaning starts.
+        """
+        try:
+            lang = TranslationManager.get_current_language()
+
+            # Empty the progress file first: the tailer must never read the
+            # "#done" of a previous run before the new one starts writing.
+            try:
+                with open(headless.log_path(), "w", encoding="utf-8"):
+                    pass
+            except OSError:
+                pass
+
+            if not headless.launch_elevated(selected, lang):
+                self._log(_("admin_cancelled"), "warning")
+                self.sounds.play("danger")
+                _show_message(_("admin_cancelled"), "Fluxckore")
+                return
+
+            self._log("═══════════════════════════════════════", "info")
+            self._log(f"     {_('starting_optimization')}      ", "success")
+            self._log("═══════════════════════════════════════", "info")
+            self._log(_("admin_started"), "info")
+
+            self._tail_elevated_run(headless.log_path())
+        except Exception as e:
+            self._log(f"Critical error: {e}", "error")
+        finally:
+            self.is_optimizing = False
+            self._emit({"kind": "done"})
+
+    def _tail_elevated_run(self, path, idle_timeout=90.0, total_timeout=3600.0):
+        """Follow the log written by the elevated process until it finishes."""
+        started = time.monotonic()
+        last_data = started
+        position = 0
+        buffer = ""
+
+        while time.monotonic() - started < total_timeout:
+            time.sleep(0.25)
+            try:
+                size = os.path.getsize(path)
+            except OSError:
+                # The elevated copy may need a moment before it creates the
+                # file (UAC consent, process start, antivirus).
+                if time.monotonic() - last_data > 30:
+                    self._log(_("admin_no_answer"), "warning")
+                    return
+                continue
+
+            if size < position:  # the file was recreated
+                position, buffer = 0, ""
+            if size == position:
+                if time.monotonic() - last_data > idle_timeout:
+                    self._log(_("admin_no_answer"), "warning")
+                    return
+                continue
+
+            try:
+                with open(path, "r", encoding="utf-8", errors="replace") as handle:
+                    handle.seek(position)
+                    chunk = handle.read()
+                    position = handle.tell()
+            except OSError:
+                continue
+
+            last_data = time.monotonic()
+            buffer += chunk
+            while "\n" in buffer:
+                line, buffer = buffer.split("\n", 1)
+                kind, _, message = line.partition("\t")
+                if not message and not kind:
+                    continue
+                if kind == headless.DONE:
+                    return
+                if kind == headless.SUMMARY:
+                    freed, _, deleted = message.partition("\t")
+                    self._report_summary(freed, deleted)
+                    continue
+                self._log(
+                    message, kind if kind in headless.LOG_KINDS else "info"
+                )
 
 
 def _load_html() -> str:
@@ -386,6 +494,23 @@ def _export_diagnostics() -> str:
     """Copy the startup log to the Desktop with a name users can find."""
     return startup_log.export_desktop_copy()
 
+
+def _discard_legacy_profile() -> None:
+    """Delete the WebView2 folder used by v9.0.0, once, in the background.
+
+    That folder was shared by elevated and unprivileged runs, which WebView2
+    does not support; the app now uses a fresh one.
+    """
+    import shutil
+
+    path = legacy_webview_data_path()
+    if not os.path.isdir(path):
+        return
+    try:
+        shutil.rmtree(path)
+        startup_log.log("legacy WebView2 profile removed")
+    except OSError:
+        startup_log.log("legacy WebView2 profile could not be removed (in use)")
 
 
 def _redirect_stderr_to_log() -> None:
@@ -505,6 +630,8 @@ def main():
     )
     api.window = window
     startup_log.log("window created (hidden until the UI is ready)")
+
+    threading.Thread(target=_discard_legacy_profile, daemon=True).start()
 
     revealed = threading.Event()
 

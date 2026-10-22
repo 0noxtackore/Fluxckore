@@ -49,7 +49,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "es": {
@@ -102,7 +105,10 @@
       "error_registry": "Error registro: {0}",
       "thumbnail_cache_cleaned": "Caché de miniaturas limpiada",
       "recycle_bin_emptied": "Papelera de reciclaje vaciada",
-      "error_dns": "Error DNS: {0}"
+      "error_dns": "Error DNS: {0}",
+      "admin_started": "Ejecutando la limpieza con permisos de administrador...",
+      "admin_cancelled": "Se canceló el permiso de administrador: la limpieza no se ejecutó.",
+      "admin_no_answer": "El proceso de limpieza no respondió. Vuelve a intentarlo."
     }
   },
   "fr": {
@@ -155,7 +161,10 @@
       "error_registry": "Erreur registre: {0}",
       "thumbnail_cache_cleaned": "Cache vignettes nettoyé",
       "recycle_bin_emptied": "Corbeille vidée",
-      "error_dns": "Erreur DNS: {0}"
+      "error_dns": "Erreur DNS: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "de": {
@@ -208,7 +217,10 @@
       "error_registry": "Registry-Fehler: {0}",
       "thumbnail_cache_cleaned": "Miniaturansicht-Cache bereinigt",
       "recycle_bin_emptied": "Papierkorb geleert",
-      "error_dns": "DNS-Fehler: {0}"
+      "error_dns": "DNS-Fehler: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "pt": {
@@ -261,7 +273,10 @@
       "error_registry": "Erro registro: {0}",
       "thumbnail_cache_cleaned": "Cache de miniaturas limpo",
       "recycle_bin_emptied": "Lixeira esvaziada",
-      "error_dns": "Erro DNS: {0}"
+      "error_dns": "Erro DNS: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "it": {
@@ -314,7 +329,10 @@
       "error_registry": "Errore registro: {0}",
       "thumbnail_cache_cleaned": "Cache miniature pulita",
       "recycle_bin_emptied": "Cestino svuotato",
-      "error_dns": "Errore DNS: {0}"
+      "error_dns": "Errore DNS: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ru": {
@@ -367,7 +385,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ja": {
@@ -420,7 +441,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "zh": {
@@ -473,7 +497,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ko": {
@@ -526,7 +553,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ar": {
@@ -579,7 +609,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "hi": {
@@ -632,7 +665,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "nl": {
@@ -685,7 +721,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "pl": {
@@ -738,7 +777,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "tr": {
@@ -791,7 +833,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "sv": {
@@ -844,7 +889,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "cs": {
@@ -897,7 +945,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "el": {
@@ -950,7 +1001,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "he": {
@@ -1003,7 +1057,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "th": {
@@ -1056,7 +1113,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "vi": {
@@ -1109,7 +1169,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "id": {
@@ -1162,7 +1225,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ms": {
@@ -1215,7 +1281,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ro": {
@@ -1268,7 +1337,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "hu": {
@@ -1321,7 +1393,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "da": {
@@ -1374,7 +1449,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "fi": {
@@ -1427,7 +1505,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "no": {
@@ -1480,7 +1561,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "uk": {
@@ -1533,7 +1617,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "bg": {
@@ -1586,7 +1673,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "hr": {
@@ -1639,7 +1729,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "sr": {
@@ -1692,7 +1785,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "sk": {
@@ -1745,7 +1841,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "sl": {
@@ -1798,7 +1897,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "lt": {
@@ -1851,7 +1953,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "lv": {
@@ -1904,7 +2009,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "et": {
@@ -1957,7 +2065,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ca": {
@@ -2010,7 +2121,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "eu": {
@@ -2063,7 +2177,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "gl": {
@@ -2116,7 +2233,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "af": {
@@ -2169,7 +2289,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "sq": {
@@ -2222,7 +2345,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "am": {
@@ -2275,7 +2401,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "hy": {
@@ -2328,7 +2457,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "az": {
@@ -2381,7 +2513,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "bn": {
@@ -2434,7 +2569,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "bs": {
@@ -2487,7 +2625,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "my": {
@@ -2540,7 +2681,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ceb": {
@@ -2593,7 +2737,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ny": {
@@ -2646,7 +2793,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "zh-TW": {
@@ -2699,7 +2849,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "co": {
@@ -2752,7 +2905,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "eo": {
@@ -2805,7 +2961,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "tl": {
@@ -2858,7 +3017,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "fy": {
@@ -2911,7 +3073,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ka": {
@@ -2964,7 +3129,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "gu": {
@@ -3017,7 +3185,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ht": {
@@ -3070,7 +3241,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ha": {
@@ -3123,7 +3297,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "haw": {
@@ -3176,7 +3353,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "iw": {
@@ -3229,7 +3409,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "hmn": {
@@ -3282,7 +3465,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "is": {
@@ -3335,7 +3521,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ig": {
@@ -3388,7 +3577,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ga": {
@@ -3441,7 +3633,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "jw": {
@@ -3494,7 +3689,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "kn": {
@@ -3547,7 +3745,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "kk": {
@@ -3600,7 +3801,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "km": {
@@ -3653,7 +3857,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ku": {
@@ -3706,7 +3913,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ky": {
@@ -3759,7 +3969,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "lo": {
@@ -3812,7 +4025,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "la": {
@@ -3865,7 +4081,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "lb": {
@@ -3918,7 +4137,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "mk": {
@@ -3971,7 +4193,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "mg": {
@@ -4024,7 +4249,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ml": {
@@ -4077,7 +4305,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "mt": {
@@ -4130,7 +4361,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "mi": {
@@ -4183,7 +4417,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "mr": {
@@ -4236,7 +4473,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "mn": {
@@ -4289,7 +4529,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ne": {
@@ -4342,7 +4585,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ps": {
@@ -4395,7 +4641,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "fa": {
@@ -4448,7 +4697,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "pa": {
@@ -4501,7 +4753,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "sm": {
@@ -4554,7 +4809,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "gd": {
@@ -4607,7 +4865,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "st": {
@@ -4660,7 +4921,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "sn": {
@@ -4713,7 +4977,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "sd": {
@@ -4766,7 +5033,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "si": {
@@ -4819,7 +5089,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "so": {
@@ -4872,7 +5145,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "su": {
@@ -4925,7 +5201,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "sw": {
@@ -4978,7 +5257,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "tg": {
@@ -5031,7 +5313,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ta": {
@@ -5084,7 +5369,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "te": {
@@ -5137,7 +5425,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "ur": {
@@ -5190,7 +5481,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "uz": {
@@ -5243,7 +5537,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "cy": {
@@ -5296,7 +5593,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "xh": {
@@ -5349,7 +5649,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "yi": {
@@ -5402,7 +5705,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "yo": {
@@ -5455,7 +5761,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   },
   "zu": {
@@ -5508,7 +5817,10 @@
       "error_registry": "Registry error: {0}",
       "thumbnail_cache_cleaned": "Thumbnail cache cleaned",
       "recycle_bin_emptied": "Recycle bin emptied",
-      "error_dns": "DNS Error: {0}"
+      "error_dns": "DNS Error: {0}",
+      "admin_started": "Running the cleanup with administrator rights...",
+      "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
+      "admin_no_answer": "The cleanup process did not respond. Please try again."
     }
   }
 }
