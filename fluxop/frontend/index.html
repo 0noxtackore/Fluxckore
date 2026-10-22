@@ -833,12 +833,27 @@ $("#optReset").addEventListener("click", () => {
 
 /* ---------- init ---------- */
 window.addEventListener("pywebviewready", async () => {
-  I = await pywebview.api.get_init_data();
-  $("#version").textContent = "v" + I.version;
-  catsMeta = Array.isArray(I.categories) ? I.categories : [];
-  catsSel = loadCats();
-  fillLangSelect();
-  applyLang();
+  try {
+    I = await pywebview.api.get_init_data();
+    $("#version").textContent = "v" + I.version;
+    catsMeta = Array.isArray(I.categories) ? I.categories : [];
+    catsSel = loadCats();
+    fillLangSelect();
+    applyLang();
+  } catch (err) {
+    console.error("Fluxop: initialisation failed", err);
+  } finally {
+    // Tell the backend the UI really painted. The window stays hidden until
+    // this arrives (with a timeout), so the user never sees a white,
+    // unresponsive window during a slow cold start.
+    if (window.pywebview && pywebview.api && pywebview.api.frontend_ready) {
+      try {
+        await pywebview.api.frontend_ready();
+      } catch (err) {
+        console.error("Fluxop: frontend_ready failed", err);
+      }
+    }
+  }
 });
 </script>
 </body>

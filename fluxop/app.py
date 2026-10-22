@@ -4,12 +4,12 @@ The Python side keeps every maintenance/monitoring/i18n function; only the
 presentation layer changed from CustomTkinter to a self-contained HTML/CSS/JS
 interface rendered by pywebview (Edge WebView2 on Windows 10/11).
 """
+import inspect
 import json
 import os
 import sys
 import threading
 import time
-import traceback
 from datetime import datetime
 
 try:
@@ -21,9 +21,16 @@ except ImportError as exc:
     )
 
 from . import __version__
-from .core import maintenance, monitoring
+from .core import maintenance, monitoring, startup_log
 from .core.sounds import SoundPlayer
-from .core.system import config_path, frontend_path, project_root, resource_path, run_as_admin
+from .core.system import (
+    config_path,
+    frontend_path,
+    is_admin,
+    project_root,
+    resource_path,
+    run_as_admin,
+)
 from .i18n import LANGUAGE_OPTIONS, TranslationManager, _
 
 # Languages shown first in the selector.
@@ -46,9 +53,33 @@ class Api:
         self._events = []
         self._lock = threading.Lock()
 
+        # Startup handshake: the page calls ``frontend_ready`` after its first
+        # paint, so the backend knows WebView2 really started rendering.
+        self._ready = threading.Event()
+        self._on_ready = None
+        self._js_pending = False
+        self._push_errors = 0
+
     # ------------------------------------------------------------------
     # Called from JavaScript
     # ------------------------------------------------------------------
+    def frontend_ready(self):
+        """Called by the UI after its first paint (startup diagnostics).
+
+        Returning a value forces pywebview to run this on a worker thread, so
+        revealing the window from here cannot block the webview thread.
+        """
+        startup_log.log("frontend: ready reported by the page")
+        self._ready.set()
+
+        callback = self._on_ready
+        if callback is not None:
+            try:
+                callback()
+            except Exception:
+                startup_log.log_exception("frontend_ready: callback failed")
+        return {"ok": True}
+
     def get_init_data(self):
         """Initial payload: version, language options and translations."""
         lang = TranslationManager.get_current_language()
@@ -130,13 +161,29 @@ class Api:
 
     def _pusher(self):
         """Periodic loop: system stats + queued logs/events -> frontend."""
+        startup_log.log("pusher: thread started")
+
+        # Never touch the webview before its page exists: waiting here avoids
+        # a burst of failed evaluate_js calls while WebView2 is starting.
+        if not self._ready.wait(30):
+            startup_log.log("pusher: page not ready after 30 s, pushing anyway")
+
+        last_scan = 0.0
+        temp_count = 0
+        temp_size = 0.0
+
         while True:
             time.sleep(1)
             try:
-                cpu_percent, ram = monitoring.collect_cpu_ram(0.5)
+                cpu_percent, ram = monitoring.collect_cpu_ram()
                 self._check_memory_warning(ram.percent)
 
-                temp_count, temp_size = monitoring.count_temp_files()
+                # Walking the temp folders is disk-heavy: refresh every 10 s
+                # instead of on every tick.
+                now = time.time()
+                if now - last_scan >= 10:
+                    temp_count, temp_size = monitoring.count_temp_files()
+                    last_scan = now
                 monitoring.push_trend_point(self._trend, temp_size)
 
                 with self._lock:
@@ -155,12 +202,35 @@ class Api:
                     "events": events,
                 }
 
-                if self.window is not None:
-                    self.window.evaluate_js(
-                        f"window.UI && UI.onData({json.dumps(payload)})"
-                    )
+                self._push_js(f"window.UI && UI.onData({json.dumps(payload)})")
             except Exception:
-                pass
+                if self._push_errors < 3:
+                    self._push_errors += 1
+                    startup_log.log_exception("pusher: tick failed")
+
+    def _push_js(self, script):
+        """Send a script to the page without ever blocking the stats loop.
+
+        ``evaluate_js`` waits for the webview to answer. If that never
+        happens, calling it inline would freeze this thread forever; with the
+        pending flag at most one call is in flight and the loop keeps running.
+        """
+        if self._js_pending:
+            return
+        self._js_pending = True
+
+        def run():
+            try:
+                if self.window is not None:
+                    self.window.evaluate_js(script)
+            except Exception:
+                if self._push_errors < 3:
+                    self._push_errors += 1
+                    startup_log.log_exception("pusher: evaluate_js failed")
+            finally:
+                self._js_pending = False
+
+        threading.Thread(target=run, daemon=True).start()
 
     # ------------------------------------------------------------------
     # Maintenance run (same phases as the original suite)
@@ -246,65 +316,65 @@ def window_icon_path() -> str:
     return os.path.join(project_root(), "fluxop", "frontend", "icon.ico")
 
 
-def _apply_window_icon(window) -> None:
-    """Set the native window icon (title bar + taskbar) on Windows.
+def _webview2_available() -> bool:
+    """True when the Edge WebView2 runtime is installed on this machine.
 
-    pywebview has no icon option. The window is a WinForms ``Form``, so its
-    ``Icon`` property is assigned directly — the framework then owns the
-    handle and Windows keeps it for the title bar and taskbar. ``WM_SETICON``
-    is also sent as a belt-and-braces fallback for the title bar.
+    pywebview renders the interface with WebView2. When the runtime is
+    missing (stripped Windows images, some LTSC builds) WebView2 never
+    initialises and the window stays blank, so we check first and explain
+    the problem instead of failing silently.
     """
-    path = window_icon_path()
-    if not os.path.exists(path):
-        return
-
-    native = getattr(window, "native", None)
-    if native is None:
-        return
-
-    # Preferred: let the WinForms Form own the icon (survives framework
-    # re-initialisation that overwrites a bare WM_SETICON handle).
+    if os.environ.get("FLUXOP_SKIP_WEBVIEW_CHECK") == "1":
+        return True
     try:
-        import clr  # bundled with pywebview on Windows
-
-        clr.AddReference("System.Drawing")
-        from System.Drawing import Icon as DotNetIcon
-
-        native.Icon = DotNetIcon(path)
+        import winreg
     except Exception:
-        pass
+        return True
 
+    guid = "{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}"
+    keys = (
+        (winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\\" + guid),
+        (winreg.HKEY_LOCAL_MACHINE, r"SOFTWARE\Microsoft\EdgeUpdate\Clients\\" + guid),
+        (winreg.HKEY_CURRENT_USER, r"Software\Microsoft\EdgeUpdate\Clients\\" + guid),
+    )
+    for root, subkey in keys:
+        try:
+            with winreg.OpenKey(root, subkey) as handle:
+                version, _ = winreg.QueryValueEx(handle, "pv")
+            if version and version != "0.0.0.0":
+                return True
+        except OSError:
+            continue
+
+    # Fallback: the runtime may be installed without the EdgeUpdate key.
+    for base in (
+        os.environ.get("ProgramFiles(x86)"),
+        os.environ.get("ProgramFiles"),
+    ):
+        if not base:
+            continue
+        application = os.path.join(base, "Microsoft", "EdgeWebView", "Application")
+        try:
+            for name in os.listdir(application):
+                if os.path.exists(os.path.join(application, name, "msedgewebview2.exe")):
+                    return True
+        except OSError:
+            continue
+    return False
+
+
+def _show_message(text: str, title: str = "Fluxop") -> None:
+    """Show a native message box (the frozen build has no console).
+
+    Uses its own window, so it also appears when the webview thread is stuck.
+    """
     try:
         import ctypes
 
-        IMAGE_ICON = 1
-        LR_LOADFROMFILE = 0x0010
-        WM_SETICON = 0x0080
-        ICON_SMALL = 0
-        ICON_BIG = 1
-        SM_CXSMICON, SM_CYSMICON, SM_CXICON, SM_CYICON = 49, 50, 11, 12
-
-        user32 = ctypes.windll.user32
-        handle = int(native.Handle.ToInt64())
-
-        small = user32.LoadImageW(
-            None, path, IMAGE_ICON,
-            user32.GetSystemMetrics(SM_CXSMICON),
-            user32.GetSystemMetrics(SM_CYSMICON),
-            LR_LOADFROMFILE,
-        )
-        big = user32.LoadImageW(
-            None, path, IMAGE_ICON,
-            user32.GetSystemMetrics(SM_CXICON),
-            user32.GetSystemMetrics(SM_CYICON),
-            LR_LOADFROMFILE,
-        )
-        if small:
-            user32.SendMessageW(handle, WM_SETICON, ICON_SMALL, small)
-        if big:
-            user32.SendMessageW(handle, WM_SETICON, ICON_BIG, big)
+        ctypes.windll.user32.MessageBoxW(None, text, title, 0x00000030)
     except Exception:
         pass
+
 
 
 def _redirect_stderr_to_log() -> None:
@@ -318,7 +388,8 @@ def _redirect_stderr_to_log() -> None:
     if not getattr(sys, "stderr", None):
         return
     try:
-        log_path = os.path.join(project_root(), "fluxop.log")
+        folder = os.path.dirname(startup_log.log_path())
+        log_path = os.path.join(folder, "fluxop.log")
         fd = os.open(log_path, os.O_WRONLY | os.O_CREAT | os.O_APPEND)
         os.dup2(fd, 2)
         os.close(fd)
@@ -328,17 +399,52 @@ def _redirect_stderr_to_log() -> None:
 
 def main():
     """Entry point: elevation, language setup, window launch."""
+    startup_log.log(f"=== Fluxop {__version__} ===")
+    startup_log.log(
+        f"env: frozen={bool(getattr(sys, 'frozen', False))} "
+        f"exe={sys.executable} cwd={os.getcwd()}"
+    )
+    try:
+        from importlib.metadata import version as _package_version
+
+        try:
+            webview_version = _package_version("pywebview")
+        except Exception:
+            webview_version = getattr(webview, "__version__", "?")
+        startup_log.log(
+            f"python={sys.version.split()[0]} webview={webview_version}"
+        )
+    except Exception:
+        pass
+
     # Do this first: the WebView2 CLR thread that floods stderr on shutdown
     # can be alive from the very first webview call.
     _redirect_stderr_to_log()
+    startup_log.log("stderr redirected")
 
     # Own taskbar identity so the window icon is used (not python.exe's).
     _set_app_user_model_id()
 
     if os.environ.get("FLUXOP_SKIP_ADMIN") != "1":
-        run_as_admin()
+        startup_log.log("checking administrator privileges")
+        run_as_admin()  # exits when it has to relaunch elevated
+    startup_log.log(f"administrator={is_admin()}")
+
+    if not _webview2_available():
+        startup_log.log("WebView2 runtime NOT found: aborting with a clear message")
+        _show_message(
+            "Fluxop necesita el componente 'Microsoft Edge WebView2' y este "
+            "equipo no lo tiene instalado.\n\n"
+            "Instálalo gratis desde:\n"
+            "https://developer.microsoft.com/microsoft-edge/webview2/\n\n"
+            "Después vuelve a abrir Fluxop.",
+            "Fluxop - falta un componente",
+        )
+        return
+    startup_log.log("WebView2 runtime found")
 
     TranslationManager()
+    startup_log.log("translations loaded")
 
     # Language preference saved by the installer (optional).
     lang = None
@@ -358,8 +464,11 @@ def main():
         lang = TranslationManager.detect_system_language()
         print(f"[i18n] Auto-detected system language: {lang}")
     TranslationManager.set_language(lang)
+    startup_log.log(f"language={lang}")
 
     api = Api()
+    startup_log.log("api created")
+
     window = webview.create_window(
         "Fluxop",
         html=_load_html(),
@@ -368,33 +477,76 @@ def main():
         height=820,
         min_size=(900, 740),
         background_color="#050508",
+        # Revealed once the page paints. A cold start of an unsigned bundle
+        # can take a while (antivirus scanning hundreds of DLLs) and a white,
+        # unresponsive window is exactly what users reported.
+        hidden=True,
     )
     api.window = window
+    startup_log.log("window created (hidden until the UI is ready)")
 
-    # Re-apply the icon once the framework has fully initialised the form and
-    # again after the page loads; assigning it too early got overwritten.
-    def _refresh_icon(*_args):
-        _apply_window_icon(window)
+    revealed = threading.Event()
 
-    window.events.shown += _refresh_icon
-    window.events.loaded += _refresh_icon
+    def _reveal(reason):
+        if revealed.is_set():
+            return
+        revealed.set()
+        startup_log.log(f"revealing window ({reason})")
+        try:
+            window.show()
+        except Exception:
+            startup_log.log_exception("window.show() failed")
+
+    api._on_ready = lambda: _reveal("frontend ready")
+    window.events.loaded += lambda *_: startup_log.log("window: loaded event")
+
+    # Safety net: never leave the user without a window, even if the page
+    # never signals readiness.
+    timer = threading.Timer(8.0, _reveal, args=("timeout",))
+    timer.daemon = True
+    timer.start()
+
+    def _watchdog():
+        if api._ready.wait(60):
+            return
+        startup_log.log("WATCHDOG: the page never reported ready")
+        _show_message(
+            "La interfaz de Fluxop no pudo iniciarse.\n\n"
+            "Causas habituales:\n"
+            "  - El runtime 'Microsoft Edge WebView2' está dañado.\n"
+            "  - Un antivirus está bloqueando la aplicación.\n\n"
+            f"Detalle técnico guardado en:\n{startup_log.log_path()}\n\n"
+            "Envíame ese archivo para poder diagnosticarlo.",
+            "Fluxop - problema al iniciar",
+        )
+
+    threading.Thread(target=_watchdog, daemon=True).start()
 
     def _on_start():
-        # NOTE: this callback runs on the UI thread inside the pywebview
-        # message loop. Keep it lightweight — starting the stats pusher is
-        # all it needs; heavy work (icon interop) belongs to the window events.
+        # pywebview runs this callback on its own thread; keep it tiny.
+        startup_log.log("pywebview: start callback")
         threading.Thread(target=api._pusher, daemon=True).start()
 
-    webview.start(_on_start)
+    startup_log.log("entering pywebview.start()")
+    try:
+        if "icon" in inspect.signature(webview.start).parameters:
+            # pywebview 6 sets the form icon natively on the UI thread; doing
+            # it ourselves through pythonnet was the only cross-thread WinForms
+            # manipulation we had and it is not worth the risk.
+            webview.start(_on_start, icon=window_icon_path())
+        else:  # pywebview < 6 has no icon parameter
+            webview.start(_on_start)
+    finally:
+        startup_log.log("pywebview.start() returned (app closed)")
 
 
 if __name__ == "__main__":
     try:
         main()
     except Exception:
-        print("\n" + "=" * 50)
-        print("CRITICAL ERROR - The application has crashed:")
-        print("=" * 50)
-        traceback.print_exc()
-        print("\n" + "=" * 50)
-        input("\nPress ENTER to close...")
+        startup_log.log_exception("CRITICAL: unhandled exception")
+        _show_message(
+            "Fluxop no pudo iniciarse.\n\n"
+            f"Detalle técnico guardado en:\n{startup_log.log_path()}",
+            "Fluxop - error crítico",
+        )

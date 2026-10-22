@@ -87,6 +87,8 @@ This is intentional: the executable is **unsigned**, so Microsoft Defender / Sma
 
 To install: download the ZIP, extract it and run `Run-Fluxop.bat` (or `Fluxop.exe` directly — it removes the Windows download mark automatically). Layout: `Fluxop.exe` + `_internal/`. Requires admin privileges for some maintenance tasks (auto-elevation is built in).
 
+The window is shown **only when the interface has painted**, so a slow cold start (antivirus scanning an unsigned bundle) no longer looks like a frozen white window. If the interface cannot start, Fluxop explains why in a message box instead of staying blank.
+
 ## Code signing
 
 Releases ship **unsigned**. Windows SmartScreen may flag the executable until it builds download reputation. This is expected for a new project and does not affect functionality.
@@ -107,6 +109,25 @@ the cause is the **Mark of the Web (MOTW)**: Windows marks files downloaded from
 - The ZIP also ships `Run-Fluxop.bat`: double-click it and it unblocks everything (including `Fluxop.exe` itself, which avoids the SmartScreen prompt) and starts the app.
 
 Both paths work out of the box for end users.
+
+## Troubleshooting: blank window / "no responde"
+
+Fluxop needs the **Microsoft Edge WebView2 Runtime** (preinstalled on Windows 11 and on virtually every Windows 10). If it is missing, the app now says so in a message box instead of showing a white window. Installer: <https://developer.microsoft.com/microsoft-edge/webview2/>.
+
+Every launch writes a timestamped log of each startup phase:
+
+- `fluxop-startup.log` next to `Fluxop.exe` (or in `%LOCALAPPDATA%\Fluxop\` when that folder is read-only).
+- `fluxop.log` (raw stderr from WebView2/pythonnet, same folder).
+
+If the window still does not open, send `fluxop-startup.log`: it shows the exact phase where the launch stopped.
+
+Useful environment overrides (no commands needed for normal use):
+
+| Variable | Effect |
+| --- | --- |
+| `FLUXOP_WEBVIEW_ARGS` | Extra WebView2/Chromium flags (empty value re-enables GPU rendering). |
+| `FLUXOP_SKIP_ADMIN=1` | Do not relaunch elevated. |
+| `FLUXOP_SKIP_WEBVIEW_CHECK=1` | Skip the WebView2 runtime check. |
 
 ## License
 

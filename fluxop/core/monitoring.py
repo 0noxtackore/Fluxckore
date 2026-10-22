@@ -47,8 +47,13 @@ def count_temp_files() -> tuple:
     return count, size_mb
 
 
-def collect_cpu_ram(interval=0.5):
-    """Recopila el uso actual de CPU y RAM (misma secuencia del monitoreo original)."""
+def collect_cpu_ram(interval=None):
+    """Recopila el uso actual de CPU y RAM (misma secuencia del monitoreo original).
+
+    ``interval=None`` devuelve el uso desde la llamada anterior sin bloquear
+    el hilo: esperar 0.5 s en cada tick retrasaba el refresco de la interfaz
+    sin aportar precisión útil.
+    """
     cpu_percent = psutil.cpu_percent(interval=interval)
     ram = psutil.virtual_memory()
     return cpu_percent, ram
