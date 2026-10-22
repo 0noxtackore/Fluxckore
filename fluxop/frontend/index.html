@@ -544,15 +544,20 @@ function drawRing(cv, pct, color) {
   ctx.restore();
 
   const ticks = 44;
-  for (let i = 0; i < ticks; i++) {
-    const a = (i / ticks) * Math.PI * 2 - Math.PI / 2;
-    const on = (i / ticks) * 100 <= pct;
-    const r1 = R - 7 * d, r2 = r1 - (on ? 7 * d : 4 * d);
-    ctx.strokeStyle = on ? color : "rgba(110, 140, 180, .16)";
-    ctx.lineWidth = 2 * d;
+  ctx.lineWidth = 2 * d;
+  // Batch the ticks into two paths (on/off) instead of one stroke() per tick:
+  // with software rendering that is the difference between a smooth HUD and a
+  // permanently busy CPU.
+  for (const active of [false, true]) {
+    ctx.strokeStyle = active ? color : "rgba(110, 140, 180, .16)";
     ctx.beginPath();
-    ctx.moveTo(c + Math.cos(a) * r1, c + Math.sin(a) * r1);
-    ctx.lineTo(c + Math.cos(a) * r2, c + Math.sin(a) * r2);
+    for (let i = 0; i < ticks; i++) {
+      if (((i / ticks) * 100 <= pct) !== active) continue;
+      const a = (i / ticks) * Math.PI * 2 - Math.PI / 2;
+      const r1 = R - 7 * d, r2 = r1 - (active ? 7 * d : 4 * d);
+      ctx.moveTo(c + Math.cos(a) * r1, c + Math.sin(a) * r1);
+      ctx.lineTo(c + Math.cos(a) * r2, c + Math.sin(a) * r2);
+    }
     ctx.stroke();
   }
 
@@ -599,14 +604,18 @@ function drawGauge(value) {
   }
 
   const n = 28;
-  for (let i = 0; i <= n; i++) {
-    const frac = i / n, a = Math.PI + frac * Math.PI;
-    const r1 = R - 10 * d, r2 = r1 - (i % 7 === 0 ? 8 * d : 4 * d);
-    ctx.strokeStyle = i % 7 === 0 ? "rgba(0, 212, 255, .75)" : "rgba(120, 150, 190, .3)";
-    ctx.lineWidth = 1.4 * d;
+  ctx.lineWidth = 1.4 * d;
+  // Two batched paths (major/minor) instead of 29 individual strokes.
+  for (const major of [false, true]) {
+    ctx.strokeStyle = major ? "rgba(0, 212, 255, .75)" : "rgba(120, 150, 190, .3)";
     ctx.beginPath();
-    ctx.moveTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1);
-    ctx.lineTo(cx + Math.cos(a) * r2, cy + Math.sin(a) * r2);
+    for (let i = 0; i <= n; i++) {
+      if ((i % 7 === 0) !== major) continue;
+      const frac = i / n, a = Math.PI + frac * Math.PI;
+      const r1 = R - 10 * d, r2 = r1 - (major ? 8 * d : 4 * d);
+      ctx.moveTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1);
+      ctx.lineTo(cx + Math.cos(a) * r2, cy + Math.sin(a) * r2);
+    }
     ctx.stroke();
   }
 
@@ -705,18 +714,26 @@ function drawTrend(data) {
   ctx.fill();
 }
 
-/* animation loop: rotating rings + smooth needle */
-function frame() {
-  rot += 0.005;
+/* animation loop: rotating rings + smooth needle.
+   Throttled to ~30 fps and paused while the window is minimized/hidden: the
+   HUD used to repaint three canvases 60 times per second forever, which kept
+   a CPU core busy even in the background (very noticeable without GPU
+   acceleration). */
+let lastFrame = 0;
+function frame(ts) {
+  requestAnimationFrame(frame);
+  if (document.hidden) return;
+  if (ts - lastFrame < 33) return;
+  lastFrame = ts;
+  rot += 0.01;
   drawRing($("#cpuCv"), stats.cpu, "#00d4ff");
   drawRing($("#ramCv"), stats.ram, "#ff00ff");
   if (Math.abs(gaugeShown - stats.temp_mb) > 0.02) {
-    gaugeShown += (stats.temp_mb - gaugeShown) * 0.08;
+    gaugeShown += (stats.temp_mb - gaugeShown) * 0.16;
   } else {
     gaugeShown = stats.temp_mb;
   }
   drawGauge(gaugeShown);
-  requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
 
@@ -832,7 +849,23 @@ $("#optReset").addEventListener("click", () => {
 });
 
 /* ---------- init ---------- */
-window.addEventListener("pywebviewready", async () => {
+// Tell the backend the page painted. The main window stays hidden until this
+// arrives, so it must never depend on the translations payload finishing:
+// a slow (or stuck) get_init_data would leave the user without a window.
+let readySent = false;
+async function signalReady() {
+  if (readySent) return true;
+  if (!(window.pywebview && pywebview.api && pywebview.api.frontend_ready)) return false;
+  try {
+    await pywebview.api.frontend_ready();
+    readySent = true;
+  } catch (err) {
+    console.error("Fluxop: frontend_ready failed", err);
+  }
+  return readySent;
+}
+
+async function initUI() {
   try {
     I = await pywebview.api.get_init_data();
     $("#version").textContent = "v" + I.version;
@@ -842,19 +875,21 @@ window.addEventListener("pywebviewready", async () => {
     applyLang();
   } catch (err) {
     console.error("Fluxop: initialisation failed", err);
-  } finally {
-    // Tell the backend the UI really painted. The window stays hidden until
-    // this arrives (with a timeout), so the user never sees a white,
-    // unresponsive window during a slow cold start.
-    if (window.pywebview && pywebview.api && pywebview.api.frontend_ready) {
-      try {
-        await pywebview.api.frontend_ready();
-      } catch (err) {
-        console.error("Fluxop: frontend_ready failed", err);
-      }
-    }
   }
+}
+
+window.addEventListener("pywebviewready", () => {
+  signalReady();
+  initUI();
 });
+
+// Safety net: on some WebView2 builds the 'pywebviewready' event can be
+// missed. Poll for the bridge so the window is never kept hidden because of
+// it (the backend reveals it after 30 s at the latest).
+const bridgePoll = setInterval(() => {
+  signalReady().then((ok) => { if (ok) clearInterval(bridgePoll); });
+}, 150);
+setTimeout(() => clearInterval(bridgePoll), 25000);
 </script>
 </body>
 </html>

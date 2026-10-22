@@ -34,7 +34,7 @@ jobs:
           pip install -r requirements.txt pyinstaller
 
       - name: Smoke test (imports)
-        run: python -c "import fluxop, fluxop.app, webview, psutil, pygame; print('imports OK', fluxop.__version__)"
+        run: python -c "import fluxop, fluxop.app, webview, psutil; print('imports OK', fluxop.__version__)"
 
       - name: Read version
         id: version

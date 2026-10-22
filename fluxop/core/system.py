@@ -32,6 +32,29 @@ def config_path() -> str:
     return os.path.join(project_root(), "config.json")
 
 
+def webview_data_path() -> str | None:
+    """Fixed WebView2 profile folder under ``%LOCALAPPDATA%``.
+
+    Without an explicit folder WebView2 creates ``Fluxop.exe.WebView2`` next to
+    the executable — that is, inside the extracted portable folder. If the user
+    extracted the ZIP into a OneDrive/Dropbox folder or a read-only location,
+    the browser profile is synced or locked while in use and the window
+    intermittently fails to paint. A local, per-user folder avoids both.
+
+    Returns ``None`` when no writable folder can be created, so the caller can
+    let WebView2 choose its default instead of failing to start.
+    """
+    base = os.environ.get("LOCALAPPDATA")
+    if not base:
+        base = os.path.join(os.path.expanduser("~"), "AppData", "Local")
+    path = os.path.join(base, "Fluxop", "WebView2")
+    try:
+        os.makedirs(path, exist_ok=True)
+    except OSError:
+        return None
+    return path
+
+
 def frontend_path() -> str:
     """Path of the self-contained HTML/CSS/JS interface (same relative path
     in source runs and in the frozen bundle)."""

@@ -85,7 +85,9 @@ GitHub Releases contain **only a portable ZIP** (`Fluxop-<version>-portable.zip`
 
 This is intentional: the executable is **unsigned**, so Microsoft Defender / SmartScreen shows execution warnings until a code-signing license is purchased. Shipping only the ZIP keeps the release surface free of `.exe` assets that trigger those warnings/errors.
 
-To install: download the ZIP, extract it and run `Run-Fluxop.bat` (or `Fluxop.exe` directly — it removes the Windows download mark automatically). Layout: `Fluxop.exe` + `_internal/`. Requires admin privileges for some maintenance tasks (auto-elevation is built in).
+To install: download the ZIP, extract it and run `Run-Fluxop.bat` (or `Fluxop.exe` directly - it removes the Windows download mark automatically). Layout: `Fluxop.exe` + `_internal/`. Requires admin privileges for some maintenance tasks (auto-elevation is built in).
+
+The bundle is intentionally small: no pygame/SDL, no numpy, no GUI toolkit (the interface is HTML rendered by WebView2), and sounds use the Windows MCI API directly. Only one instance can run at a time (a second launch brings the open window to the front), and the WebView2 profile lives in `%LOCALAPPDATA%\Fluxop\WebView2` instead of the extracted folder — a profile inside a OneDrive/Dropbox folder gets synced while in use and makes the window fail to paint intermittently.
 
 A small native "cargando la interfaz" window appears immediately, and the main window is shown **only when the interface has painted**, so a slow cold start (antivirus scanning an unsigned bundle) no longer looks like a frozen white window. If the interface cannot start, Fluxop explains why in a message box instead of staying blank.
 
@@ -126,7 +128,6 @@ Useful environment overrides (no commands needed for normal use):
 | Variable | Effect |
 | --- | --- |
 | `FLUXOP_WEBVIEW_ARGS` | Extra WebView2/Chromium flags (empty value re-enables GPU rendering). |
-| `FLUXOP_SKIP_ADMIN=1` | Do not relaunch elevated. |
 | `FLUXOP_SKIP_WEBVIEW_CHECK=1` | Skip the WebView2 runtime check. |
 
 ## License

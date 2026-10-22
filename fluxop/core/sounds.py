@@ -1,60 +1,74 @@
-"""Reproducción de sonidos de la aplicación (pygame.mixer, si está disponible)."""
+"""Notification sounds through the Windows MCI API.
 
+The app only needs two short MP3 files. Playing them used to require pygame,
+which pulls the whole SDL stack (~30 MB of DLLs) into the bundle and can block
+or fail on machines without an audio device, VMs or RDP sessions. MCI is part
+of Windows: ``mciSendStringW`` opens the MP3, plays it asynchronously and
+returns immediately, so no third-party dependency is needed.
+
+Every call is best-effort: if audio is unavailable the app simply stays silent.
+"""
+from __future__ import annotations
+
+import ctypes
 import os
 import threading
 
-from ..core.system import resource_path
+from .system import resource_path
+
+_ALIAS = "fluxop_sound"
+
+_winmm = ctypes.WinDLL("winmm", use_last_error=True)
+_winmm.mciSendStringW.restype = ctypes.c_uint
+_winmm.mciSendStringW.argtypes = (
+    ctypes.c_wchar_p,
+    ctypes.c_wchar_p,
+    ctypes.c_uint,
+    ctypes.c_void_p,
+)
+
+
+def _mci(command: str) -> int:
+    """Send one MCI command, returning 0 on success."""
+    try:
+        return _winmm.mciSendStringW(command, None, 0, None)
+    except Exception:
+        return 1
 
 
 class SoundPlayer:
-    """Reproductor de sonidos de la aplicación (pygame.mixer, si está disponible).
-
-    ``pygame.mixer.init()`` puede tardar (o quedarse esperando) en equipos sin
-    tarjeta de sonido, máquinas virtuales o sesiones RDP. Por eso la
-    inicialización ocurre en un hilo aparte: la ventana nunca debe esperar al
-    audio para abrirse.
-    """
+    """Plays the bundled notification sounds with the Windows MCI API."""
 
     def __init__(self, resource_path_fn=resource_path):
-        self.notification_sound = None
-        self.danger_sound = None
-        self.available = False
-        self._resource_path = resource_path_fn
-        self._init_lock = threading.Lock()
+        self._paths = {}
+        self._lock = threading.Lock()
 
-        threading.Thread(target=self._init_audio, daemon=True).start()
+        for kind, filename in (("success", "notification.mp3"), ("danger", "danger.mp3")):
+            try:
+                path = resource_path_fn(filename)
+                if path and os.path.exists(path):
+                    self._paths[kind] = path
+            except Exception:
+                continue
 
-    def _init_audio(self):
-        try:
-            import pygame
-
-            pygame.mixer.init()
-
-            # Usar rutas correctas para recursos
-            notification_path = self._resource_path("notification.mp3")
-            danger_path = self._resource_path("danger.mp3")
-
-            with self._init_lock:
-                if os.path.exists(notification_path):
-                    self.notification_sound = notification_path
-                if os.path.exists(danger_path):
-                    self.danger_sound = danger_path
-                self.available = True
-        except Exception as e:
-            print(f"Error inicializando sonidos: {e}")
+    @property
+    def available(self) -> bool:
+        return bool(self._paths)
 
     def play(self, sound_type):
-        """Reproduce un sonido."""
-        if not self.available:
+        """Play a sound without blocking the caller."""
+        path = self._paths.get(sound_type)
+        if not path:
             return
-        with self._init_lock:
+        threading.Thread(target=self._play_file, args=(path,), daemon=True).start()
+
+    def _play_file(self, path: str) -> None:
+        with self._lock:
             try:
-                import pygame
-                if sound_type == "success" and self.notification_sound:
-                    pygame.mixer.music.load(self.notification_sound)
-                    pygame.mixer.music.play()
-                elif sound_type == "danger" and self.danger_sound:
-                    pygame.mixer.music.load(self.danger_sound)
-                    pygame.mixer.music.play()
+                # A previous clip may still hold the alias: close it first so
+                # the new one can be opened (MCI allows one open per alias).
+                _mci(f"close {_ALIAS}")
+                if _mci(f'open "{path}" type mpegvideo alias {_ALIAS}') == 0:
+                    _mci(f"play {_ALIAS}")
             except Exception:
                 pass

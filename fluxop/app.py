@@ -21,7 +21,7 @@ except ImportError as exc:
     )
 
 from . import __version__
-from .core import maintenance, monitoring, startup_log
+from .core import maintenance, monitoring, single_instance, startup_log
 from .core.sounds import SoundPlayer
 from .core.splash import Splash
 from .core.system import (
@@ -30,7 +30,7 @@ from .core.system import (
     is_admin,
     project_root,
     resource_path,
-    run_as_admin,
+    webview_data_path,
 )
 from .i18n import LANGUAGE_OPTIONS, TranslationManager, _
 
@@ -169,9 +169,13 @@ class Api:
         if not self._ready.wait(30):
             startup_log.log("pusher: page not ready after 30 s, pushing anyway")
 
-        last_scan = 0.0
-        temp_count = 0
-        temp_size = 0.0
+        # One scan before the first payload so the dashboard does not start at
+        # zero; after that it is refreshed every 30 s.
+        try:
+            temp_count, temp_size = monitoring.count_temp_files()
+        except Exception:
+            temp_count, temp_size = 0, 0.0
+        last_scan = time.monotonic()
 
         while True:
             time.sleep(1)
@@ -179,10 +183,11 @@ class Api:
                 cpu_percent, ram = monitoring.collect_cpu_ram()
                 self._check_memory_warning(ram.percent)
 
-                # Walking the temp folders is disk-heavy: refresh every 10 s
-                # instead of on every tick.
-                now = time.time()
-                if now - last_scan >= 10:
+                # Walking the temp folders is disk-heavy: refresh every 30 s
+                # instead of on every tick (the scan is also capped, see
+                # monitoring.count_temp_files).
+                now = time.monotonic()
+                if now - last_scan >= 30:
                     temp_count, temp_size = monitoring.count_temp_files()
                     last_scan = now
                 monitoring.push_trend_point(self._trend, temp_size)
@@ -431,9 +436,13 @@ def main():
     # Own taskbar identity so the window icon is used (not python.exe's).
     _set_app_user_model_id()
 
-    if os.environ.get("FLUXOP_SKIP_ADMIN") != "1":
-        startup_log.log("checking administrator privileges")
-        run_as_admin()  # exits when it has to relaunch elevated
+    # One instance only: two copies sharing the WebView2 profile is the usual
+    # cause of a window that never paints or a second app that opens and dies.
+    if not single_instance.acquire():
+        startup_log.log("another Fluxop instance is already running: focusing it")
+        single_instance.focus_existing()
+        return
+
     startup_log.log(f"administrator={is_admin()}")
 
     if not _webview2_available():
@@ -515,8 +524,12 @@ def main():
     window.events.loaded += lambda *_: startup_log.log("window: loaded event")
 
     # Safety net: reveal the window even if the page never signals readiness
-    # (the splash is replaced, so the user always ends up with the app).
-    timer = threading.Timer(30.0, _reveal, args=("timeout",))
+    # (the splash is replaced, so the user always ends up with the app). When
+    # the splash could not be created there is no visual feedback at all, so
+    # show the window earlier.
+    reveal_after = 30.0 if splash.visible else 8.0
+    startup_log.log(f"reveal timeout={reveal_after:.0f}s (splash visible={splash.visible})")
+    timer = threading.Timer(reveal_after, _reveal, args=("timeout",))
     timer.daemon = True
     timer.start()
 
@@ -543,13 +556,23 @@ def main():
 
     startup_log.log("entering pywebview.start()")
     try:
-        if "icon" in inspect.signature(webview.start).parameters:
+        # pywebview >= 4 understands these; pass only the ones it supports so
+        # older versions still work.
+        parameters = inspect.signature(webview.start).parameters
+        start_kwargs = {}
+        if "icon" in parameters:
             # pywebview 6 sets the form icon natively on the UI thread; doing
             # it ourselves through pythonnet was the only cross-thread WinForms
             # manipulation we had and it is not worth the risk.
-            webview.start(_on_start, icon=window_icon_path())
-        else:  # pywebview < 6 has no icon parameter
-            webview.start(_on_start)
+            start_kwargs["icon"] = window_icon_path()
+        if "private_mode" in parameters:
+            start_kwargs["private_mode"] = False
+        if "storage_path" in parameters:
+            data_path = webview_data_path()
+            if data_path:
+                start_kwargs["storage_path"] = data_path
+        startup_log.log(f"webview.start() options: {sorted(start_kwargs)}")
+        webview.start(_on_start, **start_kwargs)
     finally:
         splash.close()
         startup_log.log("pywebview.start() returned (app closed)")

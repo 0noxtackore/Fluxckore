@@ -9,42 +9,54 @@ import tempfile
 import psutil
 
 
-def count_temp_files() -> tuple:
-    """Cuenta archivos temporales."""
+def count_temp_files(limit: int = 4000) -> tuple:
+    """Count temporary files and their total size (in MB).
+
+    ``os.walk`` + ``os.path.getsize`` per file is slow and holds the GIL for
+    most of the walk, which made the interface stutter on machines with a big
+    temp folder. ``os.scandir`` reuses the directory entry data (no extra stat
+    per name) and the scan stops at ``limit`` entries, so a tick stays cheap.
+    """
     temp_paths = [
         tempfile.gettempdir(),
         os.path.expandvars(r"C:\Windows\Temp"),
         os.path.expandvars(r"C:\Windows\Prefetch"),
     ]
-    
+
     chrome_cache = os.path.expandvars(r"%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache")
     edge_cache = os.path.expandvars(r"%LOCALAPPDATA%\Microsoft\Edge\User Data\Default\Cache")
-    
+
     if os.path.exists(chrome_cache):
         temp_paths.append(chrome_cache)
     if os.path.exists(edge_cache):
         temp_paths.append(edge_cache)
-    
+
     count = 0
-    size_mb = 0
-    
+    total_bytes = 0
+
     for path in temp_paths:
-        if os.path.exists(path):
+        if count >= limit:
+            break
+        stack = [path]
+        while stack and count < limit:
+            current = stack.pop()
             try:
-                for root, dirs, files in os.walk(path):
-                    for file in files:
+                with os.scandir(current) as entries:
+                    for entry in entries:
                         try:
-                            filepath = os.path.join(root, file)
-                            count += 1
-                            size_mb += os.path.getsize(filepath) / (1024 * 1024)
-                        except (OSError, PermissionError):
-                            pass
-                    if count > 10000:
-                        break
-            except PermissionError:
-                pass
-    
-    return count, size_mb
+                            if entry.is_dir(follow_symlinks=False):
+                                stack.append(entry.path)
+                            else:
+                                total_bytes += entry.stat(follow_symlinks=False).st_size
+                                count += 1
+                        except OSError:
+                            continue
+                        if count >= limit:
+                            break
+            except OSError:
+                continue
+
+    return count, total_bytes / (1024 * 1024)
 
 
 def collect_cpu_ram(interval=None):

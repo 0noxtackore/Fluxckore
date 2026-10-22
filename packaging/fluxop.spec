@@ -28,7 +28,6 @@ a = Analysis(
     hiddenimports=[
         "psutil",
         "winreg",
-        "pygame",
         "webview",
         "webview.platforms.edgechromium",
         "clr",
@@ -43,7 +42,13 @@ a = Analysis(
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
-    excludes=["matplotlib", "numpy", "tkinter"],
+    # pygame is not used any more (sounds go through the Windows MCI API):
+    # excluding it keeps the SDL DLLs (~21 MB) out of the portable bundle,
+    # which makes the ZIP smaller and the first launch faster.
+    # cryptography is only imported by pywebview when it is asked to generate
+    # an HTTPS certificate (``webview.start(ssl=True)``), which this app never
+    # does: excluding it removes another ~15 MB (Rust extension + OpenSSL).
+    excludes=["matplotlib", "numpy", "tkinter", "pygame", "PIL", "cryptography"],
     noarchive=False,
 )
 pyz = PYZ(a.pure)

@@ -95,12 +95,19 @@ class Splash:
         self._width = width
         self._height = height
         self._stop = threading.Event()
+        self._created = threading.Event()
         self._hwnd = None
         self._font = None
 
     def start(self) -> "Splash":
         threading.Thread(target=self._run, daemon=True, name="fluxop-splash").start()
+        self._created.wait(1.5)
         return self
+
+    @property
+    def visible(self) -> bool:
+        """True when the splash window was actually created."""
+        return self._hwnd is not None
 
     def close(self) -> None:
         """Ask the splash to close (it destroys its window within ~20 ms)."""
@@ -108,7 +115,9 @@ class Splash:
 
     # ------------------------------------------------------------------
     def _run(self) -> None:
-        if not self._create():
+        created = self._create()
+        self._created.set()
+        if not created:
             self._destroy()
             return
         try:
