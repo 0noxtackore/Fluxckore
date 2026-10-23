@@ -59,10 +59,14 @@ jobs:
         run: |
           New-Item -ItemType Directory -Force -Path dist/Fluxckore-app | Out-Null
           Copy-Item -Recurse -Force dist/Fluxckore/* dist/Fluxckore-app/
-          # Ship a launcher inside the ZIP: it removes the "Mark of the Web"
+          # Ship the launcher inside the ZIP: it removes the "Mark of the Web"
           # from the downloaded files and starts the app, so end users never
-          # have to type a command in PowerShell or cmd.
+          # have to type a command in PowerShell or cmd. If Fluxckore.exe is
+          # missing (Windows blocked or deleted it), it opens the restore
+          # assistant instead of failing silently.
           Copy-Item -Force packaging/launcher.bat dist/Fluxckore-app/Run-Fluxckore.bat
+          Copy-Item -Force packaging/repair.ps1 dist/Fluxckore-app/Repair-Fluxckore.ps1
+          Copy-Item -Force packaging/restore.bat dist/Fluxckore-app/Restaurar-Fluxckore.bat
 
       - name: Package zip
         shell: pwsh
