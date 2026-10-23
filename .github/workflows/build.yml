@@ -78,7 +78,11 @@ jobs:
       # SmartScreen / execution warnings, which is expected until a code-signing
       # license is purchased. Users download the portable zip and extract it.
 
-      - name: Upload portable zip
+      # Only for manual runs: a tag build attaches the ZIP to the release below,
+      # so uploading it twice only burns the (limited) artifact storage quota.
+      # When the quota is exhausted the upload fails and the release is skipped.
+      - name: Upload portable zip (manual runs only)
+        if: ${{ !startsWith(github.ref, 'refs/tags/') }}
         uses: actions/upload-artifact@v4
         with:
           name: Fluxckore-Portable-${{ steps.version.outputs.version }}
