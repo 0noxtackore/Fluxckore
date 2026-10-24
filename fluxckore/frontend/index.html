@@ -775,6 +775,8 @@ function handleEvent(ev) {
     $("#btn").classList.remove("busy");
     $("#btnText").textContent = t("start_optimization");
     setStatus(false, t("optimization_complete"));
+    // Play finish notification sound
+    try { const s = new Audio("../../assets/sounds/notification.mp3"); s.volume = 0.9; s.play().catch(() => {}); } catch (e) {}
   }
 }
 
