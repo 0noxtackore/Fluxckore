@@ -1,3 +1,3 @@
 """Fluxckore - Suite de mantenimiento profundo para Windows."""
 
-__version__ = "9.0.6"
+__version__ = "9.0.7"
