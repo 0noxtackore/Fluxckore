@@ -124,7 +124,32 @@ _CATEGORIES = [
     ("store_cache", False, True),
     ("recycle", True, False),
     ("registry", True, False),
+    ("cleanmgr", False, False),
 ]
+
+
+def run_cleanmgr(log=print, stats=None):
+    """Ejecuta cleanmgr (Disk Cleanup) de forma invisible para liberar espacio."""
+    try:
+        subprocess.run(
+            ["cleanmgr", "/sageset:99", "/d", "C"],
+            capture_output=True,
+            text=True,
+            shell=False,
+            creationflags=subprocess.CREATE_NO_WINDOW,
+        )
+        result = subprocess.run(
+            ["cleanmgr", "/sagerun:99", "/d", "C"],
+            capture_output=True,
+            text=True,
+            shell=False,
+            creationflags=subprocess.CREATE_NO_WINDOW,
+        )
+        log("cleanmgr (Disk Cleanup) iniciado invisiblemente", "success")
+        if stats is not None:
+            stats.space_freed_mb += 0
+    except Exception as e:
+        log(f"cleanmgr: {str(e)[:50]}", "warning")
 
 
 def file_categories():
@@ -168,6 +193,8 @@ def clean_selected(selected, log=print, stats=None):
                 empty_recycle_bin(log=log)
             elif cat_id == "registry":
                 clean_registry_basic(log)
+            elif cat_id == "cleanmgr":
+                run_cleanmgr(log=log, stats=stats)
         except Exception as e:
             log(f"{cat_id}: {str(e)[:50]}", "warning")
 
