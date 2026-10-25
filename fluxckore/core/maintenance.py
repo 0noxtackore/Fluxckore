@@ -182,7 +182,7 @@ def file_categories():
 
 def default_categories():
     """Categorías activadas por defecto (seguras: no cierran sesiones)."""
-    return [cat_id for cat_id, default, _ in _CATEGORIES if default]
+    return [cat_id for cat_id, default, risky in _CATEGORIES if default]
 
 
 def clean_selected(selected, log=print, stats=None):
