@@ -251,7 +251,7 @@ def _clean_store_cache(log=print, stats=None):
         pass
 
 
-def optimize_ram(log=print):
+def optimize_ram(log=print, stats=None):
     """Optimiza la RAM agresivamente usando EmptyWorkingSet y limpieza profunda."""
     log(_("optimizing_ram"), "info")
     
@@ -406,7 +406,7 @@ def get_directory_size(path: str) -> int:
     return total_size
 
 
-def optimize_cpu(log=print):
+def optimize_cpu(log=print, stats=None):
     """Optimiza el uso de CPU ajustando prioridades y terminando procesos innecesarios."""
     log(_("optimizing_cpu"), "info")
     
