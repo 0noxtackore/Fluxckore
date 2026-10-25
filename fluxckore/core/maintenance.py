@@ -125,6 +125,8 @@ _CATEGORIES = [
     ("recycle", True, False),
     ("registry", True, False),
     ("cleanmgr", False, False),
+    ("ram_optimize", True, False),
+    ("cpu_optimize", True, False),
 ]
 
 
@@ -213,6 +215,10 @@ def clean_selected(selected, log=print, stats=None):
                 clean_registry_basic(log)
             elif cat_id == "cleanmgr":
                 run_cleanmgr(log=log, stats=stats)
+            elif cat_id == "ram_optimize":
+                optimize_ram(log=log, stats=stats)
+            elif cat_id == "cpu_optimize":
+                optimize_cpu(log=log, stats=stats)
         except Exception as e:
             log(f"{cat_id}: {str(e)[:50]}", "warning")
 
