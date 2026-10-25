@@ -676,6 +676,18 @@ function drawTrend(data) {
   for (let i = 1; i < xy.length; i++) ctx.lineTo(xy[i][0], xy[i][1]);
   ctx.stroke();
   ctx.shadowBlur = 0;
+  // Bars: green = up (good), red = down (bad)
+  for (let i = 1; i < xy.length; i++) {
+    const x = xy[i][0];
+    const yUp = xy[i - 1][1];
+    const yDown = xy[i][1];
+    const h = Math.abs(yUp - yDown);
+    const y = Math.min(yUp, yDown);
+    const up = xy[i][1] <= xy[i - 1][1];
+    ctx.fillStyle = up ? "#00c853" : "#ff1744";
+    ctx.fillRect(x - 2.5 * d, y, 5 * d, h);
+  }
+
   const [dx, dy] = xy[xy.length - 1];
   ctx.fillStyle = "#ffaa00";
   ctx.beginPath();
