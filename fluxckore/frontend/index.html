@@ -692,9 +692,11 @@ function drawTrend(data) {
     cv.height - pad - ((v - min) / span) * (cv.height - 2 * pad),
   ]);
 
+  // Trading-style gradient fill
   const grad = ctx.createLinearGradient(0, 0, 0, cv.height);
-  grad.addColorStop(0, "rgba(255, 170, 0, .28)");
-  grad.addColorStop(1, "rgba(255, 170, 0, 0)");
+  grad.addColorStop(0, "rgba(0,212,255,.22)");
+  grad.addColorStop(0.5, "rgba(0,212,255,.08)");
+  grad.addColorStop(1, "rgba(0,212,255,0)");
   ctx.fillStyle = grad;
   ctx.beginPath();
   ctx.moveTo(xy[0][0], cv.height);
@@ -703,22 +705,36 @@ function drawTrend(data) {
   ctx.closePath();
   ctx.fill();
 
-  ctx.strokeStyle = "#ffaa00";
-  ctx.lineWidth = 1.8 * d;
+  // Main line with trading glow
+  ctx.strokeStyle = "#00d4ff";
+  ctx.lineWidth = 2.2 * d;
   ctx.lineJoin = "round";
-  ctx.shadowColor = "#ffaa00";
-  ctx.shadowBlur = 6 * d;
+  ctx.shadowColor = "#00d4ff";
+  ctx.shadowBlur = 8 * d;
   ctx.beginPath();
   ctx.moveTo(xy[0][0], xy[0][1]);
   for (let i = 1; i < xy.length; i++) ctx.lineTo(xy[i][0], xy[i][1]);
   ctx.stroke();
   ctx.shadowBlur = 0;
 
-  const [dx, dy] = xy[xy.length - 1];
-  ctx.fillStyle = "#ffaa00";
+  // Data points
+  ctx.fillStyle = "#ffffff";
+  for (let i = 0; i < xy.length; i += Math.max(1, Math.floor(pts.length / 10))) {
+    ctx.beginPath();
+    ctx.arc(xy[i][0], xy[i][1], 2.5 * d, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Last point highlight
+  const [ldx, ldy] = xy[xy.length - 1];
+  ctx.fillStyle = "#ffa500";
   ctx.beginPath();
-  ctx.arc(dx, dy, 3.2 * d, 0, Math.PI * 2);
+  ctx.arc(ldx, ldy, 4 * d, 0, Math.PI * 2);
   ctx.fill();
+  ctx.fillStyle = "#fff3e0";
+  ctx.font = 9 * d + "px Consolas";
+  ctx.textAlign = "left";
+  ctx.fillText(Math.round(pts[pts.length - 1] * 10) / 10 + " MB", ldx + 8, ldy - 2);
 }
 
 /* animation loop: rotating rings + smooth needle.
