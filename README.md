@@ -56,7 +56,7 @@ Output: `dist/Fluxckore/Fluxckore.exe` (onedir bundle).
 To build the Windows installer locally (requires [Inno Setup 6](https://jrsoftware.org/isinfo.php)) — **not published to GitHub Releases**, which ship the portable ZIP only:
 
 ```powershell
-ISCC.exe /DAppVersion=0.16.0 packaging\Fluxckore.iss
+ISCC.exe /DAppVersion=0.17.0 packaging\Fluxckore.iss
 ```
 
 ## Project structure
@@ -78,14 +78,14 @@ Fluxckore/
 
 Fluxckore uses **SemVer** (`MAJOR.MINOR.PATCH`). The version lives in `fluxckore/__init__.py`.
 
-Releases are **tag-driven**: pushing a tag like `v0.16.0` triggers the CI workflow (see `.github/workflows/build.yml`), which builds both `onedir` (`Fluxckore.exe` + `_internal/`) and the single-file `.exe`, then attaches both to a GitHub Release. There are no scheduled rebuilds — new binaries only exist when there is a real change.
+Releases are **tag-driven**: pushing a tag like `v0.17.0` triggers the CI workflow (see `.github/workflows/build.yml`), which builds both `onedir` (`Fluxckore.exe` + `_internal/`) and the single-file `.exe`, then attaches both to a GitHub Release. There are no scheduled rebuilds — new binaries only exist when there is a real change.
 
 ## Releases & distribution
 
-GitHub Releases contain **both portable and single-file assets** (`v0.16.0` is current):
+GitHub Releases contain **both portable and single-file assets** (`v0.17.0` is current):
 
-- `Fluxckore-v0.16.0.exe` — single-file executable (self-contained, no `_internal` folder required).
-- `Fluxckore-v0.16.0-Windows-x64.zip` — portable `onedir` bundle with `_internal/`, launchers, frontend and sounds.
+- `Fluxckore-v0.17.0.exe` — single-file executable (self-contained, no `_internal` folder required).
+- `Fluxckore-v0.17.0-Windows-x64.zip` — portable `onedir` bundle with `_internal/`, launchers, frontend and sounds.
 
 Both assets include `LICENSE-APACHE.txt` (Apache 2.0) and `LICENSE-ORACLE.txt` (Oracle UPL), both in English. The executable is unsigned; Windows SmartScreen may ask once until download reputation builds.
 
