@@ -352,11 +352,14 @@ def optimize_ram(log=print):
         except:
             pass
         
-        # Calcular memoria liberada
+        # Calcular memoria liberada y reportarla a stats
         ram_after = psutil.virtual_memory().used / (1024 * 1024)
         actual_freed = max(0, ram_before - ram_after)
-        
-        log(_("ram_optimized").format(processes_optimized, actual_freed), 
+
+        if stats is not None:
+            stats.space_freed_mb += actual_freed
+
+        log(_("ram_optimized").format(processes_optimized, actual_freed),
             "success"
         )
         
