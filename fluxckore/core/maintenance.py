@@ -191,7 +191,7 @@ def clean_selected(selected, log=print, stats=None):
     if not wanted:
         return
 
-    for cat_id, _, _ in _CATEGORIES:
+    for cat_id, default_on, risky_on in _CATEGORIES:
         if cat_id not in wanted:
             continue
         try:
