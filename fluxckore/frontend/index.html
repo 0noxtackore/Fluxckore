@@ -350,6 +350,11 @@
         <div class="gauge-value"><span id="tempSize">0.0</span> <small>MB</small></div>
       </div>
       <canvas id="trend"></canvas>
+      <div style="margin-top:2px;font-size:10px;display:flex;gap:4px;justify-content:center;">
+        <button onclick="trendMode='line';drawTrend(stats.trend);" style="font-size:10px;padding:1px 4px;cursor:pointer;">Líneas</button>
+        <button onclick="trendMode='bars';drawTrend(stats.trend);" style="font-size:10px;padding:1px 4px;cursor:pointer;">Barras (OHLC)</button>
+        <button onclick="trendMode='candles';drawTrend(stats.trend);" style="font-size:10px;padding:1px 4px;cursor:pointer;">Velas japonesas</button>
+      </div>
     </div>
   </section>
 
@@ -664,6 +669,7 @@ function drawGauge(value) {
   el.style.color = col;
 }
 
+let trendMode = 'line';
 /* Mini trading chart for the temp trend */
 function drawTrend(data) {
   const cv = $("#trend");
@@ -692,33 +698,68 @@ function drawTrend(data) {
     cv.height - pad - ((v - min) / span) * (cv.height - 2 * pad),
   ]);
 
-  const grad = ctx.createLinearGradient(0, 0, 0, cv.height);
-  grad.addColorStop(0, "rgba(255, 170, 0, .28)");
-  grad.addColorStop(1, "rgba(255, 170, 0, 0)");
-  ctx.fillStyle = grad;
-  ctx.beginPath();
-  ctx.moveTo(xy[0][0], cv.height);
-  xy.forEach(([x, y]) => ctx.lineTo(x, y));
-  ctx.lineTo(xy[xy.length - 1][0], cv.height);
-  ctx.closePath();
-  ctx.fill();
+  if (trendMode === 'bars' || trendMode === 'candles') {
+    const barW = Math.max(4 * d, (cv.width - 2 * pad) / Math.max(pts.length, 1) * 0.7);
+    for (let i = 1; i < pts.length; i++) {
+      const x = pad + (i / (pts.length - 1)) * (cv.width - 2 * pad);
+      const open = pts[i - 1];
+      const close = pts[i];
+      const high = Math.max(open, close, pts[i] * 1.05, pts[i - 1] * 1.05);
+      const low = Math.min(open, close, pts[i] * 0.95, pts[i - 1] * 0.95);
+      const yHigh = cv.height - pad - ((high - min) / span) * (cv.height - 2 * pad);
+      const yLow = cv.height - pad - ((low - min) / span) * (cv.height - 2 * pad);
+      const yOpen = cv.height - pad - ((open - min) / span) * (cv.height - 2 * pad);
+      const yClose = cv.height - pad - ((close - min) / span) * (cv.height - 2 * pad);
+      if (trendMode === 'bars') {
+        ctx.strokeStyle = close >= open ? '#00e676' : '#ff5252';
+        ctx.lineWidth = 2 * d;
+        ctx.beginPath();
+        ctx.moveTo(x, yHigh); ctx.lineTo(x, yLow); ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x - barW / 2, yOpen); ctx.lineTo(x + barW / 2, yOpen); ctx.stroke();
+      } else {
+        // candlestick
+        const bodyTop = Math.min(yOpen, yClose);
+        const bodyBot = Math.max(yOpen, yClose);
+        ctx.fillStyle = close >= open ? '#00e676' : '#ff5252';
+        ctx.fillRect(x - barW / 2, bodyTop, barW, bodyBot - bodyTop);
+        ctx.strokeStyle = close >= open ? '#00e676' : '#ff5252';
+        ctx.lineWidth = 1 * d;
+        ctx.beginPath();
+        ctx.moveTo(x, yHigh); ctx.lineTo(x, bodyTop); ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x, bodyBot); ctx.lineTo(x, yLow); ctx.stroke();
+      }
+    }
+  } else {
+    const grad = ctx.createLinearGradient(0, 0, 0, cv.height);
+    grad.addColorStop(0, "rgba(255, 170, 0, .28)");
+    grad.addColorStop(1, "rgba(255, 170, 0, 0)");
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.moveTo(xy[0][0], cv.height);
+    xy.forEach(([x, y]) => ctx.lineTo(x, y));
+    ctx.lineTo(xy[xy.length - 1][0], cv.height);
+    ctx.closePath();
+    ctx.fill();
 
-  ctx.strokeStyle = "#ffaa00";
-  ctx.lineWidth = 1.8 * d;
-  ctx.lineJoin = "round";
-  ctx.shadowColor = "#ffaa00";
-  ctx.shadowBlur = 6 * d;
-  ctx.beginPath();
-  ctx.moveTo(xy[0][0], xy[0][1]);
-  for (let i = 1; i < xy.length; i++) ctx.lineTo(xy[i][0], xy[i][1]);
-  ctx.stroke();
-  ctx.shadowBlur = 0;
+    ctx.strokeStyle = "#ffaa00";
+    ctx.lineWidth = 1.8 * d;
+    ctx.lineJoin = "round";
+    ctx.shadowColor = "#ffaa00";
+    ctx.shadowBlur = 6 * d;
+    ctx.beginPath();
+    ctx.moveTo(xy[0][0], xy[0][1]);
+    for (let i = 1; i < xy.length; i++) ctx.lineTo(xy[i][0], xy[i][1]);
+    ctx.stroke();
+    ctx.shadowBlur = 0;
 
-  const [dx, dy] = xy[xy.length - 1];
-  ctx.fillStyle = "#ffaa00";
-  ctx.beginPath();
-  ctx.arc(dx, dy, 3.2 * d, 0, Math.PI * 2);
-  ctx.fill();
+    const [dx, dy] = xy[xy.length - 1];
+    ctx.fillStyle = "#ffaa00";
+    ctx.beginPath();
+    ctx.arc(dx, dy, 3.2 * d, 0, Math.PI * 2);
+    ctx.fill();
+  }
 }
 
 /* animation loop: rotating rings + smooth needle.
