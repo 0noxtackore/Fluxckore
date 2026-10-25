@@ -3,7 +3,7 @@
 </p>
 <p align="center">
   <strong>System Maintenance & Optimization Suite for Windows</strong><br>
-  One app. One codebase. Windows 10/11 (x64).
+  One app. One codebase. Windows 10/11 (x64). Not supported on Windows 7/8.
 </p>
 
 <p align="center">
