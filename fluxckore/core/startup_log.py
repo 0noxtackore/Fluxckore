@@ -28,12 +28,13 @@ _MAX_BYTES = 512 * 1024
 
 
 def _candidates():
-    """Folders to try, in order of usefulness for troubleshooting."""
-    if getattr(sys, "frozen", False):
-        yield os.path.dirname(os.path.abspath(sys.executable))
+    """Folders to try, in order of visibility for the user."""
+    # Always prefer LOCALAPPDATA so the user knows where the file is.
     local = os.environ.get("LOCALAPPDATA")
     if local:
         yield os.path.join(local, "Fluxckore")
+    if getattr(sys, "frozen", False):
+        yield os.path.dirname(os.path.abspath(sys.executable))
     yield os.environ.get("TEMP") or os.getcwd()
 
 

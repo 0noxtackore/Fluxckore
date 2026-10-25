@@ -1,25 +1,24 @@
-# Build outputs
+# Compiled output
 build/
 dist/
-application/
-
-# Python
 __pycache__/
-*.py[cod]
-.venv/
-venv/
-env/
+*.pyc
+*.pyo
+
+# PyInstaller
+*.spec~
+*.pkg
+*.app
 
 # IDE / OS
-.vscode/
 .idea/
+.vscode/
 .DS_Store
 Thumbs.db
 
-# Logs & local config
-*.log
-activity_log.txt
-config.json
+# Logs
+fluxckore-startup.log
+*.old-log
 
-# Generated at build time (packaging/make_version_info.py)
-packaging/version_info.txt
+# Version resource tmp
+version_info.tmp

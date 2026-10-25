@@ -9,7 +9,8 @@
 <p align="center">
   <img src="https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white" alt="Windows">
   <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10+">
-  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License">
+  <img src="https://img.shields.io/badge/License-Apache%202.0-blue?style=for-the-badge&logo=apache" alt="Apache 2.0">
+  <img src="https://img.shields.io/badge/License-Oracle%20UPL-blue?style=for-the-badge&logo=oracle" alt="Oracle UPL">
 </p>
 
 ---
@@ -55,7 +56,7 @@ Output: `dist/Fluxckore/Fluxckore.exe` (onedir bundle).
 To build the Windows installer locally (requires [Inno Setup 6](https://jrsoftware.org/isinfo.php)) — **not published to GitHub Releases**, which ship the portable ZIP only:
 
 ```powershell
-ISCC.exe /DAppVersion=9.0.0 packaging\Fluxckore.iss
+ISCC.exe /DAppVersion=0.16.0 packaging\Fluxckore.iss
 ```
 
 ## Project structure
@@ -77,11 +78,16 @@ Fluxckore/
 
 Fluxckore uses **SemVer** (`MAJOR.MINOR.PATCH`). The version lives in `fluxckore/__init__.py`.
 
-Releases are **tag-driven**: pushing a tag like `v9.0.0` triggers the CI workflow, which builds the executable and publishes a GitHub Release with the portable ZIP. There are no scheduled rebuilds — a new binary only exists when there is a real change.
+Releases are **tag-driven**: pushing a tag like `v0.16.0` triggers the CI workflow (see `.github/workflows/build.yml`), which builds both `onedir` (`Fluxckore.exe` + `_internal/`) and the single-file `.exe`, then attaches both to a GitHub Release. There are no scheduled rebuilds — new binaries only exist when there is a real change.
 
 ## Releases & distribution
 
-GitHub Releases contain **only a portable ZIP** (`Fluxckore-<version>-portable.zip`) — no `.exe` installer is attached.
+GitHub Releases contain **both portable and single-file assets** (`v0.16.0` is current):
+
+- `Fluxckore-v0.16.0.exe` — single-file executable (self-contained, no `_internal` folder required).
+- `Fluxckore-v0.16.0-Windows-x64.zip` — portable `onedir` bundle with `_internal/`, launchers, frontend and sounds.
+
+Both assets include `LICENSE-APACHE.txt` (Apache 2.0) and `LICENSE-ORACLE.txt` (Oracle UPL), both in English. The executable is unsigned; Windows SmartScreen may ask once until download reputation builds.
 
 This is intentional: the executable is **unsigned**, so Microsoft Defender / SmartScreen shows execution warnings until a code-signing license is purchased. Shipping only the ZIP keeps the release surface free of `.exe` assets that trigger those warnings/errors.
 
@@ -120,8 +126,8 @@ Fluxckore needs the **Microsoft Edge WebView2 Runtime** (preinstalled on Windows
 
 Every launch writes a timestamped log of each startup phase:
 
-- `fluxckore-startup.log` next to `Fluxckore.exe` (or in `%LOCALAPPDATA%\Fluxckore\` when that folder is read-only).
-- `fluxckore.log` (raw stderr from WebView2/pythonnet, same folder).
+- Startup log (`fluxckore-startup.log`) is written to `%LOCALAPPDATA%\Fluxckore\` (visible, known location), falling back to the executable folder only if unreadable.
+- `fluxckore.log` (WebView2 stderr) uses the same folder.
 
 If the window still does not open, send the diagnostic file: Fluxckore copies the log to your **Desktop** as `Fluxckore-DIAGNOSTICO.txt` when startup fails, and the error message tells you so. That file shows the exact phase where the launch stopped.
 
@@ -134,7 +140,7 @@ Useful environment overrides (no commands needed for normal use):
 
 ## License
 
-[MIT License](LICENSE) — Copyright (c) 2026 Fluxckore Team.
+[Apache License 2.0](LICENSE-APACHE.txt) · [Oracle Universal Permissive License v1.0](LICENSE-ORACLE.txt) — Copyright (c) 2026 Fluxckore Team.
 
 ---
 
