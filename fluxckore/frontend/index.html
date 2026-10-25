@@ -588,32 +588,43 @@ function scaleMax(mb) {
 }
 
 function drawGauge(value) {
-  const cv = document.getElementById("gauge");
-  const ctx = cv.getContext("2d");
-  const d = window.devicePixelRatio || 1;
-  const W = cv.width, H = cv.height;
-  ctx.clearRect(0, 0, W, H);
-  ctx.fillStyle = "#0b1120"; ctx.fillRect(0, 0, W, H);
-  ctx.strokeStyle = "rgba(255,255,255,.08)"; ctx.lineWidth = 0.5 * d;
-  for (let i = 1; i < 4; i++) {
-    const y = (H / 4) * i; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+  const cv = $("#gauge");
+  const ctx = fit(cv);
+  const d = dpr();
+  const cx = cv.width / 2, cy = cv.height * 0.86;
+  const R = Math.min(cv.width * 0.42, cv.height * 0.78);
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  const zones = [
+    [0, 0.4, "#00ff88"],
+    [0.4, 0.7, "#ffaa00"],
+    [0.7, 1, "#ff3333"],
+  ];
+  for (const [a, b, col] of zones) {
+    ctx.strokeStyle = col;
+    ctx.lineWidth = 6 * d;
+    ctx.globalAlpha = 0.8;
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, Math.PI + a * Math.PI, Math.PI + b * Math.PI);
+    ctx.stroke();
+    ctx.globalAlpha = 1;
   }
-  const base = value || 20;
-  const pts = [base * 0.6, base * 0.8, base * 0.95, base, base * 1.05, base * 0.9, base * 1.1, base];
-  const minV = Math.min(...pts), maxV = Math.max(...pts);
-  const span = maxV - minV || 1;
-  const pad = 10 * d;
-  const points = pts.map((v, i) => ({ x: pad + (i / (pts.length - 1)) * (W - 2 * pad), y: H - pad - ((v - minV) / span) * (H - 2 * pad), v }));
-  const grad = ctx.createLinearGradient(0, 0, 0, H);
-  grad.addColorStop(0, "rgba(0,212,255,.25)"); grad.addColorStop(0.6, "rgba(0,212,255,.08)"); grad.addColorStop(1, "rgba(0,212,255,0)");
-  ctx.fillStyle = grad;
-  ctx.beginPath(); ctx.moveTo(points[0].x, H); points.forEach(p => ctx.lineTo(p.x, p.y)); ctx.lineTo(points[points.length-1].x, H); ctx.closePath(); ctx.fill();
-  ctx.strokeStyle = "#00d4ff"; ctx.lineWidth = 2 * d; ctx.lineJoin = "round"; ctx.shadowColor = "#00d4ff"; ctx.shadowBlur = 6 * d;
-  ctx.beginPath(); ctx.moveTo(points[0].x, points[0].y); for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y); ctx.stroke(); ctx.shadowBlur = 0;
-  ctx.fillStyle = "#fff";
-  for (const p of points) { ctx.beginPath(); ctx.arc(p.x, p.y, 2.5 * d, 0, Math.PI * 2); ctx.fill(); }
-  ctx.fillStyle = "#fff3e0"; ctx.font = 9 * d + "px Consolas"; ctx.textAlign = "left";
-  ctx.fillText("Temp: " + Math.round(points[points.length-1].v) + " MB", 10, 14);
+  const frac = Math.min(value / 500, 1);
+  const col = frac < 0.4 ? "#00ff88" : frac < 0.7 ? "#ffaa00" : "#ff3333";
+  const a = Math.PI + frac * Math.PI;
+  const nx = cx + Math.cos(a) * (R - 16 * d), ny = cy + Math.sin(a) * (R - 16 * d);
+  ctx.strokeStyle = "rgba(230, 250, 255, .95)";
+  ctx.lineWidth = 2 * d;
+  ctx.shadowColor = col;
+  ctx.shadowBlur = 12 * d;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.lineTo(nx, ny);
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+  ctx.fillStyle = col;
+  ctx.beginPath();
+  ctx.arc(nx, ny, 3.5 * d, 0, Math.PI * 2);
+  ctx.fill();
 }}
 
 /* Mini trading chart for the temp trend */
