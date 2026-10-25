@@ -591,40 +591,77 @@ function drawGauge(value) {
   const cv = $("#gauge");
   const ctx = fit(cv);
   const d = dpr();
-  const cx = cv.width / 2, cy = cv.height * 0.86;
-  const R = Math.min(cv.width * 0.42, cv.height * 0.78);
-  ctx.clearRect(0, 0, cv.width, cv.height);
-  const zones = [
-    [0, 0.4, "#00ff88"],
-    [0.4, 0.7, "#ffaa00"],
-    [0.7, 1, "#ff3333"],
-  ];
-  for (const [a, b, col] of zones) {
-    ctx.strokeStyle = col;
-    ctx.lineWidth = 6 * d;
-    ctx.globalAlpha = 0.8;
+  const W = cv.width, H = cv.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const padX = 8 * d;
+  const barH = Math.max(14 * d, H * 0.20);
+  const barY = H * 0.42;
+  const barW = W - padX * 2;
+
+  const maxVal = gaugeMax || scaleMax(value || 0);
+  const frac = Math.max(0, Math.min((value || 0) / maxVal, 1));
+
+  // Track
+  ctx.fillStyle = "rgba(255,255,255,.07)";
+  ctx.fillRect(padX, barY, barW, barH);
+  ctx.strokeStyle = "rgba(0,212,255,.25)";
+  ctx.lineWidth = 1 * d;
+  ctx.strokeRect(padX, barY, barW, barH);
+
+  // Fill gradient green -> amber -> red
+  const grad = ctx.createLinearGradient(padX, 0, padX + barW, 0);
+  grad.addColorStop(0.0, "#00e676");
+  grad.addColorStop(0.5, "#ffaa00");
+  grad.addColorStop(1.0, "#ff1744");
+  ctx.fillStyle = grad;
+  ctx.fillRect(padX, barY, barW * frac, barH);
+
+  // Zone separators (40% / 70%)
+  ctx.strokeStyle = "rgba(4,6,12,.75)";
+  ctx.lineWidth = 1.5 * d;
+  for (const z of [0.4, 0.7]) {
+    const x = padX + barW * z;
     ctx.beginPath();
-    ctx.arc(cx, cy, R, Math.PI + a * Math.PI, Math.PI + b * Math.PI);
+    ctx.moveTo(x, barY);
+    ctx.lineTo(x, barY + barH);
     ctx.stroke();
-    ctx.globalAlpha = 1;
   }
-  const frac = Math.min(value / 500, 1);
-  const col = frac < 0.4 ? "#00ff88" : frac < 0.7 ? "#ffaa00" : "#ff3333";
-  const a = Math.PI + frac * Math.PI;
-  const nx = cx + Math.cos(a) * (R - 16 * d), ny = cy + Math.sin(a) * (R - 16 * d);
-  ctx.strokeStyle = "rgba(230, 250, 255, .95)";
-  ctx.lineWidth = 2 * d;
-  ctx.shadowColor = col;
-  ctx.shadowBlur = 12 * d;
-  ctx.beginPath();
-  ctx.moveTo(cx, cy);
-  ctx.lineTo(nx, ny);
-  ctx.stroke();
-  ctx.shadowBlur = 0;
-  ctx.fillStyle = col;
-  ctx.beginPath();
-  ctx.arc(nx, ny, 3.5 * d, 0, Math.PI * 2);
-  ctx.fill();
+
+  // Scale ticks
+  ctx.strokeStyle = "rgba(120,150,190,.45)";
+  ctx.lineWidth = 1 * d;
+  for (let i = 1; i < 10; i++) {
+    const x = padX + (barW / 10) * i;
+    const len = (i % 2 === 0) ? 5 * d : 3 * d;
+    ctx.beginPath();
+    ctx.moveTo(x, barY + barH + 2 * d);
+    ctx.lineTo(x, barY + barH + 2 * d + len);
+    ctx.stroke();
+  }
+
+  // Current value marker
+  const mx = padX + barW * frac;
+  ctx.fillStyle = "#e8f6ff";
+  ctx.fillRect(mx - 1.2 * d, barY - 4 * d, 2.4 * d, barH + 8 * d);
+
+  // Labels
+  const current = Math.round((value || 0) * 10) / 10;
+  const pct = Math.round(frac * 100);
+  ctx.fillStyle = "#00d4ff";
+  ctx.font = "bold " + 13 * d + "px Consolas";
+  ctx.textAlign = "left";
+  ctx.fillText(current + " MB", padX, barY - 10 * d);
+  ctx.fillStyle = "#5f7894";
+  ctx.font = 9 * d + "px Consolas";
+  ctx.textAlign = "right";
+  ctx.fillText(pct + "%", padX + barW, barY - 10 * d);
+
+  ctx.textAlign = "left";
+  ctx.fillStyle = "#5f7894";
+  ctx.fillText("0", padX, barY + barH + 16 * d);
+  ctx.textAlign = "right";
+  ctx.fillText(maxVal + " MB", padX + barW, barY + barH + 16 * d);
 }
 
 /* Mini trading chart for the temp trend */
