@@ -616,6 +616,47 @@ function drawGauge(value) {
   ctx.fillText("Temp: " + Math.round(points[points.length-1].v) + " MB", 10, 14);
 }}
 
+/* Mini trading chart for the temp trend */
+function drawTrend(data) {
+  const cv = $("#trend");
+  const ctx = fit(cv);
+  const d = dpr();
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  const pts = data || [];
+  if (!pts.length || pts.every((v) => v === 0)) return;
+  const max = Math.max(...pts), min = Math.min(...pts);
+  const pad = 6 * d, span = max - min || 1;
+  const xy = pts.map((v, i) => [
+    pad + (i / (pts.length - 1)) * (cv.width - 2 * pad),
+    cv.height - pad - ((v - min) / span) * (cv.height - 2 * pad),
+  ]);
+  const grad = ctx.createLinearGradient(0, 0, 0, cv.height);
+  grad.addColorStop(0, "rgba(255, 170, 0, .28)");
+  grad.addColorStop(1, "rgba(255, 170, 0, 0)");
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.moveTo(xy[0][0], cv.height);
+  xy.forEach(([x, y]) => ctx.lineTo(x, y));
+  ctx.lineTo(xy[xy.length - 1][0], cv.height);
+  ctx.closePath();
+  ctx.fill();
+  ctx.strokeStyle = "#ffaa00";
+  ctx.lineWidth = 1.8 * d;
+  ctx.lineJoin = "round";
+  ctx.shadowColor = "#ffaa00";
+  ctx.shadowBlur = 6 * d;
+  ctx.beginPath();
+  ctx.moveTo(xy[0][0], xy[0][1]);
+  for (let i = 1; i < xy.length; i++) ctx.lineTo(xy[i][0], xy[i][1]);
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+  const [dx, dy] = xy[xy.length - 1];
+  ctx.fillStyle = "#ffaa00";
+  ctx.beginPath();
+  ctx.arc(dx, dy, 3.2 * d, 0, Math.PI * 2);
+  ctx.fill();
+}
+
 /* animation loop: rotating rings + smooth needle.
    Throttled to ~30 fps and paused while the window is minimized/hidden: the
    HUD used to repaint three canvases 60 times per second forever, which kept
