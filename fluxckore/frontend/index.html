@@ -591,92 +591,136 @@ function drawGauge(value) {
   const cv = $("#gauge");
   const ctx = fit(cv);
   const d = dpr();
-  const W = cv.width, H = cv.height;
-  ctx.clearRect(0, 0, W, H);
-  const bg = ctx.createLinearGradient(0, 0, 0, H);
-  bg.addColorStop(0, "#091a2e"); bg.addColorStop(1, "#061020");
-  ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
-  ctx.strokeStyle = "rgba(0,212,255,.1)"; ctx.lineWidth = 0.6 * d;
-  for (let i = 1; i < 5; i++) {
-    const y = (H / 5) * i; ctx.beginPath(); ctx.moveTo(8, y); ctx.lineTo(W - 8, y); ctx.stroke();
-  }
-  const base = value || 20;
-  const pts = [base * 0.65, base * 0.85, base * 1.0, base * 1.15, base, base * 0.9, base * 1.1, base * 0.75];
-  const maxV = Math.max(...pts), minV = Math.min(...pts);
-  const span = maxV - minV || 1; const pad = 10 * d;
-  const points = pts.map((v, i) => {
-    return { x: pad + (i / (pts.length - 1)) * (W - 2 * pad), y: H - pad - ((v - minV) / span) * (H - 2 * pad), v };
-  });
-  ctx.strokeStyle = "#00d4ff"; ctx.lineWidth = 2.2 * d; ctx.lineJoin = "round";
-  ctx.shadowColor = "#00d4ff"; ctx.shadowBlur = 6 * d;
-  ctx.beginPath(); ctx.moveTo(points[0].x, points[0].y);
-  for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
-  ctx.stroke(); ctx.shadowBlur = 0;
-  ctx.fillStyle = "#fff";
-  for (let i = 1; i < points.length; i++) {
-    const prev = points[i - 1], curr = points[i];
-    const ang = Math.atan2(curr.y - prev.y, curr.x - prev.x);
-    const tip = 5 * d;
-    ctx.fillStyle = "#ffaa00";
+  const cx = cv.width / 2, cy = cv.height * 0.86;
+  const R = Math.min(cv.width * 0.42, cv.height * 0.78);
+  ctx.clearRect(0, 0, cv.width, cv.height);
+
+  const zones = [
+    [0, 0.4, "#00ff88"],
+    [0.4, 0.7, "#ffaa00"],
+    [0.7, 1, "#ff3333"],
+  ];
+  for (const [a, b, col] of zones) {
+    ctx.strokeStyle = col;
+    ctx.lineWidth = 6 * d;
+    ctx.globalAlpha = 0.8;
     ctx.beginPath();
-    ctx.moveTo(curr.x - tip * Math.cos(ang + 0.35), curr.y - tip * Math.sin(ang + 0.35));
-    ctx.lineTo(curr.x, curr.y);
-    ctx.lineTo(curr.x - tip * Math.cos(ang - 0.35), curr.y - tip * Math.sin(ang - 0.35));
-    ctx.fill();
+    ctx.arc(cx, cy, R, Math.PI + a * Math.PI, Math.PI + b * Math.PI);
+    ctx.stroke();
+    ctx.globalAlpha = 1;
   }
-  for (const p of points) {
-    ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(p.x, p.y, 2.2 * d, 0, Math.PI * 2); ctx.fill();
+
+  const n = 28;
+  ctx.lineWidth = 1.4 * d;
+  // Two batched paths (major/minor) instead of 29 individual strokes.
+  for (const major of [false, true]) {
+    ctx.strokeStyle = major ? "rgba(0, 212, 255, .75)" : "rgba(120, 150, 190, .3)";
+    ctx.beginPath();
+    for (let i = 0; i <= n; i++) {
+      if ((i % 7 === 0) !== major) continue;
+      const frac = i / n, a = Math.PI + frac * Math.PI;
+      const r1 = R - 10 * d, r2 = r1 - (major ? 8 * d : 4 * d);
+      ctx.moveTo(cx + Math.cos(a) * r1, cy + Math.sin(a) * r1);
+      ctx.lineTo(cx + Math.cos(a) * r2, cy + Math.sin(a) * r2);
+    }
+    ctx.stroke();
   }
-  ctx.fillStyle = "#fff3e0"; ctx.font = 9 * d + "px Consolas"; ctx.textAlign = "left";
-  ctx.fillText(Math.round(points[points.length - 1].v) + " MB", W - 56, 14);
+
+  ctx.fillStyle = "#46627e";
+  ctx.font = 9 * d + "px Consolas";
+  ctx.textAlign = "center";
+  ctx.fillText("0", cx - R + 4 * d, cy + 13 * d);
+  ctx.fillText(String(gaugeMax), cx + R - 4 * d, cy + 13 * d);
+
+  const frac = Math.min(value / gaugeMax, 1);
+  const col = frac < 0.4 ? "#00ff88" : frac < 0.7 ? "#ffaa00" : "#ff3333";
+  const a = Math.PI + frac * Math.PI;
+  const nx = cx + Math.cos(a) * (R - 16 * d), ny = cy + Math.sin(a) * (R - 16 * d);
+
+  ctx.strokeStyle = "rgba(230, 250, 255, .95)";
+  ctx.lineWidth = 2 * d;
+  ctx.shadowColor = col;
+  ctx.shadowBlur = 12 * d;
+  ctx.beginPath();
+  ctx.moveTo(cx, cy);
+  ctx.lineTo(nx, ny);
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  ctx.fillStyle = col;
+  ctx.beginPath();
+  ctx.arc(nx, ny, 3.5 * d, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = "#050a14";
+  ctx.strokeStyle = "rgba(0, 212, 255, .85)";
+  ctx.lineWidth = 1.5 * d;
+  ctx.beginPath();
+  ctx.arc(cx, cy, 7 * d, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+
+  const el = $(".gauge-value");
+  el.style.color = col;
 }
 
 /* Mini trading chart for the temp trend */
 function drawTrend(data) {
-  const cv = document.getElementById("trend");
-  const ctx = cv.getContext("2d");
-  const d = window.devicePixelRatio || 1;
-  const W = cv.width, H = cv.height;
-  ctx.clearRect(0, 0, W, H);
+  const cv = $("#trend");
+  const ctx = fit(cv);
+  const d = dpr();
+  ctx.clearRect(0, 0, cv.width, cv.height);
+
+  ctx.strokeStyle = "rgba(0, 212, 255, .12)";
+  ctx.lineWidth = d;
+  ctx.setLineDash([3 * d, 5 * d]);
+  for (let i = 1; i < 3; i++) {
+    const y = (cv.height / 3) * i;
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(cv.width, y);
+    ctx.stroke();
+  }
+  ctx.setLineDash([]);
+
   const pts = data || [];
-  if (!pts.length) return;
+  if (!pts.length || pts.every((v) => v === 0)) return;
   const max = Math.max(...pts), min = Math.min(...pts);
-  const span = max - min || 1;
-  // Background grid
-  ctx.lineWidth = 0.5 * d; ctx.strokeStyle = "rgba(0,212,255,.12)";
-  for (let i = 1; i < 5; i++) {
-    const y = (H / 5) * i; ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
-  }
-  // Many bars green/red
-  const n = pts.length;
-  const barW = (W - 16) / Math.max(n, 1) * 0.75;
-  for (let i = 1; i < n; i++) {
-    const prev = pts[i - 1], curr = pts[i];
-    const x = 8 + i * ((W - 16) / n) + ((W - 16) / n - barW) / 2;
-    const h = Math.abs(curr - prev) / span * (H - 20);
-    const y = H - 10 - h;
-    const up = curr >= prev;
-    ctx.fillStyle = up ? "#00c853" : "#ff1744";
-    ctx.fillRect(x, y, barW, h);
-    ctx.strokeStyle = up ? "#00e676" : "#ff5252"; ctx.lineWidth = 0.5 * d;
-    ctx.strokeRect(x, y, barW, h);
-  }
-  // Trend line over bars
-  const points = pts.map((v, i) => ({ x: 8 + (i / (n - 1 || 1)) * (W - 16), y: H - 10 - ((v - min) / span) * (H - 20) }));
-  ctx.strokeStyle = "#00d4ff"; ctx.lineWidth = 2.2 * d; ctx.lineJoin = "round";
-  ctx.shadowColor = "#00d4ff"; ctx.shadowBlur = 5 * d;
-  ctx.beginPath(); ctx.moveTo(points[0].x, points[0].y);
-  for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
-  ctx.stroke(); ctx.shadowBlur = 0;
-  // Dots
-  ctx.fillStyle = "#fff";
-  for (const p of points) { ctx.beginPath(); ctx.arc(p.x, p.y, 2.5 * d, 0, Math.PI * 2); ctx.fill(); }
-  // Arrow at end
-  const [lx, ly] = [points[points.length - 1].x, points[points.length - 1].y];
-  ctx.fillStyle = "#ffaa00"; ctx.beginPath(); ctx.arc(lx, ly, 3.2 * d, 0, Math.PI * 2); ctx.fill();
-  ctx.fillStyle = "#fff3e0"; ctx.font = 9 * d + "px Consolas"; ctx.textAlign = "left";
-  ctx.fillText(Math.round(pts[pts.length - 1]) + " MB", lx + 8, ly - 2);
+  const pad = 6 * d, span = max - min || 1;
+  const xy = pts.map((v, i) => [
+    pad + (i / (pts.length - 1)) * (cv.width - 2 * pad),
+    cv.height - pad - ((v - min) / span) * (cv.height - 2 * pad),
+  ]);
+
+  const grad = ctx.createLinearGradient(0, 0, 0, cv.height);
+  grad.addColorStop(0, "rgba(255, 170, 0, .28)");
+  grad.addColorStop(1, "rgba(255, 170, 0, 0)");
+  ctx.fillStyle = grad;
+  ctx.beginPath();
+  ctx.moveTo(xy[0][0], cv.height);
+  xy.forEach(([x, y]) => ctx.lineTo(x, y));
+  ctx.lineTo(xy[xy.length - 1][0], cv.height);
+  ctx.closePath();
+  ctx.fill();
+
+  ctx.strokeStyle = "#ffaa00";
+  ctx.lineWidth = 1.8 * d;
+  ctx.lineJoin = "round";
+  ctx.shadowColor = "#ffaa00";
+  ctx.shadowBlur = 6 * d;
+  ctx.beginPath();
+  ctx.moveTo(xy[0][0], xy[0][1]);
+  for (let i = 1; i < xy.length; i++) ctx.lineTo(xy[i][0], xy[i][1]);
+  ctx.stroke();
+  ctx.shadowBlur = 0;
+
+  const [dx, dy] = xy[xy.length - 1];
+  ctx.fillStyle = "#ffaa00";
+  ctx.beginPath();
+  ctx.arc(dx, dy, 3.2 * d, 0, Math.PI * 2);
+  ctx.fill();
 }
+
 /* animation loop: rotating rings + smooth needle.
    Throttled to ~30 fps and paused while the window is minimized/hidden: the
    HUD used to repaint three canvases 60 times per second forever, which kept
