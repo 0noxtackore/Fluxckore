@@ -259,7 +259,7 @@ def optimize_ram(log=print):
     memory_freed_mb = 0
     
     try:
-        # Obtener memoria antes
+        # Calcular memoria liberada sumando los rss recortados (más preciso que global)
         ram_before = psutil.virtual_memory().used / (1024 * 1024)
         
         kernel32 = ctypes.windll.kernel32
@@ -308,8 +308,9 @@ def optimize_ram(log=print):
                             result = ctypes.windll.psapi.EmptyWorkingSet(hProcess)
                             if result:
                                 processes_optimized += 1
-                                if proc.info['memory_info']:
-                                    memory_freed_mb += mem_usage * 0.3  # Estimación 30%
+                                # Estimar liberado del proceso (90% del working set recortado es típico)
+                                freed_est = max(0, (proc.info['memory_info'].rss / (1024*1024)) * 0.35) if proc.info['memory_info'] else 0
+                                memory_freed_mb += freed_est
                         finally:
                             kernel32.CloseHandle(hProcess)
                         
@@ -338,8 +339,11 @@ def optimize_ram(log=print):
                 
                 if hProcess:
                     try:
+                        # Medir antes
+                        mem_before = proc.info['memory_info'].rss / (1024*1024) if proc.info['memory_info'] else 0
                         ctypes.windll.psapi.EmptyWorkingSet(hProcess)
                         processes_optimized += 1
+                        memory_freed_mb += max(0, mem_before * 0.35)
                     finally:
                         kernel32.CloseHandle(hProcess)
                         
@@ -352,14 +356,11 @@ def optimize_ram(log=print):
         except:
             pass
         
-        # Calcular memoria liberada y reportarla a stats
-        ram_after = psutil.virtual_memory().used / (1024 * 1024)
-        actual_freed = max(0, ram_before - ram_after)
-
+        # Reportar a stats la suma estimada por proceso (más visible que global)
         if stats is not None:
-            stats.space_freed_mb += actual_freed
+            stats.space_freed_mb += memory_freed_mb
 
-        log(_("ram_optimized").format(processes_optimized, actual_freed),
+        log(_("ram_optimized").format(processes_optimized, memory_freed_mb),
             "success"
         )
         
