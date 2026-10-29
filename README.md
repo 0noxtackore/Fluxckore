@@ -21,6 +21,10 @@ Fluxckore (formerly Fluxop) is a Windows system maintenance suite built with Pyt
 
 There is **one edition** of Fluxckore. Features evolve in place — no PRO/Beta/Enterprise splits, no parallel codebases.
 
+<p align="center">
+  <img src="assets/images/screenshots/screen_one.png" alt="Overview screenshot" width="80%">
+</p>
+
 ## Features
 
 - **Real-time monitoring** — CPU load, RAM usage and temp-file size with animated charts and trend lines
@@ -29,6 +33,10 @@ There is **one edition** of Fluxckore. Features evolve in place — no PRO/Beta/
 - **Registry maintenance** — basic registry cleanup
 - **104 languages** — automatic detection from Windows UI language, system locale or keyboard layout
 - **Admin auto-elevation** — the window opens without asking for permission; Windows asks once, only when a cleanup starts, and only for the cleanup itself
+
+<p align="center">
+  <img src="assets/images/screenshots/screen_two.png" alt="Features screenshot" width="80%">
+</p>
 
 ## Requirements
 
