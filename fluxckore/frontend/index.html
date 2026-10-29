@@ -810,6 +810,7 @@ function fillLangSelect() {
   sel.onchange = async () => {
     const r = await pywebview.api.set_language(sel.value);
     if (r && r.ok) {
+      I.lang = r.lang || sel.value;
       I.translations = r.translations;
       applyLang();
     }
