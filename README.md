@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/images/logo_solid.jpg" alt="Fluxckore" width="716">
+  <img src="assets/images/logo_solid.jpg" alt="Fluxckore" width="100%">
 </p>
 <p align="center">
   <strong>System Maintenance & Optimization Suite for Windows</strong><br>
