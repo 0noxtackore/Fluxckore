@@ -105,4 +105,4 @@ jobs:
             --notes "Fluxckore ${{ steps.version.outputs.version }}" \
             --verify-tag \
             "dist/Fluxckore-${{ steps.version.outputs.version }}-portable.zip" \
-            "dist/Fluxckore-v0.17.0.exe"
+            "dist/Fluxckore-app/Fluxckore-v0.17.0.exe"
