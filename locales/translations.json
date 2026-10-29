@@ -65,7 +65,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "es": {
@@ -134,7 +135,8 @@
       "cat_recycle": "Papelera de reciclaje",
       "cat_registry": "Registro (MRU)",
       "cat_ram_optimize": "Optimizar RAM",
-      "cat_cpu_optimize": "Optimizar CPU / procesos"
+      "cat_cpu_optimize": "Optimizar CPU / procesos",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "fr": {
@@ -203,7 +205,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "de": {
@@ -272,7 +275,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "pt": {
@@ -341,7 +345,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "it": {
@@ -410,7 +415,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ru": {
@@ -479,7 +485,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ja": {
@@ -548,7 +555,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "zh": {
@@ -617,7 +625,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ko": {
@@ -686,7 +695,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ar": {
@@ -755,7 +765,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "hi": {
@@ -824,7 +835,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "nl": {
@@ -893,7 +905,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "pl": {
@@ -962,7 +975,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "tr": {
@@ -1031,7 +1045,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "sv": {
@@ -1100,7 +1115,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "cs": {
@@ -1169,7 +1185,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "el": {
@@ -1238,7 +1255,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "he": {
@@ -1307,7 +1325,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "th": {
@@ -1376,7 +1395,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "vi": {
@@ -1445,7 +1465,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "id": {
@@ -1514,7 +1535,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ms": {
@@ -1583,7 +1605,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ro": {
@@ -1652,7 +1675,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "hu": {
@@ -1721,7 +1745,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "da": {
@@ -1790,7 +1815,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "fi": {
@@ -1859,7 +1885,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "no": {
@@ -1928,7 +1955,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "uk": {
@@ -1997,7 +2025,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "bg": {
@@ -2066,7 +2095,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "hr": {
@@ -2135,7 +2165,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "sr": {
@@ -2204,7 +2235,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "sk": {
@@ -2273,7 +2305,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "sl": {
@@ -2342,7 +2375,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "lt": {
@@ -2411,7 +2445,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "lv": {
@@ -2480,7 +2515,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "et": {
@@ -2549,7 +2585,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ca": {
@@ -2618,7 +2655,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "eu": {
@@ -2687,7 +2725,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "gl": {
@@ -2756,7 +2795,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "af": {
@@ -2825,7 +2865,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "sq": {
@@ -2894,7 +2935,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "am": {
@@ -2963,7 +3005,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "hy": {
@@ -3032,7 +3075,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "az": {
@@ -3101,7 +3145,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "bn": {
@@ -3170,7 +3215,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "bs": {
@@ -3239,7 +3285,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "my": {
@@ -3308,7 +3355,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ceb": {
@@ -3377,7 +3425,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ny": {
@@ -3446,7 +3495,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "zh-TW": {
@@ -3515,7 +3565,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "co": {
@@ -3584,7 +3635,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "eo": {
@@ -3653,7 +3705,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "tl": {
@@ -3722,7 +3775,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "fy": {
@@ -3791,7 +3845,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ka": {
@@ -3860,7 +3915,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "gu": {
@@ -3929,7 +3985,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ht": {
@@ -3998,7 +4055,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ha": {
@@ -4067,7 +4125,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "haw": {
@@ -4136,7 +4195,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "iw": {
@@ -4205,7 +4265,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "hmn": {
@@ -4274,7 +4335,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "is": {
@@ -4343,7 +4405,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ig": {
@@ -4412,7 +4475,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ga": {
@@ -4481,7 +4545,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "jw": {
@@ -4550,7 +4615,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "kn": {
@@ -4619,7 +4685,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "kk": {
@@ -4688,7 +4755,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "km": {
@@ -4757,7 +4825,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ku": {
@@ -4826,7 +4895,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ky": {
@@ -4895,7 +4965,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "lo": {
@@ -4964,7 +5035,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "la": {
@@ -5033,7 +5105,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "lb": {
@@ -5102,7 +5175,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "mk": {
@@ -5171,7 +5245,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "mg": {
@@ -5240,7 +5315,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ml": {
@@ -5309,7 +5385,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "mt": {
@@ -5378,7 +5455,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "mi": {
@@ -5447,7 +5525,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "mr": {
@@ -5516,7 +5595,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "mn": {
@@ -5585,7 +5665,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ne": {
@@ -5654,7 +5735,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ps": {
@@ -5723,7 +5805,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "fa": {
@@ -5792,7 +5875,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "pa": {
@@ -5861,7 +5945,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "sm": {
@@ -5930,7 +6015,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "gd": {
@@ -5999,7 +6085,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "st": {
@@ -6068,7 +6155,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "sn": {
@@ -6137,7 +6225,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "sd": {
@@ -6206,7 +6295,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "si": {
@@ -6275,7 +6365,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "so": {
@@ -6344,7 +6435,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "su": {
@@ -6413,7 +6505,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "sw": {
@@ -6482,7 +6575,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "tg": {
@@ -6551,7 +6645,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ta": {
@@ -6620,7 +6715,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "te": {
@@ -6689,7 +6785,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "ur": {
@@ -6758,7 +6855,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "uz": {
@@ -6827,7 +6925,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "cy": {
@@ -6896,7 +6995,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "xh": {
@@ -6965,7 +7065,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "yi": {
@@ -7034,7 +7135,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "yo": {
@@ -7103,7 +7205,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   },
   "zu": {
@@ -7172,7 +7275,8 @@
       "cat_recycle": "Recycle bin",
       "cat_registry": "Registry (MRU)",
       "cat_ram_optimize": "Optimize RAM",
-      "cat_cpu_optimize": "Optimize CPU / processes"
+      "cat_cpu_optimize": "Optimize CPU / processes",
+      "cat_cleanmgr": "Disk Cleanup"
     }
   }
 }
