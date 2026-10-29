@@ -17,15 +17,19 @@
 
 ## Overview
 
-Fluxckore (formerly Fluxop) is a Windows system maintenance suite built with Python and a self-contained HTML/CSS interface rendered by pywebview (Edge WebView2). It provides real-time system monitoring, selectable temporary-file cleanup, memory optimization and registry maintenance through a single dark-themed desktop application.
-
-There is **one edition** of Fluxckore. Features evolve in place — no PRO/Beta/Enterprise splits, no parallel codebases.
-
 <p align="center">
   <img src="assets/images/screenshots/screen_one.png" alt="Overview screenshot" width="80%">
 </p>
 
+Fluxckore (formerly Fluxop) is a Windows system maintenance suite built with Python and a self-contained HTML/CSS interface rendered by pywebview (Edge WebView2). It provides real-time system monitoring, selectable temporary-file cleanup, memory optimization and registry maintenance through a single dark-themed desktop application.
+
+There is **one edition** of Fluxckore. Features evolve in place — no PRO/Beta/Enterprise splits, no parallel codebases.
+
 ## Features
+
+<p align="center">
+  <img src="assets/images/screenshots/screen_two.png" alt="Features screenshot" width="80%">
+</p>
 
 - **Real-time monitoring** — CPU load, RAM usage and temp-file size with animated charts and trend lines
 - **One-click maintenance** — temp files, browser caches, DNS cache, system caches, thumbnails, recycle bin
@@ -33,10 +37,6 @@ There is **one edition** of Fluxckore. Features evolve in place — no PRO/Beta/
 - **Registry maintenance** — basic registry cleanup
 - **104 languages** — automatic detection from Windows UI language, system locale or keyboard layout
 - **Admin auto-elevation** — the window opens without asking for permission; Windows asks once, only when a cleanup starts, and only for the cleanup itself
-
-<p align="center">
-  <img src="assets/images/screenshots/screen_two.png" alt="Features screenshot" width="80%">
-</p>
 
 ## Requirements
 
