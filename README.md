@@ -145,5 +145,10 @@ Useful environment overrides (no commands needed for normal use):
 ---
 
 <p align="center">
+  <img src="assets/images/Branding_0noxtackore.png" alt="Branding 0noxtackore" width="400"><br>
+  <strong>Fluxckore forma parte de la empresa tecnológica de 0noxtackore.</strong>
+</p>
+
+<p align="center">
   <strong>Made with precision. Optimized for performance.</strong>
 </p>
