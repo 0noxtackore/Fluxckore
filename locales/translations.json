@@ -52,7 +52,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "es": {
@@ -108,7 +121,20 @@
       "error_dns": "Error DNS: {0}",
       "admin_started": "Ejecutando la limpieza con permisos de administrador...",
       "admin_cancelled": "Se canceló el permiso de administrador: la limpieza no se ejecutó.",
-      "admin_no_answer": "El proceso de limpieza no respondió. Vuelve a intentarlo."
+      "admin_no_answer": "El proceso de limpieza no respondió. Vuelve a intentarlo.",
+      "cat_temp_user": "Temp de usuario",
+      "cat_temp_windows": "Temp de Windows",
+      "cat_updates": "Windows Update",
+      "cat_logs": "Logs del sistema",
+      "cat_explorer": "Caché de Explorer",
+      "cat_gpu_cache": "Caché GPU / shaders",
+      "cat_browsers_cache": "Caché de navegadores",
+      "cat_browsers_storage": "Datos de sesión",
+      "cat_store_cache": "Cachés de apps Store",
+      "cat_recycle": "Papelera de reciclaje",
+      "cat_registry": "Registro (MRU)",
+      "cat_ram_optimize": "Optimizar RAM",
+      "cat_cpu_optimize": "Optimizar CPU / procesos"
     }
   },
   "fr": {
@@ -164,7 +190,20 @@
       "error_dns": "Erreur DNS: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "de": {
@@ -220,7 +259,20 @@
       "error_dns": "DNS-Fehler: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "pt": {
@@ -276,7 +328,20 @@
       "error_dns": "Erro DNS: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "it": {
@@ -332,7 +397,20 @@
       "error_dns": "Errore DNS: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ru": {
@@ -388,7 +466,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ja": {
@@ -444,7 +535,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "zh": {
@@ -500,7 +604,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ko": {
@@ -556,7 +673,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ar": {
@@ -612,7 +742,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "hi": {
@@ -668,7 +811,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "nl": {
@@ -724,7 +880,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "pl": {
@@ -780,7 +949,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "tr": {
@@ -836,7 +1018,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "sv": {
@@ -892,7 +1087,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "cs": {
@@ -948,7 +1156,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "el": {
@@ -1004,7 +1225,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "he": {
@@ -1060,7 +1294,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "th": {
@@ -1116,7 +1363,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "vi": {
@@ -1172,7 +1432,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "id": {
@@ -1228,7 +1501,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ms": {
@@ -1284,7 +1570,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ro": {
@@ -1340,7 +1639,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "hu": {
@@ -1396,7 +1708,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "da": {
@@ -1452,7 +1777,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "fi": {
@@ -1508,7 +1846,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "no": {
@@ -1564,7 +1915,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "uk": {
@@ -1620,7 +1984,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "bg": {
@@ -1676,7 +2053,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "hr": {
@@ -1732,7 +2122,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "sr": {
@@ -1788,7 +2191,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "sk": {
@@ -1844,7 +2260,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "sl": {
@@ -1900,7 +2329,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "lt": {
@@ -1956,7 +2398,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "lv": {
@@ -2012,7 +2467,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "et": {
@@ -2068,7 +2536,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ca": {
@@ -2124,7 +2605,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "eu": {
@@ -2180,7 +2674,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "gl": {
@@ -2236,7 +2743,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "af": {
@@ -2292,7 +2812,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "sq": {
@@ -2348,7 +2881,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "am": {
@@ -2404,7 +2950,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "hy": {
@@ -2460,7 +3019,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "az": {
@@ -2516,7 +3088,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "bn": {
@@ -2572,7 +3157,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "bs": {
@@ -2628,7 +3226,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "my": {
@@ -2684,7 +3295,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ceb": {
@@ -2740,7 +3364,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ny": {
@@ -2796,7 +3433,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "zh-TW": {
@@ -2852,7 +3502,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "co": {
@@ -2908,7 +3571,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "eo": {
@@ -2964,7 +3640,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "tl": {
@@ -3020,7 +3709,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "fy": {
@@ -3076,7 +3778,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ka": {
@@ -3132,7 +3847,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "gu": {
@@ -3188,7 +3916,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ht": {
@@ -3244,7 +3985,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ha": {
@@ -3300,7 +4054,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "haw": {
@@ -3356,7 +4123,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "iw": {
@@ -3412,7 +4192,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "hmn": {
@@ -3468,7 +4261,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "is": {
@@ -3524,7 +4330,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ig": {
@@ -3580,7 +4399,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ga": {
@@ -3636,7 +4468,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "jw": {
@@ -3692,7 +4537,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "kn": {
@@ -3748,7 +4606,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "kk": {
@@ -3804,7 +4675,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "km": {
@@ -3860,7 +4744,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ku": {
@@ -3916,7 +4813,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ky": {
@@ -3972,7 +4882,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "lo": {
@@ -4028,7 +4951,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "la": {
@@ -4084,7 +5020,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "lb": {
@@ -4140,7 +5089,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "mk": {
@@ -4196,7 +5158,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "mg": {
@@ -4252,7 +5227,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ml": {
@@ -4308,7 +5296,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "mt": {
@@ -4364,7 +5365,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "mi": {
@@ -4420,7 +5434,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "mr": {
@@ -4476,7 +5503,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "mn": {
@@ -4532,7 +5572,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ne": {
@@ -4588,7 +5641,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ps": {
@@ -4644,7 +5710,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "fa": {
@@ -4700,7 +5779,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "pa": {
@@ -4756,7 +5848,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "sm": {
@@ -4812,7 +5917,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "gd": {
@@ -4868,7 +5986,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "st": {
@@ -4924,7 +6055,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "sn": {
@@ -4980,7 +6124,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "sd": {
@@ -5036,7 +6193,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "si": {
@@ -5092,7 +6262,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "so": {
@@ -5148,7 +6331,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "su": {
@@ -5204,7 +6400,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "sw": {
@@ -5260,7 +6469,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "tg": {
@@ -5316,7 +6538,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ta": {
@@ -5372,7 +6607,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "te": {
@@ -5428,7 +6676,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "ur": {
@@ -5484,7 +6745,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "uz": {
@@ -5540,7 +6814,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "cy": {
@@ -5596,7 +6883,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "xh": {
@@ -5652,7 +6952,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "yi": {
@@ -5708,7 +7021,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "yo": {
@@ -5764,7 +7090,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   },
   "zu": {
@@ -5820,7 +7159,20 @@
       "error_dns": "DNS Error: {0}",
       "admin_started": "Running the cleanup with administrator rights...",
       "admin_cancelled": "Administrator permission was cancelled: the cleanup did not run.",
-      "admin_no_answer": "The cleanup process did not respond. Please try again."
+      "admin_no_answer": "The cleanup process did not respond. Please try again.",
+      "cat_temp_user": "User temp",
+      "cat_temp_windows": "Windows temp",
+      "cat_updates": "Windows Update",
+      "cat_logs": "System logs",
+      "cat_explorer": "Explorer cache",
+      "cat_gpu_cache": "GPU / shader cache",
+      "cat_browsers_cache": "Browser cache",
+      "cat_browsers_storage": "Session data",
+      "cat_store_cache": "Store app caches",
+      "cat_recycle": "Recycle bin",
+      "cat_registry": "Registry (MRU)",
+      "cat_ram_optimize": "Optimize RAM",
+      "cat_cpu_optimize": "Optimize CPU / processes"
     }
   }
 }
