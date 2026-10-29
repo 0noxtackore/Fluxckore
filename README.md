@@ -120,7 +120,7 @@ the cause is the **Mark of the Web (MOTW)**: Windows marks files downloaded from
 
 Both paths work out of the box for end users.
 
-## Troubleshooting: blank window / "no responde"
+## Troubleshooting: blank window / "not responding"
 
 Fluxckore needs the **Microsoft Edge WebView2 Runtime** (preinstalled on Windows 11 and on virtually every Windows 10). If it is missing, the app now says so in a message box instead of showing a white window. Installer: <https://developer.microsoft.com/microsoft-edge/webview2/>.
 
@@ -145,8 +145,8 @@ Useful environment overrides (no commands needed for normal use):
 ---
 
 <p align="center">
-  <img src="assets/images/Branding_0noxtackore.png" alt="Branding 0noxtackore" width="400"><br>
-  <strong>Fluxckore forma parte de la empresa tecnológica de 0noxtackore.</strong>
+  <img src="assets/images/Branding_0noxtackore.png" alt="Branding 0noxtackore" width="100%"><br>
+  <strong>Fluxckore is part of the 0noxtackore technology company.</strong>
 </p>
 
 <p align="center">
