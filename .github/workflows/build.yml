@@ -67,6 +67,7 @@ jobs:
           Copy-Item -Force packaging/launcher.bat dist/Fluxckore-app/Run-Fluxckore.bat
           Copy-Item -Force packaging/repair.ps1 dist/Fluxckore-app/Repair-Fluxckore.ps1
           Copy-Item -Force packaging/restore.bat dist/Fluxckore-app/Restaurar-Fluxckore.bat
+          Rename-Item -Path "dist/Fluxckore-app/Fluxckore.exe" -NewName "Fluxckore-v0.17.0.exe" -Force
 
       - name: Package zip
         shell: pwsh
@@ -104,4 +105,4 @@ jobs:
             --notes "Fluxckore ${{ steps.version.outputs.version }}" \
             --verify-tag \
             "dist/Fluxckore-${{ steps.version.outputs.version }}-portable.zip" \
-            "dist/Fluxckore-app/Fluxckore.exe"
+            "dist/Fluxckore-v0.17.0.exe"
