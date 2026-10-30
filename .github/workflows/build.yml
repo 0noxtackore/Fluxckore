@@ -68,7 +68,7 @@ jobs:
           Copy-Item -Force packaging/repair.ps1 dist/Fluxckore-app/Repair-Fluxckore.ps1
           Copy-Item -Force packaging/restore.bat dist/Fluxckore-app/Restaurar-Fluxckore.bat
           # Copy the exe directly to its final name (avoids a rename step that can fail)
-          Copy-Item -Force dist/Fluxckore/Fluxckore.exe dist/Fluxckore-app/Fluxckore-v0.17.0.exe
+          Copy-Item -Force dist/Fluxckore/Fluxckore.exe dist/Fluxckore-app/Fluxckore-v0.17.0.exe || Copy-Item -Force dist/Fluxckore.exe dist/Fluxckore-app/Fluxckore-v0.17.0.exe
 
       - name: Package zip
         shell: pwsh
