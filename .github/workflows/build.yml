@@ -58,17 +58,21 @@ jobs:
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path dist/Fluxckore-app | Out-Null
-          Copy-Item -Recurse -Force dist/Fluxckore/* dist/Fluxckore-app/
+          # onefile build outputs dist/Fluxckore.exe; onedir outputs dist/Fluxckore/Fluxckore.exe
+          if (Test-Path "dist/Fluxckore/Fluxckore.exe") {
+            Copy-Item -Force dist/Fluxckore/Fluxckore.exe dist/Fluxckore-app/Fluxckore-v0.17.0.exe
+          } elseif (Test-Path "dist/Fluxckore.exe") {
+            Copy-Item -Force dist/Fluxckore.exe dist/Fluxckore-app/Fluxckore-v0.17.0.exe
+          } else {
+            Write-Error "Fluxckore.exe not found in dist/"
+            exit 1
+          }
           # Ship the launcher inside the ZIP: it removes the "Mark of the Web"
           # from the downloaded files and starts the app, so end users never
-          # have to type a command in PowerShell or cmd. If Fluxckore.exe is
-          # missing (Windows blocked or deleted it), it opens the restore
-          # assistant instead of failing silently.
+          # have to type a command in PowerShell or cmd.
           Copy-Item -Force packaging/launcher.bat dist/Fluxckore-app/Run-Fluxckore.bat
           Copy-Item -Force packaging/repair.ps1 dist/Fluxckore-app/Repair-Fluxckore.ps1
           Copy-Item -Force packaging/restore.bat dist/Fluxckore-app/Restaurar-Fluxckore.bat
-          # Copy the exe directly to its final name (avoids a rename step that can fail)
-          Copy-Item -Force dist/Fluxckore/Fluxckore.exe dist/Fluxckore-app/Fluxckore-v0.17.0.exe || Copy-Item -Force dist/Fluxckore.exe dist/Fluxckore-app/Fluxckore-v0.17.0.exe
 
       - name: Package zip
         shell: pwsh
