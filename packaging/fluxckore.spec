@@ -1,6 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
-# PyInstaller spec for Fluxckore (single edition, onedir).
-# Run from the repository root:
+# PyInstaller spec for Fluxckore (single edition, onefile).
+# Run from the repository root: 
 #     pyinstaller packaging/fluxckore.spec --noconfirm
 # Relative paths are resolved against this spec file's directory.
 
@@ -51,13 +51,14 @@ a = Analysis(
     excludes=["matplotlib", "numpy", "tkinter", "pygame", "PIL", "cryptography"],
     noarchive=False,
 )
+
 pyz = PYZ(a.pure)
 
 exe = EXE(
     pyz,
     a.scripts,
-    [],
-    exclude_binaries=True,
+    a.binaries,
+    a.datas,
     name="Fluxckore",
     debug=False,
     bootloader_ignore_signals=False,
@@ -76,12 +77,5 @@ exe = EXE(
     uac_admin=False,
     icon=[str(SPEC_DIR / "fluxckore.ico")],
 )
-coll = COLLECT(
-    exe,
-    a.binaries,
-    a.datas,
-    strip=False,
-    upx=False,
-    upx_exclude=[],
-    name="Fluxckore",
-)
+
+# No COLLECT - onefile exe will include everything needed.
