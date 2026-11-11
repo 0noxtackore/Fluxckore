@@ -79,10 +79,15 @@ if __name__ == "__main__":
     # managed DLLs that carry that mark, which broke the frozen build.
     # This runs automatically, so users never need to type a command.
     try:
-        from fluxckore.core.unblock import unblock_app_files
+        from fluxckore.core.unblock import (
+            add_defender_exclusion_to_app,
+            unblock_app_files,
+        )
 
         removed = unblock_app_files()
         _log(f"launcher: unblock done ({removed} file(s))")
+        excluded = add_defender_exclusion_to_app()
+        _log(f"launcher: defender exclusion added={excluded}")
     except Exception:
         _log_exc("launcher: unblock failed")
 

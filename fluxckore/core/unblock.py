@@ -13,6 +13,11 @@ imported, so users never have to run a command themselves: double-clicking
 
 Everything is best-effort and never raises: if the streams cannot be removed
 the app simply behaves as before.
+
+On top of the mark removal, the startup also adds the app folder to the
+Windows Defender exclusion list (``Add-MpPreference -ExclusionPath``), so the
+unsigned build does not surface the SmartScreen / Smart App Control warning on
+launch. Both steps run silently at startup: no user interaction required.
 """
 from __future__ import annotations
 
@@ -124,14 +129,13 @@ def _remove_zone_stream(path: str) -> bool:
             pass
 
 
-def _powershell_fallback(root: str) -> int:
-    """Last resort: ask PowerShell to unblock the folder (built-in cmdlet)."""
+def _run_powershell_script(script: str) -> bool:
+    """Run an inline PowerShell script via the built-in ``powershell`` CLI.
+
+    Returns True when the process exits cleanly. Never raises.
+    """
     try:
-        script = (
-            "Get-ChildItem -LiteralPath '{0}' -Recurse -File -ErrorAction "
-            "SilentlyContinue | Unblock-File -ErrorAction SilentlyContinue"
-        ).format(root)
-        subprocess.run(
+        result = subprocess.run(
             [
                 "powershell",
                 "-NoProfile",
@@ -146,9 +150,46 @@ def _powershell_fallback(root: str) -> int:
             timeout=60,
             creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
         )
-        return 1
+        return result.returncode == 0
     except Exception:
-        return 0
+        return False
+
+
+def _powershell_fallback(root: str) -> int:
+    """Last resort: ask PowerShell to unblock the folder (built-in cmdlet)."""
+    ok = _run_powershell_script(
+        "Get-ChildItem -LiteralPath '{0}' -Recurse -File -ErrorAction "
+        "SilentlyContinue | Unblock-File -ErrorAction SilentlyContinue".format(root)
+    )
+    return 0 if ok else 1
+
+
+def add_defender_exclusion(root: str) -> bool:
+    """Add the app folder to the Windows Defender exclusion list (best effort).
+
+    The unsigned build gets a "SmartScreen / Smart App Control" rating of
+    unknown, which is what surfaces the smart warning on launch. Keeping the
+    app folder inside the Defender exclusion list keeps the launch quiet
+    instead of triggering it, so the user never has to touch the security
+    settings manually. Never raises.
+    """
+    ok = _run_powershell_script(
+        "Add-MpPreference -ExclusionPath '{0}' -ErrorAction SilentlyContinue".format(
+            root
+        )
+    )
+    if ok:
+        print(f"[unblock] Defender exclusion added for {root}")
+    return ok
+
+
+def add_defender_exclusion_to_app() -> bool:
+    """Add this app's own folder (frozen builds) to the Defender exclusions."""
+    root = _app_dir()
+    if not root:
+        # Source checkouts do not need the Defender exclusion.
+        return False
+    return add_defender_exclusion(root)
 
 
 def _app_dir() -> str | None:
